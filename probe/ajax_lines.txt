@@ -1,0 +1,9 @@
+250:function function_loadServer(ajaxURL,divToLoad){
+251:	ajaxURL = ""+ajaxURL;
+252:	if(ajaxURL.startsWith("/") == false){
+256:	if(ajaxURL.startsWith("http")){
+275:	ajaxURL += '&nocache='+noCache;
+277:	$.ajax({
+278:		  url: ajaxURL,
+304:		message: $('<div class=\"col-12\"><div class=\"text-center\">Loading Please Wait...</div></div>').load(url),
+321:	function_loadServer('/controllers/leaderboards/ajaxLoadSiege?date=0&server=global','DIV_serverInformation');

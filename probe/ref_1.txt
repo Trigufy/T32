@@ -1,0 +1,1744 @@
+// JavaScript Document
+
+//Common functions
+(function (window, $) {
+    'use strict';
+
+    var SWGT = window.SWGT || {};
+    var cfg = window.SWGT_CONFIG || {};
+
+    window.SWGT = SWGT;
+
+    // ---------------------------------------------------------------------
+    // Global variables currently used across SWGT
+    // ---------------------------------------------------------------------
+    window.searchMonsterByIconMode = window.searchMonsterByIconMode || "";
+    window.swgtSelectPickerFromEvent = window.swgtSelectPickerFromEvent || "";
+    window.swgtSelectPickerLastAction = window.swgtSelectPickerLastAction || "";
+    window.formChanged = window.formChanged || false;
+
+    // Backward-compatible globals
+    window.cloudfrontURL = window.cloudfrontURL || cfg.cloudfrontURL || "";
+    window.monsterImageBase36URL = window.monsterImageBase36URL || cfg.monsterImageBase36URL || "";
+    window.swgtLazyloadPlaceholderImageURL = window.swgtLazyloadPlaceholderImageURL || cfg.lazyloadPlaceholderImageURL || "";
+
+    // ---------------------------------------------------------------------
+    // Small helpers
+    // ---------------------------------------------------------------------
+    function swgtNow() {
+        return new Date().getTime();
+    }
+
+    function getPhrase(key, fallback) {
+        if (cfg.phrases && cfg.phrases[key] !== undefined && cfg.phrases[key] !== null) {
+            return cfg.phrases[key];
+        }
+        return fallback || "";
+    }
+
+    function isTruthy(value) {
+        return value === true || value === "true" || value === "Y" || value === 1 || value === "1";
+    }
+
+    // ---------------------------------------------------------------------
+    // Existing global function
+    // ---------------------------------------------------------------------
+    window.setFormChanged = function () {
+        window.formChanged = true;
+    };
+
+    // ---------------------------------------------------------------------
+    // JS exception logging
+    // ---------------------------------------------------------------------
+    try {
+        window.addEventListener('error', function (e) {
+            var exceptionLocation = null;
+
+            try {
+                exceptionLocation = e.filename;
+            } catch (errorEL) {
+                // ignore
+            }
+
+            var message = e && e.message ? e.message : "";
+
+            var shouldSkip =
+                (message === "Script error." && e.lineno === 0 && e.colno === 0) ||
+                (message && message.indexOf("evaluating 'window.ethereum.selectedAddress = undefined'") !== -1) ||
+                (exceptionLocation !== null && exceptionLocation.indexOf("chrome-extension:") !== -1);
+
+            if (shouldSkip) {
+                return;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/controllers/common/logJavaScriptException",
+                data: {
+                    exceptionName: e.error,
+                    exceptionMessage: e.message,
+                    exceptionLocation: e.filename,
+                    exceptionLineNumber: e.lineno,
+                    exceptionColumnNumber: e.colno,
+                    selectedLanguage: cfg.languageCode || "",
+                    selectedDarkMode: cfg.isAutoDarkMode,
+                    userID: cfg.userID || "",
+                    _nocache: swgtNow()
+                }
+            });
+        });
+    } catch (error) {
+        console.error(error);
+    }
+
+    // ---------------------------------------------------------------------
+    // DOM ready bootstrapping
+    // ---------------------------------------------------------------------
+    $(document).ready(function () {
+        $('.swgtTooltip').tooltipster({
+            content: 'Loading...',
+            theme: 'tooltipster-shadow',
+            functionBefore: function (origin, continueTooltip) {
+                var tooltipText = $(this).attr("data-tooltip");
+
+                continueTooltip();
+
+                if (origin.data('ajax') !== 'cached') {
+                    origin.tooltipster('content', tooltipText).data('ajax', 'cached');
+                }
+            }
+        });
+
+        if ($(".grid-hm").length) {
+            $(".grid-hm").isotope({
+                itemSelector: '.grid-hm-item',
+                columnWidth: '.grid-hm-sizer',
+                percentPosition: true,
+                sortBy: 'original-order'
+            });
+        }
+
+        $('#wstoggle').on('click', function () {
+            $("#searchHamburgerMenu").val("");
+            setTimeout(window.function_clearSearchHamburgerMenu, 250);
+            window.function_hamburgerMenuIsotope();
+            $("#searchHamburgerMenu").focus();
+        });
+    });
+
+    // ---------------------------------------------------------------------
+    // Hamburger menu
+    // ---------------------------------------------------------------------
+    window.function_hamburgerMenuIsotope = function () {
+        $(".grid-hm").isotope();
+    };
+
+    window.function_clearSearchHamburgerMenu = function () {
+        $("#searchHamburgerMenu").val("");
+        window.function_searchHamburgerMenu();
+        $("#searchHamburgerMenu").focus();
+    };
+
+    window.function_searchHamburgerMenu = function () {
+        var input = $('#searchHamburgerMenu').val();
+
+        $(".swgtMenuMenu").parent().show();
+        $(".swgtSearchableHamburgerMenuItem").show();
+
+        if (input == null || input.length === 0) {
+            $("#BTN_clearHamburgerMenuSearch").hide();
+            window.function_hamburgerMenuIsotope();
+            return;
+        }
+
+        $("#BTN_clearHamburgerMenuSearch").show();
+
+        try {
+            input = input.toLowerCase();
+        } catch (err) {
+            // ignore
+        }
+
+        var conditions = input.split(/[\s,]+/);
+
+        $('.swgtSearchableHamburgerMenuItem').each(function () {
+            var menupath = $(this).data('menupath');
+            var showFromInputBox = false;
+            var totalSearchString = "";
+
+            if (menupath) {
+                totalSearchString += "" + menupath;
+            }
+
+            if (
+                totalSearchString &&
+                conditions.reduce(function (a, c) {
+                    return a + totalSearchString.toLowerCase().includes(c);
+                }, 0) === conditions.length
+            ) {
+                showFromInputBox = true;
+            }
+
+            if (showFromInputBox) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+
+        $(".swgtMenuMenu").each(function () {
+            var displayedCount = 0;
+            var elementUL = $(this);
+
+            $(elementUL).find("li").each(function () {
+                if ($(this).is(':visible')) {
+                    displayedCount++;
+                }
+            });
+
+            if (displayedCount === 0) {
+                elementUL.parent().hide();
+            } else {
+                elementUL.parent().show();
+            }
+        });
+
+        window.function_hamburgerMenuIsotope();
+    };
+
+    // ---------------------------------------------------------------------
+    // Modal wrappers
+    // ---------------------------------------------------------------------
+    window.function_discord = function () {
+        function_showMediumInformationBox(
+            '/modal_discord.jsp?nocache=' + swgtNow(),
+            getPhrase('joinTheConversation', 'Join the Conversation'),
+            getPhrase('loadingPleaseWait', 'Loading, please wait')
+        );
+    };
+
+    window.function_help = function () {
+        function_showMediumInformationBox(
+            '/modal_discord.jsp?nocache=' + swgtNow(),
+            getPhrase('help', 'Help'),
+            getPhrase('loadingPleaseWait', 'Loading, please wait')
+        );
+    };
+
+    window.function_changeLanguage = function () {
+        function_showWideInformationBox(
+            '/modal_changeLanguage.jsp?nocache=' + swgtNow(),
+            getPhrase('language', 'Language'),
+            getPhrase('loadingPleaseWait', 'Loading, please wait')
+        );
+    };
+
+    window.function_viewModalAvailableFAQ = function (url) {
+        function_showNormalInformationBox(
+            url + '?nocache=' + swgtNow(),
+            getPhrase('faqIndex', 'FAQ'),
+            getPhrase('loadingPleaseWait', 'Loading, please wait')
+        );
+    };
+
+    window.function_closeAndViewModalFAQ = function (faqID) {
+        function_closeAll();
+        window.function_viewModalFAQ(faqID);
+    };
+
+    window.function_viewModalFAQ = function (faqID) {
+		if(faqID == 38){//Rune Preview FAQ
+			function_showWideInformationBox(
+	            '/controllers/faq/ajaxView?faqEntryID=' + faqID + '&nocache=' + swgtNow(),
+	            getPhrase('faqEntry', 'FAQ Entry'),
+	            getPhrase('loadingPleaseWait', 'Loading, please wait')
+	        );
+		}else{
+	        function_showMediumInformationBox(
+	            '/controllers/faq/ajaxView?faqEntryID=' + faqID + '&nocache=' + swgtNow(),
+	            getPhrase('faqEntry', 'FAQ Entry'),
+	            getPhrase('loadingPleaseWait', 'Loading, please wait')
+	        );
+		}
+    };
+
+    window.function_searchMonsterByIcon = function (setFieldID, setButtonFieldID, showAnyMonsterOption) {
+        function_showWideInformationBoxWithID(
+            '/includes/modal_searchMonsterByIcon.jsp?setFieldID=' + encodeURIComponent(setFieldID) +
+            '&setButtonFieldID=' + encodeURIComponent(setButtonFieldID) +
+            '&showAnyMonsterOption=' + encodeURIComponent(showAnyMonsterOption) +
+            '&nocache=' + swgtNow(),
+            getPhrase('selectAMonster', 'Select a Monster'),
+            getPhrase('loadingPleaseWait', 'Loading, please wait'),
+            'MODAL_searchMonsterByIcon'
+        );
+    };
+
+    window.function_searchMonsterSWGTTeamSearch = function (setFieldID) {
+        window.currentSWGTTeamSearchFieldId = setFieldID;
+
+        function_showWideInformationBoxWithID(
+            '/includes/modal_searchMonsterByIcon.jsp?mode=SWGTTS&setFieldID=' + encodeURIComponent(setFieldID) + '&nocache=' + swgtNow(),
+            getPhrase('selectAMonster', 'Select a Monster'),
+            getPhrase('loadingPleaseWait', 'Loading, please wait'),
+            'MODAL_searchMonsterByIcon'
+        );
+    };
+
+    window.function_viewChangeDarkMode = function () {
+        var url = isTruthy(cfg.isLoggedIn)
+            ? '/modal_myProfileChangeDarkMode.jsp?nocache=' + swgtNow()
+            : '/modal_changeDarkMode.jsp?nocache=' + swgtNow();
+
+        var showFn = isTruthy(cfg.isLoggedIn)
+            ? function_showMediumInformationBox
+            : function_showWideInformationBox;
+
+        showFn(
+            url,
+            getPhrase('darkMode', 'Dark Mode'),
+            getPhrase('loadingPleaseWait', 'Loading, please wait')
+        );
+    };
+
+    window.function_register = function () {
+        if (!isTruthy(cfg.allowRegistration)) {
+            return;
+        }
+
+        function_showWideInformationBox(
+            '/modal_register.jsp?nocache=' + swgtNow(),
+            getPhrase('register', 'Register'),
+            getPhrase('loadingPleaseWait', 'Loading, please wait')
+        );
+    };
+
+    // ---------------------------------------------------------------------
+    // Pinned menu
+    // ---------------------------------------------------------------------
+    window.function_pinMenu = function (iconID, currentPinStatus) {
+        if (!isTruthy(cfg.isLoggedIn)) {
+            function_common_modal_alert(getPhrase('pleaseLogin', 'Please login'));
+            return;
+        }
+
+        $.blockUI({
+            message: '<h5>' + getPhrase('processingPleaseWait', 'Processing, please wait') + '</h5>',
+            centerX: true,
+            centerY: true,
+            css: {
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#000',
+                '-webkit-border-radius': '10px',
+                '-moz-border-radius': '10px',
+                opacity: 0.5,
+                color: '#fff'
+            },
+            baseZ: 9999
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/controllers/common/ajaxPinMenu",
+            data: {
+                currentPinStatus: currentPinStatus,
+                menuID: iconID
+            },
+            success: function (html) {
+                $.unblockUI();
+
+                switch (html) {
+                    case "NOT_LOGGED_IN":
+                        function_common_modal_alert(getPhrase('pleaseLogin', 'Please login'));
+                        break;
+
+                    case "OK":
+                        window.function_refreshPinnedMenu();
+
+                        if (currentPinStatus === "Y") {
+                            $("#" + iconID).html('<a href="javascript:function_pinMenu(\'' + iconID + '\',\'N\')"><i class="fal fa-thumbtack swgtMenuThumbtackOff"></i></a>');
+                        } else {
+                            $("#" + iconID).html('<a href="javascript:function_pinMenu(\'' + iconID + '\',\'Y\')"><i class="fas fa-thumbtack swgtMenuThumbtackOn"></i></a>');
+                        }
+                        break;
+
+                    case "ERROR":
+                        function_common_modal_alert(getPhrase('error', 'Error'));
+                        break;
+
+                    default:
+                        // Preserving existing behavior exactly as much as possible.
+                        // Note: original JSP references teamID here, which appears undefined in this function.
+                        // Leaving untouched would throw. So we safely no-op unless you want a specific fallback.
+                        break;
+                }
+            },
+            error: function () {
+                $.unblockUI();
+                function_common_modal_alert(getPhrase('unexpectedError', 'An unexpected error has occurred'));
+            }
+        });
+    };
+
+    window.function_refreshPinnedMenu = function () {
+        var noCache = swgtNow();
+        var ajaxURL = '/controllers/common/ajaxRefreshPinnedMenu?nocache=' + noCache;
+
+        $.ajax({
+            url: ajaxURL,
+            cache: false,
+            type: 'GET',
+            dataType: 'html',
+            async: true,
+            success: function (html) {
+                if (html !== "") {
+                    $("#SWGT_PINNED_MENU").html(html);
+                }
+            },
+            error: function () {
+                // do nothing
+            }
+        });
+    };
+
+})(window, jQuery);
+
+String.prototype.trim = function() {
+	return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+}
+
+function getElement (id) { 
+	if (document.getElementById) { 
+		return document.getElementById(id); 
+	}else if (document.all) { 
+		return window.document.all[id]; 
+	}else if (document.layers) { 
+		return window.document.layers[id]; 
+	} 
+}
+var agt = navigator.userAgent.toLowerCase();
+var is_op = (agt.indexOf("opera") != -1);
+var is_ie = (agt.indexOf("msie") != -1) && document.all && !is_op;
+var is_mac = (agt.indexOf("mac") != -1);
+var is_gk = (agt.indexOf("gecko") != -1);
+var is_sf = (agt.indexOf("safari") != -1) || (agt.indexOf("applewebkit") != -1);
+
+function isBrowserCompatible() {
+	if (is_ie && !is_op && !is_mac) {
+		var v = gff(agt, "msie ");
+		if (v != null) {
+			return (v >= 6.0);
+		}
+	}
+	if (is_gk && !is_sf) {
+		var v = gff(agt, "rv:");
+		if (v != null) {
+			return (v >= 1.4);
+		} else {
+			v = gff(agt, "galeon/");
+			if (v != null) {
+				return (v >= 1.3);
+			}
+		}
+	}
+	if(is_op){
+		var v = gff(agt, "opera/");
+		if (v != null) {
+			return (v >= 4.0);
+		}
+	}
+	if (is_sf) {
+		var v = gff(agt, "applewebkit/");
+		if (v != null) {
+			return (v >= 124);
+		}
+	}
+	return false;
+}
+function gff(str, pfx) {
+	var i = str.indexOf(pfx);
+	if (i != -1) {
+		var v = parseFloat(str.substring(i + pfx.length));
+		if (!isNaN(v)) {
+			return v;
+		}
+	}
+	return null;
+}
+
+
+var phone_field_length = 0;
+function TabNext(obj,event,len,next_field){
+	if(event == "down"){
+		phone_field_length = obj.value.length;
+	}else if(event == "up"){
+		if(obj.value.length != phone_field_length){
+			phone_field_length = obj.value.length;
+			if(phone_field_length == len){
+				next_field.focus();
+			}
+		}
+	}
+}
+function popUp(url) {
+	popUpWithDimensionResize(url,new Date().getDate(),750,500,1);
+}
+function popUpUniqueName(url,uniqueName) {
+	popUpWithDimensionResize(url,uniqueName,750,500,1);
+}
+function popUpWithDimension(url,uniqueName,width,height) {
+	popUpWithDimensionResize(url,uniqueName,width,height,1);
+}
+function popUpWithDimensionResize(url,uniqueName,width,height,resize) {
+	var address 	= url;
+	var op_tool  	= 0;
+	var op_loc_box  = 0;
+	var op_dir  	= 0;
+	var op_stat  	= 0;
+	var op_menu  	= 0;
+	var op_scroll  	= 1;
+	var op_resize  	= resize;
+	var op_wid  	= width;
+	var op_heigh 	= height;
+	var option = "toolbar="+ op_tool +",location="+ op_loc_box +",directories=" 
+	+ op_dir +",status="+ op_stat +",menubar="+ op_menu +",scrollbars="  
+	+ op_scroll +",resizable="  + op_resize +",width=" + op_wid +",height="+ op_heigh;
+	window.open(address, uniqueName, option);
+}
+
+
+function strNullCheck(str){
+	if(str == null) str = '';
+	if(str == '' || str == ' '){
+		return '';
+	} else if(str.length){
+		var tempChar = '';
+		var spaceCharCount = 0;
+		for(var i = 0; i < str.length; i++){
+			tempChar = str.charAt(i);
+			if(tempChar == ' '){
+				spaceCharCount++;				
+			}
+		}
+		if(spaceCharCount == str.length){
+			return '';
+		} else {
+			return str;
+		}
+	}
+}
+
+//This function can be used for validating two dates and checking if the first date is before the second date. The objects should be passed and not the value
+function compareDates(startDate,endDate){
+	var sDate="";
+	var eDate="";
+	if(startDate && startDate.value.trim() !=""){
+		sDate=parseDate(startDate.value);
+		if(sDate==""){alert("Please enter a valid Start Date. "); return false;}
+	}else{
+		alert("Please enter a valid Start Date. "); return false;
+	}
+	if(endDate && endDate.value.trim()!=""){
+		eDate=parseDate(endDate.value);
+		if(eDate==""){alert("Please enter a valid End Date. "); return false;}
+	}else{
+		alert("Please enter a valid End Date. "); return false;
+	}	
+	if(startDate && endDate && sDate !="" && eDate !=""){
+		startDate.value=sDate;
+		endDate.value=eDate;
+		if(Date.parse(sDate) > Date.parse(eDate)){
+			alert("Start Date cannot be after End Date.");
+			return false;
+		}
+	}
+	return true;
+}
+
+//return the date in MM/dd/yyyy format
+function parseDate(date) {
+	var month = "";
+	var day = "";
+	var year = "";
+
+	if (date.indexOf("-") > -1) {
+		// Dates with -'s in it
+		var splitDate = date.split("-");
+		if (splitDate.length == 3) {
+			month = splitDate[0];
+			day = splitDate[1];
+			year = splitDate[2];
+			if(month.length>2 || day.length>2 || year.length>4)
+				return "";
+		} else {
+			return "";
+		}
+	} else if (date.indexOf("/") > -1) {
+		// Dates with /'s in it
+		var splitDate = date.split("/");
+		if (splitDate.length == 3) {
+			month = splitDate[0];
+			day = splitDate[1];
+			year = splitDate[2];
+			if(month.length>2 || day.length>2 || year.length>4)
+				return "";
+		} else {
+			return "";
+		}
+	} else {
+		// All other dates
+		if (date.length == 5) {
+			date = "0" + date;
+			month = date.substring(0, 2);
+			day = date.substring(2, 4);
+			year = date.substring(4);
+		} else if (date.length == 6) {
+			month = date.substring(0, 2);
+			day = date.substring(2, 4);
+			year = date.substring(4);
+		} else if (date.length == 7) {
+			date = "0" + date;
+			month = date.substring(0, 2);
+			day = date.substring(2, 4);
+			year = date.substring(4);
+		} else if (date.length == 8) {
+			month = date.substring(0, 2);
+			day = date.substring(2, 4);
+			year = date.substring(4);
+		} else {
+			return "";
+		}
+	}
+
+	if (month.length == 1) {
+		month = "0" + month;
+	}
+	if (day.length == 1) {
+		day = "0" + day;
+	}
+	if (year.length == 2) {
+		year = "20" + year;
+	}
+
+	var digitsRE=/^\d{0,4}$/;
+	if(!month.trim().match(digitsRE) || !day.trim().match(digitsRE) || !year.trim().match(digitsRE))return "";
+
+	return month+"/"+day+"/"+year;
+}
+function isFolderOrFileName(folderOrFileName){
+    if (/^[^\\\/\:\*\?\"\<\>\|]+$/.test(folderOrFileName)) {
+    	return true;
+    }else{
+    	return false;
+    }
+}
+//Check if string is non-blank
+function isNonblank (s) {
+	if (/\S/.test(s)) {
+    	return true;
+    }else{
+    	return false;
+    }
+}
+//Check if string is a whole number(digits only).
+function isWhole (s) {
+	if (/^\s*\d+\s*$/.test(s)) {
+    	return true;
+    }else{
+    	return false;
+    }
+}
+//Checks that an input string is an integer, with an optional +/- sign character.
+function isInteger (s) {
+	if (/^\s*(\+|-)?\d+\s*$/.test(s)) {
+    	return true;
+    }else{
+    	return false;
+    }
+}
+//Checks that an input string is a decimal number, with an optional +/- sign character.
+function isDecimal (s) {
+	if (/^\s*(\+|-)?((\d+(\.\d+)?)|(\.\d+))\s*$/.test(s)) {
+    	return true;
+    }else{
+    	return false;
+    }
+}
+//Check if string is currency
+function isCurrency (s) {
+	if (/^\s*(\+|-)?((\d+(\.\d\d)?)|(\.\d\d))\s*$/.test(s)) {
+    	return true;
+    }else{
+    	return false;
+    }
+}
+//Checks that an input string looks like a valid email address.
+function isEmail (s) {
+	if (/^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/.test(s)) {
+    	return true;
+    }else{
+    	return false;
+    }
+}
+//This returns a string with everything but the digits removed.
+function getDigits (s) {
+	return s.replace (/[^\d]/g, "");
+}
+function googleMapsPOPUP(url) {    
+	var address 	= url;
+	var op_tool  	= 0;
+	var op_loc_box  = 0;
+	var op_dir  	= 0;
+	var op_stat  	= 0;
+	var op_menu  	= 0;  
+	var op_scroll  	= 0;
+	var op_resize  	= 0; 
+	var op_wid  	= 800; 
+	var op_heigh 	= 460;               
+	var option = "toolbar="+ op_tool +",location="+ op_loc_box +",directories=" 
+	+ op_dir +",status="+ op_stat +",menubar="+ op_menu +",scrollbars="  
+	+ op_scroll +",resizable="  + op_resize +",width=" + op_wid +",height="+ op_heigh;
+	window.open(address, "_blank", option);
+}
+
+function selectTextboxContent(textbox){
+	//setTimeout(function() { textbox.select(); }, 10);
+}
+function doTooltip(e, msg) {
+  if ( typeof Tooltip == "undefined" || !Tooltip.ready ) return;
+  Tooltip.show(e, msg);
+}
+
+function hideTip() {
+  if ( typeof Tooltip == "undefined" || !Tooltip.ready ) return;
+  Tooltip.hide();
+}
+function directURLLaunch(url){
+	window.location=url;
+}
+function launchURL(url){
+	if(formChanged){
+		function_common_modal_alert('Please save the your changes before continuing.');
+	}else{
+		window.location=url;
+	}
+}
+function daydiff(first, second) {
+    return (second-first)/(1000*60*60*24);
+}
+
+(function ($) {
+	$.fn.showHTML = function(html, speed, callback) {
+	      return this.each(function() {
+	         // The element to be modified
+	         var el = $(this);
+
+	         // Preserve the original values of width and height - they'll need 
+	         // to be modified during the animation, but can be restored once
+	         // the animation has completed.
+	         var finish = {width: this.style.width, height: this.style.height};
+
+	         // The original width and height represented as pixel values.
+	         // These will only be the same as `finish` if this element had its
+	         // dimensions specified explicitly and in pixels. Of course, if that 
+	         // was done then this entire routine is pointless, as the dimensions 
+	         // won't change when the content is changed.
+	         var cur = {width: el.width()+'px', height: el.height()+'px'};
+
+	         // Modify the element's contents. Element will resize.
+	         el.html(html);
+
+	         // Capture the final dimensions of the element 
+	         // (with initial style settings still in effect)
+	         var next = {width: el.width()+'px', height: el.height()+'px'};
+
+	         el .css(cur) // restore initial dimensions
+	            .animate(next, speed, function()  // animate to final dimensions
+	            {
+	               el.css(finish); // restore initial style settings
+	               if ( $.isFunction(callback) ) callback();
+	            });
+	      });
+	};
+	   
+	//Numeric only control handler
+	jQuery.fn.ForceNumericOnly = function(){
+		return this.each(function(){
+			$(this).keydown(function(e){
+				/*
+				var key = e.charCode || e.keyCode || 0;
+				// allow backspace, tab, delete, enter, arrows, numbers and keypad numbers ONLY
+				// home, end, period, and numpad decimal
+		        return (
+		             key == 8 || 
+		             key == 9 ||
+		             key == 13 ||
+		             key == 46 ||
+		             key == 110 ||
+		             key == 190 ||
+		             (key >= 35 && key <= 40) ||
+		             (key >= 48 && key <= 57) ||
+		             (key >= 96 && key <= 105));*/
+				// Allow: backspace, delete, tab, escape, enter and .
+		        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+		             // Allow: Ctrl+A, Command+A
+		            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+		             // Allow: home, end, left, right, down, up
+		            (e.keyCode >= 35 && e.keyCode <= 40)) {
+		                 // let it happen, don't do anything
+		                 return;
+		        }
+		        // Ensure that it is a number and stop the keypress
+		        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+		            e.preventDefault();
+		        }
+			});
+		});
+	};
+
+	//Force a value even if a event handler is bound (example number)
+    $.fn.forceval = function ( value ) {
+        var hookset = $.valHooks.text.set;
+        if ( hookset ) {
+            delete $.valHooks.text.set;
+        }
+        var result = this.each( function () {
+            $( this ).val( value );
+        } );
+        if ( hookset ) {
+            $.valHooks.text.set = hookset;
+        }
+        return result;
+    };
+    
+}( jQuery ));
+
+function function_print(){
+	window.print();
+}
+function function_reloadPage(){
+	document.location.reload();
+}
+function function_closeAll(){
+	$.each(BootstrapDialog.dialogs, function(id, dialog){
+        dialog.close();
+    });
+}
+function function_closeSpecificDialog(dialogIDToClose){
+	$.each(BootstrapDialog.dialogs, function(id, dialog){
+		if(dialogIDToClose == id)
+        	dialog.close();
+    });
+}
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+var colorMap = new Map();
+function function_getColor(colorKey){
+	try {
+	  if(colorMap.has(colorKey) == false)
+		colorMap.set(colorKey, getRandomColor());
+		return colorMap.get(colorKey);
+	}catch(err) {
+	  return getRandomColor();
+	}
+}
+function sortFunction2DAscending(a, b) {
+    if (a[0] === b[0]) {
+        return 0;
+    }
+    else {
+        return (a[0] < b[0]) ? -1 : 1;
+    }
+}
+function sortFunction2DDescending(a, b) {
+    if (a[0] === b[0]) {
+        return 0;
+    }
+    else {
+        return (a[0] > b[0]) ? -1 : 1;
+    }
+}
+function sortFunction2DAscendingBySortValue(a, b) {
+    if (a.sortValue === b.sortValue) {
+        return 0;
+    }
+    else {
+        return (a.sortValue < b.sortValue) ? -1 : 1;
+    }
+}
+function sortFunction2DDescendingBySortValue(a, b) {
+    if (a.sortValue === b.sortValue) {
+        return 0;
+    }
+    else {
+        return (a.sortValue > b.sortValue) ? -1 : 1;
+    }
+}
+var hexDigits = new Array("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"); 
+function rgb2hex(rgb) {
+	 rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+	 return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+}
+function hex(x) {
+	return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
+}
+function function_toggleCheckboxCheckmark(buttonID, operation){
+	if("U" == operation){
+		$("#"+buttonID).removeClass('btn-swgtSelected').addClass('btn-swgtWhite');
+		$("#"+buttonID).html("<div style=\"width:9px\">&nbsp;</div>");//&nbsp;&nbsp;
+	}else{
+		$("#"+buttonID).removeClass('btn-swgtWhite').addClass('btn-swgtSelected');
+		$("#"+buttonID).html("<i class=\"fas fa-check  fa-xs\"></i>");//&nbsp;&nbsp;
+	}
+}
+function function_selectCheckboxCheckmark(fieldPrefix, buttonPrefix, optionKeyID, questionNumber, selectedIndex, selectedValue){
+	var currentIndex = -1;
+	if($("#"+fieldPrefix+optionKeyID+"_si").val() != "")
+		currentIndex = $("#"+fieldPrefix+optionKeyID+"_si").val()*1;
+	
+	if(currentIndex != -1){
+		$("#"+buttonPrefix+questionNumber+selectedIndex).removeClass('active').removeClass('focus').attr('aria-pressed',false);
+		
+		if(currentIndex == selectedIndex){
+			$("#"+buttonPrefix+questionNumber+selectedIndex).removeClass('btn-swgtSelected').addClass('btn-swgtWhite');
+			
+			$("#"+fieldPrefix+optionKeyID).val("");
+			$("#"+fieldPrefix+optionKeyID+"_si").val(-1);
+			$("#"+buttonPrefix+questionNumber+selectedIndex).html("<div style=\"width:9px\">&nbsp;</div>");//&nbsp;&nbsp;
+		}else{
+			$("#"+buttonPrefix+questionNumber+currentIndex).removeClass('btn-swgtSelected').addClass('btn-swgtWhite');
+			$("#"+buttonPrefix+questionNumber+currentIndex).html("<div style=\"width:9px\">&nbsp;</div>");//&nbsp;&nbsp;
+			
+			$("#"+buttonPrefix+questionNumber+selectedIndex).removeClass('btn-swgtWhite').addClass('btn-swgtSelected');
+			
+			$("#"+buttonPrefix+questionNumber+selectedIndex).html("<i class=\"fas fa-check  fa-xs\"></i>");//&nbsp;&nbsp;
+    		
+    		$("#"+fieldPrefix+optionKeyID).val(selectedValue);
+    		$("#"+fieldPrefix+optionKeyID+"_si").val(selectedIndex);
+		}
+	}else{
+		$("#"+buttonPrefix+questionNumber+selectedIndex).removeClass('btn-swgtWhite').addClass('btn-swgtSelected');
+		
+		$("#"+fieldPrefix+optionKeyID).val(selectedValue);
+		$("#"+fieldPrefix+optionKeyID+"_si").val(selectedIndex);
+		$("#"+buttonPrefix+questionNumber+selectedIndex).html("<i class=\"fas fa-check  fa-xs\"></i>");//<i class=\"fas fa-check  fa-xs\"></i>
+	}
+}
+function function_trimHTMLWhitespaceAndCondense(value){
+	if(value && value != null && value != ''){
+		try {
+			value = value.replaceAll("\n\r","");
+			value = value.replaceAll("\n","");
+			value = value.replaceAll("\r","");
+			value = value.replaceAll("\t","");
+			value = value.replaceAll("  ","");
+		}catch(error){}
+	}
+	return value;
+}
+function function_showNormalInformationBox(url,textTitle,textLoading){
+	BootstrapDialog.show({
+		animate: false,
+		title: textTitle,
+		type: BootstrapDialog.TYPE_PRIMARY,
+		size: BootstrapDialog.SIZE_NORMAL,
+		message: $('<div class=\"col-12\"><div class=\"text-center\">'+textLoading+'</div></div>').load(url),
+        closable: true,
+        closeByBackdrop: true,
+        closeByKeyboard: true,
+        onshow: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
+        	//dialog.getModalHeader().hide();
+        },
+        onhide: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1';
+        }
+    });
+}
+function function_showMediumInformationBox(url,textTitle,textLoading){
+	BootstrapDialog.show({
+		animate: false,
+		title: textTitle,
+		type: BootstrapDialog.TYPE_PRIMARY,
+		size: BootstrapDialog.SIZE_MEDIUM,
+		message: $('<div class=\"col-12\"><div class=\"text-center\">'+textLoading+'</div></div>').load(url),
+        closable: true,
+        closeByBackdrop: true,
+        closeByKeyboard: true,
+        onshow: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
+        	//dialog.getModalHeader().hide();
+        },
+        onhide: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1';
+        }
+    });
+}
+function function_showWideInformationBox(url,textTitle,textLoading){
+	BootstrapDialog.show({
+		animate: false,
+		title: textTitle,
+		type: BootstrapDialog.TYPE_PRIMARY,
+		size: BootstrapDialog.SIZE_WIDE,
+		message: $('<div class=\"col-12\"><div class=\"text-center\">'+textLoading+'</div></div>').load(url),
+        closable: true,
+        closeByBackdrop: true,
+        closeByKeyboard: true,
+        onshow: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
+        	//dialog.getModalHeader().hide();
+        },
+        onhide: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1';
+        }
+    });
+}
+function function_showWideInformationBoxWithID(url,textTitle,textLoading,modalID){
+	BootstrapDialog.show({
+		id: modalID,
+		animate: false,
+		title: textTitle,
+		type: BootstrapDialog.TYPE_PRIMARY,
+		size: BootstrapDialog.SIZE_WIDE,
+		message: $('<div class=\"col-12\"><div class=\"text-center my-5\">'+textLoading+'</div></div>').load(url, function() {
+			observeSWGTLazyLoad(this);
+		}),
+        closable: true,
+        closeByBackdrop: true,
+        closeByKeyboard: true,
+        onshow: function(dialog) {
+			dialog.getModalBody().addClass('no-modal-body-padding');
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
+        	//dialog.getModalHeader().hide();
+        },
+        onhide: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1';
+        }
+    });
+}
+function function_enableDisable(formToCheck,variableToCheck,divToShowHide,divToShowHide2,divToShowHide3,divToShowHide4,divToShowHide5,divToShowHide6,divToShowHide7,divToShowHide8,divToShowHide9){
+	if($('input[name="'+variableToCheck+'"]:checked', '#'+formToCheck).val() != "Y"){
+		$("#"+divToShowHide).hide();
+		if(divToShowHide2 != '')
+			$("#"+divToShowHide2).hide();
+		if(divToShowHide3 != '')
+			$("#"+divToShowHide3).hide();
+		if(divToShowHide4 != '')
+			$("#"+divToShowHide4).hide();
+		if(divToShowHide5 != '')
+			$("#"+divToShowHide5).hide();
+		if(divToShowHide6 != '')
+			$("#"+divToShowHide6).hide();
+		if(divToShowHide7 != '')
+			$("#"+divToShowHide7).hide();
+		if(divToShowHide8 != '')
+			$("#"+divToShowHide8).hide();
+		if(divToShowHide9 != '')
+			$("#"+divToShowHide9).hide();
+	}else{
+		$("#"+divToShowHide).show();
+		if(divToShowHide2 != '')
+			$("#"+divToShowHide2).show();
+		if(divToShowHide3 != '')
+			$("#"+divToShowHide3).show();
+		if(divToShowHide4 != '')
+			$("#"+divToShowHide4).show();
+		if(divToShowHide5 != '')
+			$("#"+divToShowHide5).show();
+		if(divToShowHide6 != '')
+			$("#"+divToShowHide6).show();
+		if(divToShowHide7 != '')
+			$("#"+divToShowHide7).show();
+		if(divToShowHide8 != '')
+			$("#"+divToShowHide8).show();
+		if(divToShowHide9 != '')
+			$("#"+divToShowHide9).show();
+	}
+}
+function function_disableEnable(matchValue,formToCheck,variableToCheck,divToShowHide,divToShowHide2,divToShowHide3,divToShowHide4,divToShowHide5,divToShowHide6,divToShowHide7,divToShowHide8,divToShowHide9){
+	if($('input[name="'+variableToCheck+'"]:checked', '#'+formToCheck).val() == matchValue){
+		$("#"+divToShowHide).hide();
+		if(divToShowHide2 != '')
+			$("#"+divToShowHide2).hide();
+		if(divToShowHide3 != '')
+			$("#"+divToShowHide3).hide();
+		if(divToShowHide4 != '')
+			$("#"+divToShowHide4).hide();
+		if(divToShowHide5 != '')
+			$("#"+divToShowHide5).hide();
+		if(divToShowHide6 != '')
+			$("#"+divToShowHide6).hide();
+		if(divToShowHide7 != '')
+			$("#"+divToShowHide7).hide();
+		if(divToShowHide8 != '')
+			$("#"+divToShowHide8).hide();
+		if(divToShowHide9 != '')
+			$("#"+divToShowHide9).hide();
+	}else{
+		$("#"+divToShowHide).show();
+		if(divToShowHide2 != '')
+			$("#"+divToShowHide2).show();
+		if(divToShowHide3 != '')
+			$("#"+divToShowHide3).show();
+		if(divToShowHide4 != '')
+			$("#"+divToShowHide4).show();
+		if(divToShowHide5 != '')
+			$("#"+divToShowHide5).show();
+		if(divToShowHide6 != '')
+			$("#"+divToShowHide6).show();
+		if(divToShowHide7 != '')
+			$("#"+divToShowHide7).show();
+		if(divToShowHide8 != '')
+			$("#"+divToShowHide8).show();
+		if(divToShowHide9 != '')
+			$("#"+divToShowHide9).show();
+	}
+}
+function function_isTouchDevice() {
+  return (
+			('ontouchstart' in window) || 
+			(navigator.maxTouchPoints > 0) ||
+     		(navigator.msMaxTouchPoints > 0)
+		 );
+}
+function function_getTooltipster3Trigger(){
+	if(function_isTouchDevice())
+		return 'click';
+	return 'hover';
+}
+function function_stringHasElements(datavalue,searchTags,mode){
+	if(searchTags == null || searchTags.size == 0)
+		return true;
+	
+	let retBool = true;
+	if(mode == "OR")
+		retBool = false;
+	
+	let datavalueSet = new Set();
+	if(datavalue.includes(" ")){
+		const datavalueArray = datavalue.split(" ");
+		if(datavalueArray == null)
+			return false;
+		
+		for (const dv of datavalueArray) { 
+			datavalueSet.add(dv);
+		}
+	}else{
+		datavalueSet.add(datavalue);
+	}
+	
+	for(const searchTag of searchTags){
+		if(mode == "OR"){
+			retBool = (datavalueSet.has(searchTag)) || retBool;
+		}else{
+			retBool = (datavalueSet.has(searchTag)) && retBool;
+		}
+	}
+	return retBool;
+}
+function function_createSWGTCircularProgressBar(elementName){
+	var el = getElement(elementName); // get canvas
+
+	var options = {
+	    percent:  el.getAttribute('data-percent') || 25,
+	    size: el.getAttribute('data-size') || 220,
+	    lineWidth: el.getAttribute('data-line') || 15,
+	    rotate: el.getAttribute('data-rotate') || 0,
+		maxValue: el.getAttribute('data-maxvalue') || 100,
+		showSizeOnly : el.getAttribute('data-showsizeonly') || 0,
+		valueIsPercentage:  el.getAttribute('data-valueispercentage') || 0,
+		valueColorClass: el.getAttribute('data-valuecolorclass') || "text-dark",
+		donutBackgroundColor: el.getAttribute('data-donutbackgroundcolor') || "#efefef",
+		donutValueColor: el.getAttribute('data-donutvaluecolor') || "#555555",
+	}
+
+	var canvas = document.createElement('canvas');
+	var span = document.createElement('span');
+	
+	span.textContent = '';
+	
+	if(options.showSizeOnly == 1){
+		span.textContent += options.percent;
+	}else{
+		span.textContent += options.percent + '/'+options.maxValue;
+	}
+	if(options.valueIsPercentage == 1)
+		span.textContent += '%';
+	
+
+	if(options.valueIsPercentage == 1)
+		span.className='pl-2 swgt-'+options.size+'-circle-progress-bar-span '+options.valueColorClass;
+	else
+		span.className='swgt-'+options.size+'-circle-progress-bar-span '+options.valueColorClass;
+	    
+	if (typeof(G_vmlCanvasManager) !== 'undefined') {
+	    G_vmlCanvasManager.initElement(canvas);
+	}
+
+	var ctx = canvas.getContext('2d');
+	canvas.width = canvas.height = options.size;
+	canvas.className='swgt-circle-progress-bar-canvas';
+
+	el.appendChild(span);
+	el.appendChild(canvas);
+
+	ctx.translate(options.size / 2, options.size / 2); // change center
+	ctx.rotate((-1 / 2 + options.rotate / 180) * Math.PI); // rotate -90 deg
+
+	var radius = (options.size - options.lineWidth) / 2;
+
+	var drawCircle = function(color, lineWidth, percent) {
+		percent = Math.min(Math.max(0, percent), 1);
+		ctx.beginPath();
+		ctx.arc(0, 0, radius, 0, Math.PI * 2 * percent, false);
+		ctx.strokeStyle = color;
+		ctx.lineCap = 'butt';
+		ctx.lineWidth = lineWidth
+		ctx.stroke();
+	};
+
+	drawCircle(options.donutBackgroundColor, options.lineWidth, 100 / 100);
+	drawCircle(options.donutValueColor, options.lineWidth, options.percent / options.maxValue);
+}
+function function_searchMonsterByIconSelectMonster(setFieldID,setButtonFieldID,selectedMonsterCom2usID){
+	let monsterNameFound = "";
+	let monsterImage = "";
+
+	if(searchMonsterByIconMode && searchMonsterByIconMode == "speedTickBracketCalculatorV4"){
+		if(selectedMonsterCom2usID > 0){
+			$.ajax({
+				url: "/controllers/common/ajaxMonsterAndTeamAutoComplete",
+				type: "GET",
+				dataType: "json",
+				data: {
+					com2usMonsterID: selectedMonsterCom2usID,
+					includePVEBossMonsters: "Y"
+				},
+				success: function(data){
+					if(data && data.results && data.results.length > 0){
+						let monster = data.results[0];
+
+						if(typeof window.function_addMonsterFromAutocomplete === "function"){
+							window.function_addMonsterFromAutocomplete(monster);
+						}
+					}
+
+					function_closeSpecificDialog('MODAL_searchMonsterByIcon');
+				},
+				error: function(){
+					function_closeSpecificDialog('MODAL_searchMonsterByIcon');
+				}
+			});
+
+			return;
+		}
+
+		function_closeSpecificDialog('MODAL_searchMonsterByIcon');
+		return;
+	}
+
+	if(selectedMonsterCom2usID > 0){
+		var selectedValue = "";
+		$("#"+setFieldID+" > option").each(function() {
+			let com2usID = $(this).data('com2usid');
+			if(selectedMonsterCom2usID == com2usID){
+				selectedValue = this.value;
+				monsterNameFound = this.text;
+				monsterImage = $(this).data('monsterimage');
+				return false; // breaks
+			}
+		});
+
+		$("#"+setFieldID).val(selectedValue);
+		$("#"+setFieldID).selectpicker('refresh');
+		
+		if(setButtonFieldID && setButtonFieldID != "")
+			$("#"+setButtonFieldID).html("<img src='"+monsterImageBase36URL+monsterImage+"' class='img-fluid rounded' alt='"+monsterNameFound+"' title='"+monsterNameFound+"' style='width:29px;'>");
+		
+		if(searchMonsterByIconMode && searchMonsterByIconMode == "speedTickBracketCalculatorV2")
+			function_addMonster();
+
+	}else{
+		if(selectedMonsterCom2usID == -1){
+			$("#"+setFieldID).val("");
+			$("#"+setFieldID).selectpicker('refresh');
+			
+			if(setButtonFieldID && setButtonFieldID != "")
+				$("#"+setButtonFieldID).html("<div class='d-block' style='width:29px;height:29px;padding-top:7px;padding-left:2px;'><i class='fas fa-mouse-pointer'></i></div>");
+
+		}else if(selectedMonsterCom2usID == -2){
+			$("#"+setFieldID).val("*");
+			$("#"+setFieldID).selectpicker('refresh');
+			
+			if(setButtonFieldID && setButtonFieldID != "")		
+				$("#"+setButtonFieldID).html("<div class='d-block' style='width:29px;height:29px;padding-top:7px;padding-left:2px;'><i class='fas fa-mouse-pointer'></i></div>");
+
+		}else{
+			var tempSelectedCom2usID = $("#"+setFieldID+" :selected").data('com2usid')*1;
+			if(tempSelectedCom2usID > 0){
+				function_searchMonsterByIconSelectMonster(setFieldID,setButtonFieldID,tempSelectedCom2usID);
+			}else{
+				if(setButtonFieldID && setButtonFieldID != "")
+					$("#"+setButtonFieldID).html("<div class='d-block' style='width:29px;height:29px;padding-top:7px;padding-left:2px;'><i class='fas fa-mouse-pointer'></i></div>");
+			}
+		}
+	}
+
+	function_closeSpecificDialog('MODAL_searchMonsterByIcon');
+}
+function function_selectSWGTTeamSearchMonsterFromModal(el,setFieldID){
+	if (!setFieldID) {
+		return;
+	}
+	var $el = $(el);
+
+    var monster = {
+        id: $el.attr('data-monster-id') || '',
+        name: $el.attr('data-monster-name') || '',
+        family: $el.attr('data-monster-family') || '',
+		collab_name: $el.attr('data-monster-collab-name') || '',
+        element: $el.attr('data-monster-element') || '',
+        image: $el.attr('data-monster-image') || ''
+    };
+
+	function_closeSpecificDialog('MODAL_searchMonsterByIcon');
+	
+	setSWGTTeamSearchMonster(setFieldID, monster);
+}
+function function_searchMonsterByIconUpdateImage(setFieldID,setButtonFieldID){
+	let monsterNameFound = $("#"+setFieldID+" :selected").val();
+	if(monsterNameFound && monsterNameFound != "" && monsterNameFound != "*"){
+		$("#"+setFieldID+" > option").each(function() {
+			if(this.value == monsterNameFound){
+				let com2usID = $(this).data('com2usid');
+				function_searchMonsterByIconSelectMonster(setFieldID,setButtonFieldID,com2usID);
+				return false; // breaks
+			}
+		});
+	}else{
+		function_searchMonsterByIconSelectMonster(setFieldID,setButtonFieldID,0);
+	}
+}
+function function_getSiegeScoreIncrement(activeTowers){
+	switch(activeTowers){
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+		case 10:
+		case 11:
+		case 12:
+			return activeTowers;
+		case 13:
+			return 18;
+		case 14:
+			return 24;
+		case 15:
+			return 25;
+		case 16:
+			return 26;
+		case 17:
+			return 27;
+		case 18:
+			return 28;
+		case 19:
+			return 29;
+		case 20:
+			return 30;
+		case 21:
+		case 22:
+		case 23:
+		case 24:
+		case 25:
+		case 26:
+		case 27:
+		case 28:
+		case 29:
+		case 30:
+		case 31:
+		case 32:
+		case 33:
+		case 34:
+		case 35:
+		case 36:
+			return activeTowers+10;
+	}
+}
+function function_getSiegeTournamentScoreIncrement(activeTowers,activeSpecialTowers){
+	var scoreIncrement = (activeTowers*2);
+	if(activeTowers >= 13)
+		scoreIncrement += 20;
+	
+	if(activeSpecialTowers > 0)
+		scoreIncrement = scoreIncrement + (scoreIncrement*(activeSpecialTowers * 0.1));
+	scoreIncrement = Math.floor(scoreIncrement);
+	
+	return scoreIncrement;
+}
+function function_formatTime(time,infinityText) {
+	if(time == 0 || time == infinityText || time > 900000)
+		return "&#8734;";
+	
+    // Hours, minutes and seconds
+    var hrs = ~~(time / 3600);
+    var mins = ~~((time % 3600) / 60);
+    var secs = ~~time % 60;
+
+    // Output like "1:01" or "4:03:59" or "123:03:59"
+    var ret = "";
+    if (hrs > 0) {
+        if(hrs < 10)
+        	ret += "0"+hrs+"h ";
+        else
+        	ret += ""+hrs+"h ";
+    }else{
+    	ret += "00h ";
+    }
+    if (mins > 0) {
+        if(mins < 10)
+        	ret += "0"+mins+"m ";
+        else
+        	ret += ""+mins+"m ";
+    }else{
+    	ret += "00m ";
+    }
+    if (secs > 0) {
+        if(secs < 10)
+        	ret += "0"+secs+"s";
+        else
+        	ret += ""+secs+"s";
+    }else{
+    	ret += "00s";
+    }
+    return ret;
+}
+function function_numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+function swgtSyncFloatingHeaders() {
+    $('table.fixedHeader-floating').each(function () {
+        const $floatingTable = $(this);
+
+        let originalTableId = null;
+
+        const ariaDescribedBy = $floatingTable.attr('aria-describedby');
+        if (ariaDescribedBy) {
+            originalTableId = ariaDescribedBy.replace(/_info$/, '');
+        }
+
+        if (!originalTableId) {
+            $floatingTable.find('thead th').each(function () {
+                const ariaControls = $(this).attr('aria-controls');
+                if (ariaControls) {
+                    originalTableId = ariaControls;
+                    return false; // break out of .each()
+                }
+            });
+        }
+
+        if (!originalTableId) return;
+
+        const $originalTable = $('#' + originalTableId);
+        if (!$originalTable.length) return;
+
+        const $sourceDt = $originalTable.closest('.swgt-dt');
+        if (!$sourceDt.length) return;
+
+        const isDense =
+            $sourceDt.hasClass('swgt-dt--dense') ||
+            $originalTable.hasClass('swgt-dt--dense') ||
+            $originalTable.closest('.swgt-dt--dense').length > 0;
+
+        $floatingTable.addClass('swgt-dt');
+
+        if (isDense) {
+            $floatingTable.addClass('swgt-dt--dense');
+        } else {
+            $floatingTable.removeClass('swgt-dt--dense');
+        }
+    });
+}
+var _swgtLazyLoadObserver = null;
+
+function initSWGTLazyLoader() {
+  if (_swgtLazyLoadObserver) return;
+
+  if (!("IntersectionObserver" in window)) {
+    $(".swgt-lazyload[data-src]").each(function () {
+      var ds = this.getAttribute("data-src");
+      if (ds) {
+        this.src = ds;
+        this.removeAttribute("data-src");
+        this.classList.add("is-loaded");
+      }
+    });
+    return;
+  }
+
+  _swgtLazyLoadObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+
+      var img = entry.target;
+      var ds = img.getAttribute("data-src");
+
+      if (ds) {
+        img.onload = function () {
+          img.classList.add("is-loaded");
+          img.onload = null;
+          img.onerror = null;
+        };
+
+        img.onerror = function () {
+          img.classList.add("is-error");
+          img.onload = null;
+          img.onerror = null;
+        };
+
+        img.src = ds;
+        img.removeAttribute("data-src");
+
+        if (img.complete) {
+          img.classList.add("is-loaded");
+        }
+      }
+
+      img.removeAttribute("data-lazy-observed");
+      _swgtLazyLoadObserver.unobserve(img);
+    });
+  }, {
+    root: null,
+    rootMargin: "200px 0px",
+    threshold: 0.01
+  });
+}
+
+function observeSWGTLazyLoad(container) {
+  initSWGTLazyLoader();
+
+  var $targets = container
+    ? $(container).find(".swgt-lazyload[data-src]")
+    : $(".swgt-lazyload[data-src]");
+
+  if (_swgtLazyLoadObserver) {
+    $targets.each(function () {
+      if (this.dataset.lazyObserved === "true") return;
+      this.dataset.lazyObserved = "true";
+      _swgtLazyLoadObserver.observe(this);
+    });
+  }
+}
+function function_removeHomepageTileFromGrid(tileSelector){
+	var $grid = $(".grid");
+	var $item = $(tileSelector);
+
+	if ($grid.length && $item.length) {
+		$grid.isotope('remove', $item).isotope('layout');
+	}
+}
+function swgtFixDataTablesLayout() {
+	if (!$.fn.DataTable || !$.fn.dataTable) {
+		return;
+	}
+
+	try {
+		var tables = $($.fn.dataTable.tables()).DataTable();
+
+		tables.columns.adjust();
+
+		if ($.fn.dataTable.Responsive) {
+			tables.responsive.recalc();
+		}
+
+		if ($.fn.dataTable.FixedHeader) {
+			setTimeout(function () {
+				tables.fixedHeader.adjust();
+			}, 50);
+		}
+	} catch (error) {
+		if (window.console) {
+			console.warn('SWGT DataTables layout adjustment failed:', error);
+		}
+	}
+}
+function function_viewRuneRankAnalysis(runeID,upgradeCurrent,slot_no,classV,set_id,pri_eff,prefix_eff,sec_eff_1,sec_eff_2,sec_eff_3,sec_eff_4,extra,sec_eff_order){
+
+	function buildRuneRankAnalysisUrl() {
+		var noCache = new Date().getTime();
+		var selectedFocus = window.SWGT_CONFIG && window.SWGT_CONFIG.selectedFocus ? window.SWGT_CONFIG.selectedFocus : '';
+
+		var url = '/controllers/accountAnalytics/ajaxViewRuneRankAnalysis?selectedFocus=' + selectedFocus + '&runeID=' + runeID + '&nocache=' + noCache;
+
+		if(upgradeCurrent)
+			url += "&upgradeCurrent=" + upgradeCurrent;
+		if(slot_no)
+			url += "&slot_no=" + slot_no;
+		if(classV)
+			url += "&classV=" + classV;
+		if(set_id)
+			url += "&set_id=" + set_id;
+		if(pri_eff)
+			url += "&pri_eff=" + pri_eff;
+		if(prefix_eff)
+			url += "&prefix_eff=" + prefix_eff;
+		if(sec_eff_1)
+			url += "&sec_eff_1=" + sec_eff_1;
+		if(sec_eff_2)
+			url += "&sec_eff_2=" + sec_eff_2;
+		if(sec_eff_3)
+			url += "&sec_eff_3=" + sec_eff_3;
+		if(sec_eff_4)
+			url += "&sec_eff_4=" + sec_eff_4;
+		if(extra)
+			url += "&extra=" + extra;
+		if(sec_eff_order)
+			url += "&sec_eff_order=" + sec_eff_order;
+
+		return url;
+	}
+
+	function getLoadingHtml() {
+		var loadingText = window.SWGT_CONFIG && window.SWGT_CONFIG.phrases && window.SWGT_CONFIG.phrases.loadingPleaseWait ? window.SWGT_CONFIG.phrases.loadingPleaseWait : 'Loading, please wait...';
+
+		return '<div class="col-12 px-0"><div class="text-center">' + loadingText + '</div></div>';
+	}
+
+	var url = buildRuneRankAnalysisUrl();
+	var modalTitle = window.SWGT_CONFIG && window.SWGT_CONFIG.phrases && window.SWGT_CONFIG.phrases.runeRankAnalysis ? window.SWGT_CONFIG.phrases.runeRankAnalysis : 'Rune - Rank - Analysis';
+
+	BootstrapDialog.show({
+		animate: false,
+		title: modalTitle,
+		type: BootstrapDialog.TYPE_PRIMARY,
+		size: BootstrapDialog.SIZE_NORMAL,
+		message: $('<div class="swgt-rune-rank-analysis-modal-body"></div>').html(getLoadingHtml()).load(url),
+		closable: true,
+		closeByBackdrop: true,
+		closeByKeyboard: true,
+		onshow: function(dialog) {
+			document.querySelector('meta[name="viewport"]').content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
+		},
+		onshown: function(dialog){
+			$(".modal-body").attr('style','padding: 0.5rem 1rem !important;');
+			$(".modal-dialog").attr('style','margin-top:0.5rem !important;');
+
+			var $modal = dialog.getModal();
+			var $header = $modal.find('.bootstrap-dialog-header');
+			var $closeButton = $header.find('.bootstrap-dialog-close-button');
+
+			if(!$header.find('.swgt-rune-rank-refresh-btn').length){
+				var $refreshButton = $(
+					'<button type="button" class="swgt-rune-rank-refresh-btn" ' +
+					'title="Refresh Rune Rank Analysis" ' +
+					'aria-label="Refresh Rune Rank Analysis">' +
+					'<i class="fas fa-sync-alt"></i>' +
+					'</button>'
+				);
+
+				$refreshButton.on('click', function(e){
+					e.preventDefault();
+
+					var $button = $(this);
+					var $message = dialog.getModalBody().find('.swgt-rune-rank-analysis-modal-body');
+
+					$button.addClass('swgt-rune-rank-refresh-btn-loading');
+
+					$message.block({
+						message: '<div class="swgt-rune-rank-refresh-blockui"><i class="fas fa-sync-alt fa-spin"></i></div>',
+						css: {
+							border: '0',
+							backgroundColor: 'transparent',
+							color: '#ffffff'
+						},
+						overlayCSS: {
+							backgroundColor: '#000000',
+							opacity: 0.35,
+							cursor: 'wait'
+						}
+					});
+
+					$('<div></div>').load(buildRuneRankAnalysisUrl(), function(response, status){
+						if(status === 'success'){
+							$message.html(response);
+						}
+
+						$message.unblock();
+						$button.removeClass('swgt-rune-rank-refresh-btn-loading');
+					});
+				});
+
+				if($closeButton.length){
+					$refreshButton.insertBefore($closeButton);
+				}else{
+					$header.append($refreshButton);
+				}
+			}
+		},
+		onhide: function(dialog) {
+			document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1';
+		}
+	});
+}
+function function_showToastMessage(type, message) {
+	type = type || "info";
+	message = message || "";
+
+	var allowedTypes = ["success", "warning", "danger", "info"];
+	if(allowedTypes.indexOf(type) === -1)
+		type = "info";
+
+	var $container = $(".swgt-toast-container");
+	if($container.length === 0) {
+		$container = $("<div/>", {
+			"class": "swgt-toast-container",
+			"aria-live": "polite",
+			"aria-atomic": "true"
+		});
+		$("body").append($container);
+	}
+
+	var $toast = $("<div/>", {
+		"class": "swgt-toast-message swgt-toast-" + type,
+		"text": message
+	});
+
+	$container.append($toast);
+
+	setTimeout(function() {
+		$toast.addClass("swgt-toast-show");
+	}, 20);
+
+	setTimeout(function() {
+		$toast.removeClass("swgt-toast-show");
+
+		setTimeout(function() {
+			$toast.remove();
+		}, 220);
+	}, 4200);
+}
+/* =========================================================
+   Summoners War - Speed Calculations
+   ========================================================= */
+var SWGT_SWIFT_SPEED_SET_BONUS = 0.25; //25%
+
+function function_getSwiftSpeedSetBonus(baseSpeed){
+	baseSpeed = baseSpeed*1;
+
+	if(Number.isFinite(baseSpeed) == false || baseSpeed < 0)
+		return 0;
+
+	return Math.ceil(baseSpeed*SWGT_SWIFT_SPEED_SET_BONUS);
+}

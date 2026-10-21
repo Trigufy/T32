@@ -1,0 +1,2845 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"/>
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link rel="icon" href="/favicon.ico">
+
+<link href="/apple-touch-icon.png" rel="apple-touch-icon">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta name="format-detection" content="telephone=no">
+<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+<meta http-equiv="Content-Language" content="en">
+
+<!-- for Facebook && googleplus-->
+<meta property="og:url"           content="https://swgt.io" />
+<meta property="og:type"          content="website" />
+<meta property="og:title"         content="SWGT: Summoners War Game Tools" />
+<meta property="og:description"   content="A mobile first platform to make managing your guild easier in Summoners War." />
+<meta property="og:image" content="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_Logo_v5a_white_bg.png" />
+
+<!-- for Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="SWGT: Summoners War Game Tools" />
+<meta name="twitter:description" content="A mobile first platform to make managing your guild easier in Summoners War." />
+<meta name="twitter:image" content="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_Logo_v5a_white_bg.png" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+
+<title>SWGT &gt; Siege &gt; Simulator</title>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Flag Icons -->
+<link rel="stylesheet" type="text/css" href="https://do9d4mpqk497d.cloudfront.net/common/includes/flag-icon/css/flag-icon.min.css?2021-08-23"/>
+
+<!-- jQuery -->
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/jquery/jquery-3.3.1.min.js"></script>
+
+<!-- popper.js -->
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/popper.min.js"></script>
+
+
+
+
+
+
+
+
+
+<!-- Number Input -->
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/jquery/number/jquery.number.2.1.5.min.js"></script>
+
+
+
+<!-- jQuery UI -->
+<link type="text/css" rel="stylesheet" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/jquery/ui/1.11.4/jquery-ui.min.css">
+<link type="text/css" rel="stylesheet" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/jquery/ui/1.11.4/jquery-ui.theme.min.css">
+
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/jquery/ui/1.12.1/jquery-ui.min.js"></script>
+
+<!-- jQuery Touch-Punch -->
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/jquery/touchPunch/jquery.ui.touch-punch-0.2.3a.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- jQuery BlockUI -->
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/jquery/blockUI/jquery.blockUI-2.70.0.js?2020-01-20_1605"></script>
+
+
+
+
+
+<!-- Tooltipster -->
+<link href="https://do9d4mpqk497d.cloudfront.net/common/includes/jquery/tooltipster/tooltipster.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/jquery/tooltipster/jquery.tooltipster.min.js"></script>
+<link href="https://do9d4mpqk497d.cloudfront.net/common/includes/jquery/tooltipster/themes/tooltipster-shadow.css" type="text/css" rel="stylesheet">
+
+
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/jquery/isotope.pkgd.min.js"></script>
+
+
+
+<!-- Bootstrap core CSS -->
+<link type="text/css" rel="stylesheet" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/4.4.1/css/bootstrap.css">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script	src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/4.4.1/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap Dialog --> 
+<link type="text/css" rel="stylesheet" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/bootstrap-dialog/bootstrap-dialog.custom-2022-03-17.min.css" />
+<script src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/bootstrap-dialog/bootstrap-dialog.custom-2022-03-17.min.js"></script>
+
+<!-- Bootstrap Select -->
+<link type="text/css" rel="stylesheet" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/bootstrap-select/1.13.14/css/bootstrap-select.min.css">
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/bootstrap-select/1.13.14/js/bootstrap-select-swgt_v3.js?20250829_0000"></script>
+
+
+
+
+<!-- Bootstrap File Input -->
+<link rel="stylesheet" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/bootstrap-fileinput/4.4.9/css/fileinput.min.css">
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/bootstrap-fileinput/4.4.9/js/fileinput.min.js"></script>
+
+
+<!-- Filepond -->
+<link rel="stylesheet" href="https://do9d4mpqk497d.cloudfront.net/common/includes/filepond/4.28.2/filepond.min.css">
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/filepond/4.28.2/filepond.min.js"></script>
+
+
+
+
+
+
+
+
+
+<!-- WebSlide Menu -->
+<link rel="stylesheet" type="text/css" media="all" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/webslidemenu/v1.0/webslidemenu.css?2019-08-28_0000" />
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/webslidemenu/v1.0/webslidemenu.js"></script>
+
+<!-- WebSlide Menu 2.5 -->
+<link rel="stylesheet" type="text/css" media="all" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/webslidemenu/v2.5/webslidemenu.css?2022-03-16_0000" />
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/webslidemenu/v2.5/webslidemenu.js?2022-03-16_0000"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" type="text/css" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/fontawesome/pro-6.1.1/css/all.min.css"/>
+
+
+
+
+
+
+
+<!-- SWGT Platform Standards -->
+<script type="text/javascript">
+window.SWGT_CONFIG = {
+	languageCode: "EN",
+	isAutoDarkMode: false,
+	isLoggedIn: false,
+	allowRegistration: true,
+	cloudfrontURL: "https://do9d4mpqk497d.cloudfront.net",
+	monsterImageBase36URL: "https://do9d4mpqk497d.cloudfront.net/common/images/monsters36/",
+	lazyloadPlaceholderImageURL: "https://do9d4mpqk497d.cloudfront.net/common/images/swgt-gray-pulse-loader-100.gif",
+	userID: "",
+	selectedFocus: "",
+	phrases: {
+		loadingPleaseWait: "Loading Please Wait...",
+		help: "Help",
+		language: "Language",
+		message: "Message",
+		darkMode: "Dark Mode",
+		register: "Register",
+		pleaseLogin: "Please Login.",
+		processingPleaseWait: "Processing, Please wait...",
+		unexpectedError: "An unexpected error has occurred",
+		runeRankAnalysis: "Rune - Rank - Analysis"
+	}
+};
+</script>
+<script type="text/javascript" src="/common/includes/common.js?2026-10-17_0853"></script>
+<link type="text/css" rel="stylesheet" href="/common/includes/common.css?2026-10-17_0853">
+
+
+
+<!-- Dark Mode -->
+<link type="text/css" rel="stylesheet" href="/common/includes/darkmode.css?2026-10-17_0853">
+
+
+
+
+<script type="text/javascript">
+var searchMonsterByIconMode = "";
+var swgtSelectPickerFromEvent = "";
+var swgtSelectPickerLastAction = "";
+
+window.cloudfrontURL = "https://do9d4mpqk497d.cloudfront.net";
+var monsterImageBase36URL = window.cloudfrontURL+"/common/images/monsters36/";
+var swgtLazyloadPlaceholderImageURL = "https://do9d4mpqk497d.cloudfront.net/common/images/swgt-gray-pulse-loader-100.gif";
+
+var formChanged = false;
+function setFormChanged(){
+	formChanged = true;
+}
+</script>
+
+</head>
+
+<body role="document">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+function function_common_modal_alert(alertMessage){
+	BootstrapDialog.show({
+		animate: false,
+		title: 'Alert',
+		type: BootstrapDialog.TYPE_DANGER,
+        message: alertMessage,
+        onshow: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
+        },
+        onhide: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1';
+        },
+		buttons: [
+            {
+            	label: 'OK',
+            	cssClass: 'btn-sm btn-systemDefault',
+            	action: function(dialogItself){
+                	dialogItself.close();
+            	}
+        	}
+        ]
+    });
+}
+</script>
+
+
+
+
+
+
+
+<script type="text/javascript">
+function function_common_modal_message(title,message){
+	BootstrapDialog.show({
+		animate: false,
+		title: title,
+        message: message,
+        onshow: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
+        },
+        onhide: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1';
+        },
+		buttons: [
+            {
+            	label: 'OK',
+            	cssClass: 'btn-sm btn-systemDefault',
+            	action: function(dialogItself){
+                	dialogItself.close();
+            	}
+        	}
+        ]
+    });
+}
+</script>
+
+<div class="swgtMenu" >
+    <div class="logo clearfix">
+    	<div class="d-block d-lg-none text-norwap"><a href="/" class="d-inline-block"><img src="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_v5a_logo_dark_mode.png" alt="Logo"><img src="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_Banner_SWGT_v5a_dark_mode.png" alt="Logo"></a></div>
+    	
+    	<div class="wsmenucontainer clearfix d-none d-lg-block">
+			<div class="headerfull pm_buttoncolor02 whitebg">
+		      <!--Main Menu HTML Code-->
+		      <div class="wsmain p-0">
+		        <div class="smllogo"><a href="/" class="text-norwap"><img src="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_v5a_logo_dark_mode.png" alt="Logo"><img src="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_Banner_SWGT_v5a_dark_mode.png" alt="Logo"></a></div>
+		        
+		        <div id="SWGT_PINNED_MENU">
+		        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		        </div>
+		      </div>
+		      <!--Menu HTML Code-->
+		    </div>
+		</div>
+    </div>
+    <div class="swgt-top-right" >
+	    
+	    <a href="/" class="swgt-top-icon d-none" title="Dashboard">
+			<i class="fas fa-home"></i>
+		</a>
+	    
+	    
+	    <a href="/faq" class="swgt-top-icon" title="FAQ">
+			<i class="far fa-question-circle"></i>
+		</a>
+	    
+	    
+	    <a href="javascript:function_changeLanguage()" class="swgt-top-icon swgt-flag" title="English">
+			<span class="flag-icon flag-icon-us"></span>
+			<i class="fas fa-angle-down ml-1"></i>
+		</a>
+	</div>
+	
+	
+    <div id="wstoggle"><span></span></div>
+    <nav class="wsfmain clearfix">
+      <div class="wsfmenufull ani01">
+        <div class="wsfwrap">
+          <div class="wsfwrapinner clearfix" style="padding-left: 15px; padding-right: 15px;">
+          	<div class="row">
+          		<div class="col-3 d-none d-md-block pr-0" style="padding-top: 12px">
+          			<a href="/" style="color:#a3a9b3"><i class="fas fa-home" style="font-size: 26px;" title="Dashboard"></i></a>
+          			<a href="javascript:function_viewChangeDarkMode()" style="color:#a3a9b3;display:none;" class="ml-1">
+          				
+			    		<i class="fas fa-adjust" style="font-size: 26px;" title="Dark Mode"></i>
+			    		
+          			</a>
+          		</div>
+          		<div class="col-8 col-md-6 px-md-0 text-md-center">
+          			<a href="javascript:function_hamburgerMenuIsotope()" class="text-norwap"><img src="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_v5a_logo_dark_mode.png" alt="Logo"><img src="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_Banner_SWGT_v5a_dark_mode.png" alt="Logo"></a>
+          		</div>
+          			
+          		<div class="col-3 text-right pl-0" style="padding-top:16px;padding-right:85px;">
+          				<a href="/login.jsp">Login</a>
+          		</div>
+          			
+          	</div>
+          	<div class="row">
+          		<div class="col-12 px-0 text-center">
+          			<hr class="mt-2 mb-1" style="border-top: 1px solid #eee;">
+          		</div>
+          	</div>
+          	
+          	
+    		<div class="row mb-1">
+    			<div class="col-12 px-md-2">
+        			<div class="input-group swgtSearchHamburgerMenu">
+    					<input type="text" name="searchHamburgerMenu" id="searchHamburgerMenu" style="height: 38px;" class="form-control" placeholder="Search" aria-label="Search" value="" onKeyUp="function_searchHamburgerMenu()">
+    					<button type="button" class="btn bg-transparent" style="margin-left: -37px; z-index: 100; display:none;" onclick="function_clearSearchHamburgerMenu()" id="BTN_clearHamburgerMenuSearch">
+		     				<i class="fa fa-times" style="color:#ddd;"></i>
+		    			</button>
+			          	<div class="input-group-append">
+			           		<a class="btn btn-primary px-1" href="javascript:function_searchHamburgerMenu()"><i class="fas fa-search"></i></a>
+			          	</div>
+          			</div>
+    			</div>
+    		</div>
+          	
+          	<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 grid-hm d-block">
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Account Analytics
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Account Summary">Account Summary</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Summoner Skill">Summoner Skill</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Monsters">Monsters</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Monster Collection">Monster Collection</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Monster Summon Log">Monster Summon Log</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Decks">Decks</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Team Builder">Team Builder</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Rune Detail">Rune Detail</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Rune Graph">Rune Graph</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Rune Efficiency Analysis">Rune Efficiency Analysis</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Gem Optimizer">Gem Optimizer</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Grind Optimizer">Grind Optimizer</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Recent Runes">Recent Runes</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Gem+Grind - Inventory">Gem+Grind - Inventory</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Gem+Grind - Needs">Gem+Grind - Needs</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Artifact Detail">Artifact Detail</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Artifact Graph">Artifact Graph</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Recent Artifacts">Recent Artifacts</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Artifact Additional Damage Optimizer">Artifact Additional Damage Optimizer</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Relic Detail">Relic Detail</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Relic Graph">Relic Graph</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Recent Relics">Recent Relics</li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			All Server Analytics
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="All Server Analytics Defense - Trending"><a href="/pageLoading.jsp?redirect=/controllers/allServerAnalytics/defenseTrending/load">Defense - Trending</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="All Server Analytics Monster - Defense - Trending"><a href="/pageLoading.jsp?redirect=/controllers/allServerAnalytics/monsterDefenseTrending/load">Monster - Defense - Trending</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="All Server Analytics Monster - Offense - Trending"><a href="/pageLoading.jsp?redirect=/controllers/allServerAnalytics/monsterOffenseTrending/load">Monster - Offense - Trending</a></li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Guild
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members">Members</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Monster Search">Monster Search</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Guild - Account Summary">Guild - Account Summary</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Guild Rune Analysis">Guild Rune Analysis</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Guild Artifact Analysis">Guild Artifact Analysis</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Recruitment Applications">Recruitment Applications</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Guild Battle Notes">Guild Battle Notes</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Team Builder">Team Builder</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Guild Polls">Guild Polls</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Monster Checklist">Monster Checklist</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Battle Registration">Battle Registration</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Guild Actively Recruiting Guilds"><a href="/recruiting/">Actively Recruiting Guilds</a></li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Guild Members
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members Account Analytics">Account Analytics</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members Performance - Summary">Performance - Summary</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members Siege Offense">Siege Offense</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members Siege Defense">Siege Defense</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members World Guild Battle Offense">World Guild Battle Offense</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members World Guild Battle Defense">World Guild Battle Defense</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members Labyrinth">Labyrinth</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members Monster Subjugation">Monster Subjugation</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members Notes">Notes</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members Reminders">Reminders</li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			3MDC
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="3MDC Search"><a href="/3mdc/">Search</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC My Favorites">My Favorites</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC My Ratings">My Ratings</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="3MDC Where 2 use?"><a href="/where2use/">Where 2 use?</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="3MDC Statistics"><a href="/3mdcstats/">Statistics</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC Pending Approvals">Pending Approvals</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC Maintenance">Maintenance</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC Banned Counter Maintenance">Banned Counter Maintenance</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC Monster Nicknames">Monster Nicknames</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC Defense Nicknames">Defense Nicknames</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC Battle Logs">Battle Logs</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC Live Battle Companion">Live Battle Companion</li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Siege
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Siege Leaderboards"><a href="/leaderboards/siege/">Leaderboards</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Siege Siege Planner">Siege Planner</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Siege Battles">Battles</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Siege Offense">Offense</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Siege Defense">Defense</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Siege Summary">Summary</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Siege Season - Performance">Season - Performance</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Siege Siege Battle Week Summary">Siege Battle Week Summary</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Siege Siege Tournament Planner">Siege Tournament Planner</li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			World Guild Battle
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="World Guild Battle Leaderboards"><a href="/leaderboards/worldguildbattle/">Leaderboards</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="World Guild Battle Battles">Battles</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="World Guild Battle Offense">Offense</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="World Guild Battle Defense">Defense</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="World Guild Battle Summary">Summary</li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Labyrinth
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Labyrinth Leaderboards"><a href="/leaderboards/labyrinth/">Leaderboards</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Labyrinth Battles">Battles</li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Monster Subjugation
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Monster Subjugation Leaderboards"><a href="/leaderboards/monsterSubjugation/">Leaderboards</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Monster Subjugation Battles">Battles</li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Tools
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Tools Notifications">Notifications</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Game Codes"><a href="/gamecodes">Game Codes</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Game Guides"><a href="/gameguides/?selectedFocus=">Game Guides</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Monster Catalog"><a href="/controllers/tools/monsterCatalog?displayAs=GRID">Monster Catalog</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Monster Search"><a href="/monsterSearch/">Monster Search</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Tools Monster Battle Rankings">Monster Battle Rankings</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Artifact Monster Finder"><a href="/controllers/artifactMonsterFinder">Artifact Monster Finder</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Speed Tick Bracket Calculator"><a href="/controllers/speedTickBracketCalculator/load">Speed Tick Bracket Calculator</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Dungeon Stats"><a href="/controllers/dungeonAnalysis/load">Dungeon Stats</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Balance Patches"><a href="/pageLoading.jsp?redirect=/controllers/balancePatch/list">Balance Patches</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Discord Bot"><a href="/controllers/discordBot">Discord Bot</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Siege Calculator"><a href="/controllers/tools/siegeCalculator">Siege Calculator</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Siege Tournament Calculator"><a href="/controllers/tools/siegeTournamentCalculator">Siege Tournament Calculator</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Siege Simulator"><a href="/controllers/tools/siegeSimulator">Siege Simulator</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Siege Tournament Simulator"><a href="/controllers/tools/siegeTournamentSimulator">Siege Tournament Simulator</a></li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Help
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Help FAQ"><a href="/faq/">FAQ</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Help About SWGT"><a href="/about/">About SWGT</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Help Change Log"><a href="/controllers/common/viewChangeLog">Change Log</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Help SWGT Discord"><a href="javascript:function_discord()">SWGT Discord</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Help Credits"><a href="/controllers/common/viewCredits">Credits</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Help User Agreement"><a href="/controllers/common/viewUserAgreement">User Agreement</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Help Data Privacy"><a href="/controllers/faq/view?faqEntryID=43">Data Privacy</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem">	<a href="https://www.patreon.com/swgtguild" target="_blank" style="color: #fd7078">		<i class="fab fa-patreon mr-1" aria-hidden="true"></i>Patreon (Guild)	</a></li>
+          				
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem">	<a href="https://www.patreon.com/swgtpersonal" target="_blank" style="color: #fd7078">		<i class="fab fa-patreon mr-1" aria-hidden="true"></i>Patreon (Personal)	</a></li>
+          				
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Setup
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem">	<a href="javascript:function_changeLanguage()" style="text-decoration: none;" title="English">  		English&nbsp;<span class="flag-icon flag-icon-us"></span>   		<i class="fas fa-angle-down d-none d-lg-inline"></i>	</a></li>
+          				
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Setup Users">Users</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Setup Guilds">Guilds</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Setup Friends">Friends</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Setup Homepage Notes">Homepage Notes</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Setup Tags">Tags</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Setup Site Setup">Site Setup</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Setup SWGT Guild setup with SWEX">SWGT Guild setup with SWEX</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Setup Register"><a href="javascript:function_register()">Register</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Setup Login"><a href="/login.jsp">Login</a></li>
+							
+          			</ul>
+          		</div>
+          		
+          		<!-- <div class="grid-hm-sizer col"></div> -->
+          	</div>
+          	<div class="wsbottompart clearfix" style="padding-left: 15px; padding-right: 15px;">
+            	
+
+
+
+
+
+
+
+
+
+
+<a href="#" class="back-to-top" style="z-index:2;"><i class="fas fa-arrow-to-top"></i></a>
+<div class="row mx-0 " style="font-size:0.9em;z-index:1;">
+	<div class="col-md-7 text-center">
+		<span style="white-space: nowrap;padding:5px;">7.13.1</span> - 
+		<span style="white-space: nowrap;padding:5px;">&copy; SWGT 2026 All rights reserved</span><br> 
+		
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;">Designed By Cerusa</span> | 
+		</div>
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;"><a href="/controllers/common/viewChangeLog">Change Log</a></span> | 
+		</div>
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;"><a href="/dataprivacy">Data Privacy</a></span> | 
+		</div>
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;"><a href="/useragreement">User Agreement</a></span> | 
+		</div>
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;"><a href="/controllers/common/viewCredits">Credits</a></span>
+		</div>
+	</div>
+	<div class="col-md-5 text-center">
+		Support my work on Patreon (<a href="https://www.patreon.com/swgtguild" target="_blank">Guild</a> or <a href="https://www.patreon.com/swgtpersonal" target="_blank">Personal</a>)<br>
+		Monster and Siege Map images belong to Com2Us
+	</div>
+</div>
+
+
+          	</div>
+          	
+          </div>
+        </div>
+      </div>
+    </nav>
+	
+</div>
+
+<div class="container-fluid px-0 px-sm-3">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb box-shadow">
+			<li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+			<li class="breadcrumb-item"><a>Siege</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Simulator</li>
+		</ol>
+	</nav>
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+function function_confirm(url,titleText,messageText){
+	BootstrapDialog.show({
+		animate: false,
+		title: titleText,
+        message: messageText,
+        onshow: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
+        },
+        onhide: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1';
+        },
+		buttons: [
+            {
+            	label: 'Cancel',
+            	cssClass: 'btn-sm btn-systemDefault mr-1',
+            	action: function(dialogItself){
+                	dialogItself.close();
+            	}
+        	}, 
+        	{
+            	label: 'Confirm',
+            	cssClass: 'btn-sm btn-primary',
+            	action: function(dialogItself){
+            		dialogItself.close();
+            		
+					$.blockUI({ 
+						message: '<h5>Processing, Please wait...<\/h5>', 
+						css: {
+							border: 'none',
+							padding: '15px',
+							backgroundColor: '#000', 
+							'-webkit-border-radius': '10px', 
+							'-moz-border-radius': '10px', 
+							opacity: .5, 
+							color: '#fff'
+						} 
+					});	
+	
+            		window.location=url;
+            	}
+        	}
+        ]
+    });
+}
+</script>
+<script type="text/javascript">
+//Load the last known map status by default
+$(document).ready(function() {
+	function_loadMap();
+	
+	//Sort connections
+	for (const json of siegeMapData) {
+		json.connections.sort();
+	}
+});
+
+let siegeMapStatsData = {
+	//"lastUpdatedDateTime" : "MM/DD/YYYY HH:mm a",
+	"guildMatchScore" : 0,
+	"oppGuild1MatchScore" : 0,
+	"oppGuild2MatchScore" : 0,
+	//"guildMatchScoreIncrement" : "#/min",
+	//"oppGuild1MatchScoreIncrement" : "#/min",
+	//"oppGuild2MatchScoreIncrement" : "#/min",
+};
+
+let siegeMapData = [
+	{"id":0,"shape":"Shield","color":"Blue","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":false,"defenseCount":0,"hpPercentage":0,"buildingSeconds":"","connections":[1,2,3], isHQ: true},{"id":1,"shape":"Shield","color":"Blue","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[6,4,3,0], isHQ: false},{"id":2,"shape":"Shield","color":"Blue","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[4,5,3,0,1], isHQ: false},{"id":3,"shape":"Shield","color":"Blue","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[5,12,0,2], isHQ: false},{"id":4,"shape":"Shield","color":"Blue","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[7,8,9,5,2,1], isHQ: false},{"id":5,"shape":"Shield","color":"Blue","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[4,9,10,11,3,2], isHQ: false},{"id":6,"shape":"Shield","color":"Blue","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[38,7,1], isHQ: false},{"id":7,"shape":"Shield","color":"Blue","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[37,8,4,6], isHQ: false},{"id":8,"shape":"Shield","color":"Blue","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[36,9,4,7], isHQ: false},{"id":9,"shape":"Shield","color":"Blue","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[35,22,10,5,4,8], isHQ: false},{"id":10,"shape":"Shield","color":"Blue","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[9,21,11,5], isHQ: false},{"id":11,"shape":"Shield","color":"Blue","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[10,20,12,5], isHQ: false},{"id":12,"shape":"Shield","color":"Blue","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[11,19,3], isHQ: false},{"id":26,"shape":"Circle","color":"Red","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":false,"defenseCount":0,"hpPercentage":0,"buildingSeconds":"","connections":[27,28,29], isHQ: true},{"id":27,"shape":"Circle","color":"Red","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[32,30,28], isHQ: false},{"id":28,"shape":"Circle","color":"Red","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[26,27,30,31,29], isHQ: false},{"id":29,"shape":"Circle","color":"Red","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[26,28,31,38], isHQ: false},{"id":30,"shape":"Circle","color":"Red","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[27,33,34,35,31,28], isHQ: false},{"id":31,"shape":"Circle","color":"Red","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[28,30,35,36,37,29], isHQ: false},{"id":32,"shape":"Circle","color":"Red","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[25,33,27], isHQ: false},{"id":33,"shape":"Circle","color":"Red","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[32,24,34,30], isHQ: false},{"id":34,"shape":"Circle","color":"Red","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[30,33,23,35], isHQ: false},{"id":35,"shape":"Circle","color":"Red","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[30,34,22,9,36,31], isHQ: false},{"id":36,"shape":"Circle","color":"Red","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[31,35,8,34], isHQ: false},{"id":37,"shape":"Circle","color":"Red","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[31,36,7,38], isHQ: false},{"id":38,"shape":"Circle","color":"Red","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[29,37,6], isHQ: false},{"id":13,"shape":"Square","color":"Yellow","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":false,"defenseCount":0,"hpPercentage":0,"buildingSeconds":"","connections":[14,15,16], isHQ: true},{"id":14,"shape":"Square","color":"Yellow","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[17,15,13,19], isHQ: false},{"id":15,"shape":"Square","color":"Yellow","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[18,16,13,14,17], isHQ: false},{"id":16,"shape":"Square","color":"Yellow","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[25,13,15,18], isHQ: false},{"id":17,"shape":"Square","color":"Yellow","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[18,15,14,20,21,22], isHQ: false},{"id":18,"shape":"Square","color":"Yellow","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[24,16,15,17,22,23], isHQ: false},{"id":19,"shape":"Square","color":"Yellow","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[20,14,12], isHQ: false},{"id":20,"shape":"Square","color":"Yellow","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[21,17,19,11], isHQ: false},{"id":21,"shape":"Square","color":"Yellow","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[22,17,20,10], isHQ: false},{"id":22,"shape":"Square","color":"Yellow","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[35,23,18,17,21,9], isHQ: false},{"id":23,"shape":"Square","color":"Yellow","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[34,24,18,22], isHQ: false},{"id":24,"shape":"Square","color":"Yellow","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[33,25,18,23], isHQ: false},{"id":25,"shape":"Square","color":"Yellow","pingNumber":0,"prohibit":false,"memo":"","showProgressBar":true,"defenseCount":5,"hpPercentage":100,"buildingSeconds":"","connections":[32,16,24], isHQ: false}
+];
+
+function function_clearAll(){
+	
+	let url = "/controllers/tools/siegeSimulator";
+	
+
+	function_confirm(
+			url,
+			'Confirm',
+			'Are you sure you want to clear everything and start fresh?');
+}
+let importAttachmentPond = null;
+
+function function_getImport(){
+	let modalMessage = "";
+	
+	modalMessage += "<div class='row mb-2'>";
+	modalMessage += "	<div class='col-12 labelColor'>File to Import:</div>";
+	modalMessage += "	<div class='col-12'>";
+	modalMessage += "		<div class='swgt-filepond-upload'>";
+	modalMessage += "			<input id='importAttachment' name='importAttachment' type='file' accept='.json,application/json'>";
+	modalMessage += "		</div>";
+	modalMessage += "	</div>";
+	modalMessage += "</div>"
+	modalMessage += "<hr/>";
+	modalMessage += "<div class='row'>";
+	modalMessage += "	<div class='col-12 text-center'>";
+	modalMessage += "		<button type='button' class='btn btn-sm btn-primary' onclick='function_import()'>Import</button>";
+	modalMessage += "	</div>"
+	modalMessage += "</div>"
+	
+	BootstrapDialog.show({
+		animate: false,
+		title: 'Import',
+		type: BootstrapDialog.TYPE_PRIMARY,
+		size: BootstrapDialog.SIZE_NORMAL,
+		message: modalMessage,
+        closable: true,
+        closeByBackdrop: false,
+        closeByKeyboard: false,
+        onshow: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
+        },
+        onshown: function(dialog) {
+            const importAttachmentInput = document.querySelector('#importAttachment');
+            if(importAttachmentInput != null){
+                importAttachmentPond = FilePond.create(importAttachmentInput, {
+                    allowMultiple: false,
+                    allowReorder: false,
+                    allowRevert: false,
+                    credits: false,
+                    dropOnElement: true,
+                    dropValidation: true,
+                    instantUpload: false,
+                    storeAsFile: true,
+                    labelIdle: 'Drag &amp; Drop your JSON file or <span class=\"filepond--label-action\">Browse<\/span>',
+                    labelFileAdded: 'File added',
+                    labelFileRemoved: 'File removed',
+                    labelTapToCancel: 'tap to cancel',
+                    labelTapToRetry: 'tap to retry',
+                    labelTapToUndo: 'tap to undo'
+                });
+            }
+        },
+        onhide: function(dialog) {
+            if(importAttachmentPond != null){
+                importAttachmentPond.destroy();
+                importAttachmentPond = null;
+            }
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1';
+        }
+    });
+}
+function function_import(){
+	if(importAttachmentPond == null){
+		function_common_modal_alert('Please select a JSON file to import');
+		return;
+	}
+
+	const pondFile = importAttachmentPond.getFile();
+	if(pondFile == null || pondFile.file == null){
+		function_common_modal_alert('Please select a JSON file to import');
+		return;
+	}
+
+	const file = pondFile.file;
+
+	try {
+		let reader = new FileReader();
+		reader.onload = function (e) {
+			try {
+		    	let parsedJSON = JSON.parse(e.target.result);
+				parsedJSON = parsedJSON[0]; //Take first
+			
+				let version = parsedJSON.version;
+				let map_version = parsedJSON.map_version;
+				let source = parsedJSON.source;
+			
+				
+				let compatible = (map_version == '2025-03-23' && source == 'siegeSimulator') ? true : false;
+				
+			
+				if(compatible){
+					try{
+						siegeMapStatsData = parsedJSON.siegeMapStatsData;
+					}catch(err2) {}
+					siegeMapData = parsedJSON.siege_map_data;
+
+					function_loadMap();
+					function_closeAll();
+				}else{
+					function_common_modal_alert('Incompatible simulator file');
+				}
+			}catch(err) {
+				console.log(err.message);
+				function_common_modal_alert('Unable to read simulator file');
+			}
+		};
+		reader.onerror = function () {
+			function_common_modal_alert('Unable to read simulator file');
+		};
+		reader.readAsText(file);
+	}catch(err) {
+		console.log(err.message);
+		function_common_modal_alert('Unable to read simulator file');
+	}
+}
+function function_export(){
+	let jsonTimeStamp = new Date().getTime();
+	
+	let filename = "SWGT_siegeSimulator_"+jsonTimeStamp+".json";
+	
+	
+	//CBuild json to export
+    let json = {};
+	
+	json.time_stamp = jsonTimeStamp;
+	json.version = 2;
+	
+	json.map_version = '2025-03-23';
+	json.source = 'siegeSimulator'
+	
+	json.siegeMapStatsData = siegeMapStatsData;
+	json.siege_map_data = siegeMapData;
+
+    //Convert JSON string to BLOB.
+    json = [json];
+
+    $("<a />", {
+        "download": filename,
+        "href" : "data:application/json," + encodeURIComponent(JSON.stringify(json))
+      }).appendTo("body")
+      .click(function() {
+         $(this).remove()
+      })[0].click();
+}
+
+var siegeMapRendered = false;
+var towerRenderedCount = 0;
+function function_loadMap(){
+	towerRenderedCount = 0;
+	
+	//Update stats
+	let outSiegeMapUpdatedDateTime = "Last updated on: N/A";
+	
+	let outGuildMatchScore = 0;
+	let outOppGuild1MatchScore = 0;
+	
+	let outGuildMatchScoreIncrement = "&nbsp;";
+	let outOppGuild1MatchScoreIncrement = "&nbsp;";
+	
+	if(siegeMapStatsData && siegeMapStatsData.lastUpdatedDateTime && siegeMapStatsData.lastUpdatedDateTime != "")
+		outSiegeMapUpdatedDateTime = siegeMapStatsData.lastUpdatedDateTime;
+	$("#DIV_siegeMapUpdatedDateTime").html(outSiegeMapUpdatedDateTime);
+	
+	if(siegeMapStatsData && siegeMapStatsData.guildMatchScore != null)
+		outGuildMatchScore = siegeMapStatsData.guildMatchScore;
+	$("#DIV_guildMatchScore").html(function_numberWithCommas(outGuildMatchScore)+" Points");
+	
+	if(siegeMapStatsData && siegeMapStatsData.oppGuild1MatchScore != null)
+		outOppGuild1MatchScore = siegeMapStatsData.oppGuild1MatchScore;
+	$("#DIV_oppGuild1MatchScore").html(function_numberWithCommas(outOppGuild1MatchScore)+" Points");
+	
+	//if(siegeMapStatsData && siegeMapStatsData.guildMatchScoreIncrement && siegeMapStatsData.guildMatchScoreIncrement != "")
+	//	outGuildMatchScoreIncrement = siegeMapStatsData.guildMatchScoreIncrement;
+	//$("#TD_guildMatchScoreIncrement").html(outGuildMatchScoreIncrement);
+	
+	//if(siegeMapStatsData && siegeMapStatsData.oppGuild1MatchScoreIncrement && siegeMapStatsData.oppGuild1MatchScoreIncrement != "")
+	//	outOppGuild1MatchScoreIncrement = siegeMapStatsData.oppGuild1MatchScoreIncrement;
+	//$("#TD_oppGuild1MatchScoreIncrement").html(outOppGuild1MatchScoreIncrement);
+	
+	
+	
+	let outOppGuild2MatchScore = 0;
+	let outOppGuild2MatchScoreIncrement = "&nbsp;";
+
+	if(siegeMapStatsData && siegeMapStatsData.oppGuild2MatchScore != null)
+		outOppGuild2MatchScore = siegeMapStatsData.oppGuild2MatchScore;
+	$("#DIV_oppGuild2MatchScore").html(function_numberWithCommas(outOppGuild2MatchScore)+" Points");
+	
+	//if(siegeMapStatsData && siegeMapStatsData.oppGuild2MatchScoreIncrement && siegeMapStatsData.oppGuild2MatchScoreIncrement != "")
+	//	outOppGuild2MatchScoreIncrement = siegeMapStatsData.oppGuild2MatchScoreIncrement;
+	//$("#TD_oppGuild2MatchScoreIncrement").html(outOppGuild2MatchScoreIncrement);
+	
+	
+	//Update Map
+	for (const json of siegeMapData) {
+		if(siegeMapRendered){
+			if('isHQ' in json && json.isHQ)
+				continue; //Skip rendering
+			
+			$(".swgtSiegeMapBase"+json.id).replaceWith(function_getBaseHTML(json));
+		}else{
+			$(".siegeMap").append(function_getBaseHTML(json));
+		}
+	}
+	siegeMapRendered = true;
+	
+	if(towerRenderedCount >= siegeMapData.length)
+		function_initializeSiegeBaseNoteTooltip();
+	
+	function_analyzeTowers();
+	
+	let outResult = {
+		"result":analyzeTowersResult,
+		"visitedByColor":analyzeTowersVisitedByColor
+	}
+	
+	let blueScore = siegeMapStatsData.guildMatchScore;
+	let blueTotal = analyzeTowersResult["Blue"].total-1;
+	let blueConnectedToHQ = analyzeTowersResult["Blue"].connectedToHQ-1;
+	
+	let blueScoreIncrement = function_getSiegeScoreIncrement(blueConnectedToHQ);
+	
+	let blueScoreIncrementSeconds = blueScoreIncrement/60;
+	let bluePointsTo20k = 20000-blueScore;
+	let blueTimeLeft = (bluePointsTo20k/blueScoreIncrementSeconds);
+	
+	$("#TD_guildMatchScoreIncrement").html("<i class=\"fas fa-flag text-primary pr-1\"></i>"+blueScoreIncrement+"/min");
+	$("#TD_guildConnectedTowers").html(blueTotal+"&nbsp;<i class=\"fas fa-chess-rook-alt text-primary\"></i>&nbsp&nbsp;&nbsp;"+blueConnectedToHQ+"&nbsp;<i class=\"fas fa-link\"></i>");
+	$("#DIV_guildWinTime").html(function_formatTime(blueTimeLeft,"Infinity"));
+
+	let redScore = siegeMapStatsData.oppGuild1MatchScore;
+	let redTotal = analyzeTowersResult["Red"].total-1;
+	let redConnectedToHQ = analyzeTowersResult["Red"].connectedToHQ-1;
+	
+	let redScoreIncrement = function_getSiegeScoreIncrement(redConnectedToHQ);
+	
+	let redScoreIncrementSeconds = redScoreIncrement/60;
+	let redPointsTo20k = 20000-redScore;
+	let redTimeLeft = (redPointsTo20k/redScoreIncrementSeconds);
+	
+	$("#TD_oppGuild1MatchScoreIncrement").html("<i class=\"fas fa-flag text-danger pr-1\"></i>"+redScoreIncrement+"/min");
+	$("#TD_oppGuild1ConnectedTowers").html(redTotal+"&nbsp;<i class=\"fas fa-chess-rook-alt text-danger\"></i>&nbsp&nbsp;&nbsp;"+redConnectedToHQ+"&nbsp;<i class=\"fas fa-link\"></i>");
+	$("#DIV_oppGuild1WinTime").html(function_formatTime(redTimeLeft,"Infinity"));
+		
+	
+	let yellowScore = siegeMapStatsData.oppGuild2MatchScore;
+	let yellowTotal = analyzeTowersResult["Yellow"].total-1;
+	let yellowConnectedToHQ = analyzeTowersResult["Yellow"].connectedToHQ-1;
+	
+	let yellowScoreIncrement = function_getSiegeScoreIncrement(yellowConnectedToHQ);
+	
+	let yellowScoreIncrementSeconds = yellowScoreIncrement/60;
+	let yellowPointsTo20k = 20000-yellowScore;
+	let yellowTimeLeft = (yellowPointsTo20k/yellowScoreIncrementSeconds);
+
+	$("#TD_oppGuild2MatchScoreIncrement").html("<i class=\"fas fa-flag text-warning pr-1\"></i>"+yellowScoreIncrement+"/min");
+	$("#TD_oppGuild2ConnectedTowers").html(yellowTotal+"&nbsp;<i class=\"fas fa-chess-rook-alt text-warning\"></i>&nbsp&nbsp;&nbsp;"+yellowConnectedToHQ+"&nbsp;<i class=\"fas fa-link\"></i>");
+	$("#DIV_oppGuild2WinTime").html(function_formatTime(yellowTimeLeft,"Infinity"));
+	
+	
+	//var objectDataString = JSON.stringify(siegeMapData);
+	//console.log(objectDataString);
+}
+
+function function_initializeSiegeBaseNoteTooltip(){
+	$('.swgt-base-note-tooltip').tooltipster({
+	    contentAsHTML: 'true',
+		theme: 'tooltipster-shadow',
+		//position: 'top',
+		maxWidth: 200
+	});
+}
+function function_getBaseHTML(json){
+	let html = "";
+	let imageBaseURL = "https://do9d4mpqk497d.cloudfront.net/common/images/";
+	
+	let baseID = "<br><span class='text-dark p-1 text-bold bg-white'>"+json.id+"</span>";
+	
+	let baseNumber = json.id;
+	while(baseNumber > 12)
+		baseNumber -= 13;
+	
+	let baseIcon = json.shape.toLowerCase()+"_"+baseNumber+"_"+json.color.toLowerCase();
+	let baseKey = baseNumber;
+	if(baseKey == 0)
+		baseKey = "HQ";
+	
+	if('isHQ' in json && json.isHQ)
+		html += "<div class='siegeTower siegeTower"+json.shape+baseKey+" text-center swgtSiegeMapBase swgtSiegeMapBase"+json.id+"' data-siege-base-number='"+json.id+"'>";
+	else
+		html += "<div class='siegeTower siegeTower"+json.shape+baseKey+" text-center swgtPointer swgtSiegeMapBase swgtSiegeMapBase"+json.id+"' data-siege-base-number='"+json.id+"' onclick='function_getChangeTower(this)' >";
+	
+	let baseColor = json.color;
+	let baseProgressBarColor = "";
+	switch(baseColor){
+		case "Blue":
+			baseColor = "color: #337ab7;";
+			baseProgressBarColor = "bg-primary";
+			break;
+		case "Red":
+			baseColor = "color: #dc3545;";
+			baseProgressBarColor = "bg-danger";
+			break;
+		
+		case "Yellow":
+			baseColor = "color: #ffc107;";
+			baseProgressBarColor = "bg-warning2";
+			break;
+		
+	}
+	
+	if('isHQ' in json && json.isHQ){
+		html += "<div style='position: absolute;padding: 3px;left: -3px;top: -9px;'>";
+		html += "	<i class='fab fa-fort-awesome' style='"+baseColor+"font-size: 50px;'></i>";
+		html += "</div>";
+		html += "<div class='imageContainer' style='top:19px;'>";
+		html += "	<img src='"+imageBaseURL+"clear.gif' alt='"+json.baseIcon+"' class='swgt-image-"+baseIcon+"'>";
+		html += "</div>";
+	}else{
+		html += "<div style='position: absolute;padding: 3px;left: 11px;' class='d-none'>";
+		html += "	<i class='fas fa-chess-rook-alt' style='"+baseColor+"font-size: 36px;'></i>";
+		html += "</div>";
+		html += "<div class='imageContainer' style='top:6px;'>";
+		html += "	<img src='"+imageBaseURL+"clear.gif' alt='"+json.baseIcon+"' class='swgt-image-"+baseIcon+"'>";
+		
+		if(json.pingNumber > 0){
+		html += "	<div style='position: absolute;left: 15px;top: -17px;'>";
+		html += function_getPingIcon(json.pingNumber);
+		html += "	</div>";
+		}
+		
+		if(json.prohibit){
+		html += "	<div style='position: absolute;font-size: 16px;top: -26px;left: 5px;'>";
+		html += function_getProhibitIcon();
+		html += "	</div>";
+		}
+			
+		if(json.memo && json.memo != ""){
+		//html += "	<div style='position: absolute;top: 2px;right: -16px;font-size: 16px;' class='swgt-base-note-tooltip' title=\""+json.memo+"\">";
+		//html += "		<span class='fa-stack fa-1x' style='font-size: 16px;line-height:1.0'>";
+		//html += "			<i class='fas fa-square fa-stack-1x' style='font-size: 16px;color:#444;'></i>";
+		//html += "			<i class='far fa-comment-alt-lines fa-stack-1x' style='font-size: 11px;color:#ccc;margin-top:2px'></i>";
+		//html += "		</span>";
+		//html += "	</div>";
+		
+		html += "	<div class='base-notes'>";
+		html += json.memo;
+		html += "	</div>";
+		}
+		html += "</div>";
+	}
+		
+	if(json.showProgressBar){
+	html += "<div class='progress mt-1 siegeTowerProgressBar' style='position:absolute;top: 26px;'>";
+		if(json.defenseCount > 0){
+	html += "	<div class='roll_separator_container' style='height:8px;'>";
+			for(let pb = 1; pb <= json.defenseCount; pb++){
+	html += "		<div class='roll_"+json.defenseCount+"_separator "+(pb == 1?"no-border-left":"roll_separator_black")+"'></div>";
+			}
+	html += "	</div>";
+		}
+	html += "	<div class='progress-bar "+baseProgressBarColor+"' role='progressbar' style='width: "+json.hpPercentage+"%' aria-valuenow='"+json.hpPercentage+"' aria-valuemin='0' aria-valuemax='100'></div>";
+	html += "</div>";
+	
+		if(json.buildingSeconds && json.buildingSeconds != ""){
+	html += "<div class='bg-dark text-light font-size-065em siegeTowerTimer'>"+json.buildingSeconds+"</div>";
+		}
+	}
+
+	//html += baseID;
+	html += "</div>";
+	
+	towerRenderedCount++;
+	
+	return html;
+}
+function function_getPingIcon(pingNumber){
+	let html = "";
+	html += "		<i class='fal fa-crosshairs' style='font-size: 20px;color:#00ddff'></i>";
+	html += "		<div style='position: absolute;left: 30px;top: 26px;'>";
+	html += "			<div class='ping-number'>"+pingNumber+"</div>";
+	html += "		</div>";
+	return html;
+}
+function function_getProhibitIcon(){
+	let html = "";
+	html += "		<span class='fa-stack fa-1x' style='font-size: 16px;'>";
+	html += "			<i class='fas fa-circle fa-stack-1x' style='font-size: 20px;color:#ffa800;'></i>";
+	html += "			<i class='fas fa-circle fa-stack-1x' style='font-size: 16px;color:#ff8686;'></i>";
+	html += "			<i class='fas fa-times fa-stack-1x' style='font-size: 16px;color:#ff000a;'></i>";
+	html += "		</span>";
+	return html;
+}
+var analyzeTowersResult = {};
+var analyzeTowersVisitedByColor = {};
+
+function function_analyzeTowers() {
+	analyzeTowersResult = {};
+	analyzeTowersVisitedByColor = {};
+	
+    // initialize color tracking
+    siegeMapData.forEach(({ color }) => {
+		analyzeTowersResult[color] = { total: 0, connectedToHQ: 0, connectedTowerIDs: new Set() };
+    });
+
+    // count total towers per color
+    siegeMapData.forEach(({ color }) => analyzeTowersResult[color].total++);
+
+    // find HQs
+    const hqs = siegeMapData.filter(({ isHQ }) => isHQ);
+    
+    // traverse from each HQ
+    hqs.forEach(({ id, color }) => {
+        if (!analyzeTowersVisitedByColor[color]) analyzeTowersVisitedByColor[color] = new Set();
+        function_traverseTower(id, color);
+    });
+
+    // convert sets to arrays and count
+    Object.keys(analyzeTowersResult).forEach(color => {
+        analyzeTowersResult[color].connectedTowerIDs = Array.from(analyzeTowersResult[color].connectedTowerIDs);
+        analyzeTowersResult[color].connectedToHQ = analyzeTowersResult[color].connectedTowerIDs.length;
+    });
+}
+
+function function_traverseTower(towerId, color) {
+    if (analyzeTowersVisitedByColor[color].has(towerId)) return;
+    analyzeTowersVisitedByColor[color].add(towerId);
+
+    const tower = siegeMapData.find(({ id }) => id === towerId);
+    if (!tower || tower.color !== color) return;
+    
+    //if (!tower.isHQ) analyzeTowersResult[color].connectedTowerIDs.add(towerId);
+
+    analyzeTowersResult[color].connectedTowerIDs.add(towerId);
+
+    tower.connections.forEach(connId => {
+        function_traverseTower(connId, color);
+    });
+}
+function function_getChangeTower(thisTower){
+	let selectedID = $(thisTower).data("siege-base-number");
+	
+	let selectedColor = "";
+	let selectedStyle = "";
+	let notes = "";
+	let hpPercentage = 100;
+	for (const json of siegeMapData) {
+		if(json.id == selectedID){
+			selectedColor = json.color;
+			
+			selectedStyle = "NONE";
+			if('pingNumber' in json && json.pingNumber > 0)
+				selectedStyle = 'T'+json.pingNumber;
+			if('prohibit' in json && json.prohibit)
+				selectedStyle = "P";
+			
+			if('memo' in json && json.memo)
+				notes = json.memo;
+			
+			if('hpPercentage' in json && json.hpPercentage)
+				hpPercentage = json.hpPercentage;
+			break;
+		}
+	}
+	
+	var modalMessage = "";
+
+	modalMessage += "<input type=\"hidden\" id=\"MODAL_guild\" value=\"\""+selectedColor+"\"/>";
+	modalMessage += "<input type=\"hidden\" id=\"MODAL_style\" value=\"\""+selectedStyle+"\"/>";
+	modalMessage += "<input type=\"hidden\" id=\"MODAL_hpPercentage\" value=\"\""+hpPercentage+"\"/>";
+	modalMessage += "<div class=\"row\">";
+	modalMessage +=	"	<div class=\"col-md-3 labelColor mt-1\">Guild:</div>";
+	modalMessage +=	"	<div class=\"col-md-9\">";
+	modalMessage +=	"		<div class=\"btn-group w-100\" role=\"group\" aria-label=\"Guild\">";
+	modalMessage +=	"			<button type=\"button\" class=\"btn btn-sm btn-outline-primary swgt-btn-transparent\" onclick=\"function_changeGuild('Blue')\" id=\"BTN_changeGuildBlue\">Blue</button>";
+	modalMessage +=	"			<button type=\"button\" class=\"btn btn-sm btn-outline-danger swgt-btn-transparent\" onclick=\"function_changeGuild('Red')\" id=\"BTN_changeGuildRed\">Red</button>";
+	
+	modalMessage +=	"			<button type=\"button\" class=\"btn btn-sm btn-outline-warning swgt-btn-transparent\" onclick=\"function_changeGuild('Yellow')\" id=\"BTN_changeGuildYellow\">Yellow</button>";
+	
+	modalMessage +=	"		</div>";
+	modalMessage +=	"	</div>";
+	modalMessage += "</div>";
+	
+	modalMessage += "<div class=\"row mt-2\">";
+	modalMessage +=	"	<div class=\"col-md-3 labelColor mt-1\">Style:</div>";
+	modalMessage +=	"	<div class=\"col-md-9\">";
+	modalMessage +=	"		<div class=\"btn-group w-100\" role=\"group\" aria-label=\"Style\">";
+	modalMessage +=	"			<button type=\"button\" class=\"btn btn-sm py-0 px-1 btn-outline-primary swgt-btn-transparent\" onclick=\"function_changeStyle('NONE')\" id=\"BTN_styleNone\">None</button>";
+	modalMessage +=	"			<button type=\"button\" class=\"btn btn-sm py-0 px-1 btn-outline-primary swgt-btn-transparent\" onclick=\"function_changeStyle('T1')\" id=\"BTN_styleTarget1\" style=\"width:16px;\"><div style=\"position:relative;\">"+function_getPingIcon(1)+"</div></button>";
+	modalMessage +=	"			<button type=\"button\" class=\"btn btn-sm py-0 px-1 btn-outline-primary swgt-btn-transparent\" onclick=\"function_changeStyle('T2')\" id=\"BTN_styleTarget2\" style=\"width:16px;\"><div style=\"position:relative;\">"+function_getPingIcon(2)+"</div></button>";
+	modalMessage +=	"			<button type=\"button\" class=\"btn btn-sm py-0 px-1 btn-outline-primary swgt-btn-transparent\" onclick=\"function_changeStyle('T3')\" id=\"BTN_styleTarget3\" style=\"width:16px;\"><div style=\"position:relative;\">"+function_getPingIcon(3)+"</div></button>";
+	modalMessage +=	"			<button type=\"button\" class=\"btn btn-sm py-0 px-1 btn-outline-primary swgt-btn-transparent\" onclick=\"function_changeStyle('T4')\" id=\"BTN_styleTarget4\" style=\"width:16px;\"><div style=\"position:relative;\">"+function_getPingIcon(4)+"</div></button>";
+	modalMessage +=	"			<button type=\"button\" class=\"btn btn-sm py-0 px-1 btn-outline-primary swgt-btn-transparent\" onclick=\"function_changeStyle('T5')\" id=\"BTN_styleTarget5\" style=\"width:16px;\"><div style=\"position:relative;\">"+function_getPingIcon(5)+"</div></button>";
+	modalMessage +=	"			<button type=\"button\" class=\"btn btn-sm py-0 px-1 btn-outline-primary swgt-btn-transparent\" onclick=\"function_changeStyle('P')\" id=\"BTN_styleProhibit\" style=\"width:16px;\">"+function_getProhibitIcon()+"</button>";
+	modalMessage +=	"		</div>";
+	modalMessage +=	"	</div>";
+	modalMessage += "</div>";
+	
+	modalMessage += "<div class=\"row mt-2\">";
+	modalMessage +=	"	<div class=\"col-md-3 labelColor mt-1\">Notes:</div>";
+	modalMessage +=	"	<div class=\"col-md-9\">";
+	modalMessage +=	"		<input type=\"text\" id=\"MODAL_notes\" class=\"form-control\" maxlength=\"100\" placeholder=\"Notes\" value=\"\" onFocus=\"selectTextboxContent(this);\">";
+	modalMessage +=	"	</div>";
+	modalMessage += "</div>";
+	
+	modalMessage += "<div class=\"row mt-2\">";
+	modalMessage +=	"	<div class=\"col-md-5 labelColor mt-1\">Base HP Remaining:</div>";
+	modalMessage +=	"	<div class=\"col-md-7\">";
+	modalMessage +=	"		<div class=\"btn-group w-100\" role=\"group\" aria-label=\"Base HP Remaining\">";
+	modalMessage +=	"			<button type=\"button\" class=\"btn btn-sm btn-outline-primary swgt-btn-transparent\" onclick=\"function_changeHP(20)\" id=\"BTN_hp20\">20%</button>";
+	modalMessage +=	"			<button type=\"button\" class=\"btn btn-sm btn-outline-primary swgt-btn-transparent\" onclick=\"function_changeHP(40)\" id=\"BTN_hp40\">40%</button>";
+	modalMessage +=	"			<button type=\"button\" class=\"btn btn-sm btn-outline-primary swgt-btn-transparent\" onclick=\"function_changeHP(60)\" id=\"BTN_hp60\">60%</button>";
+	modalMessage +=	"			<button type=\"button\" class=\"btn btn-sm btn-outline-primary swgt-btn-transparent\" onclick=\"function_changeHP(80)\" id=\"BTN_hp80\">80%</button>";
+	modalMessage +=	"			<button type=\"button\" class=\"btn btn-sm btn-outline-primary swgt-btn-transparent\" onclick=\"function_changeHP(100)\" id=\"BTN_hp100\">100%</button>";
+	modalMessage +=	"		</div>";
+	modalMessage +=	"	</div>";
+	modalMessage += "</div>";
+	
+	modalMessage += "<hr/>";
+	
+	modalMessage += "<div class=\"row\">";
+	modalMessage +=	"	<div class=\"col-12 text-center\">";
+	modalMessage +=	"		<button type=\"button\" class=\"btn btn-sm btn-success\" onclick=\"function_changeTower("+selectedID+")\">Save</button>";
+	modalMessage +=	"	</div>";
+	modalMessage += "</div>";
+	
+	
+	BootstrapDialog.show({
+		animate: false,
+		title: 'Tower - Setup',
+		type: BootstrapDialog.TYPE_PRIMARY,
+		size: BootstrapDialog.SIZE_NORMAL,
+		message: modalMessage,
+        closable: true,
+        closeByBackdrop: false,
+        closeByKeyboard: false,
+        onshow: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
+        },
+        onshown: function(dialog){
+        	function_changeGuild(selectedColor);
+        	function_changeStyle(selectedStyle);
+        	function_changeHP(hpPercentage);
+        	
+        	$("#MODAL_notes").val(notes);
+        },
+        onhide: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1';
+        }
+    });
+}
+function function_changeTower(selectedID){
+ 	var selectedColor = $("#MODAL_guild").val();
+ 	var selectedIcon = $("#MODAL_style").val();
+ 	var notes = $("#MODAL_notes").val();
+ 	var hpPercentage = $("#MODAL_hpPercentage").val()*1;
+ 	
+ 	//Find the json packet
+ 	for (const json of siegeMapData) {
+		if(json.id == selectedID){
+			switch(selectedColor){
+				case "Blue":
+					json.color = "Blue";
+					break;
+				case "Red":
+					json.color = "Red";
+					break;
+				
+				case "Yellow":
+					json.color = "Yellow";
+					break;
+				
+			}
+			
+			//Clear
+			json.pingNumber = 0;
+			json.prohibit = false;
+			
+			//Set
+			switch(selectedIcon){
+				case "NONE":
+					//Do Nothing
+					break;
+				case "T1":
+					json.pingNumber = 1;
+					break;
+				case "T2":
+					json.pingNumber = 2;
+					break;
+				case "T3":
+					json.pingNumber = 3;
+					break;
+				case "T4":
+					json.pingNumber = 4;
+					break;
+				case "T5":
+					json.pingNumber = 5;
+					break;
+				case "P":
+					json.prohibit = true;
+					break;
+			}
+			
+			if(notes)
+				json.memo = notes.replaceAll("\"",""); //double quote is not allowed
+			else
+				json.memo = "";
+			
+			if(hpPercentage > 0)
+				json.hpPercentage = hpPercentage;
+			else
+				json.hpPercentage = 100;
+			
+			break;
+		}
+	}
+ 	function_closeAll();
+	function_loadMap();
+}
+function function_changeGuild(color){
+	$("#BTN_changeGuildBlue").removeClass("btn-outline-primary");
+	$("#BTN_changeGuildBlue").removeClass("swgt-btn-transparent");
+	$("#BTN_changeGuildBlue").removeClass("btn-primary");
+	
+	$("#BTN_changeGuildRed").removeClass("btn-outline-danger");
+	$("#BTN_changeGuildRed").removeClass("swgt-btn-transparent");
+	$("#BTN_changeGuildRed").removeClass("btn-danger");
+
+	
+	$("#BTN_changeGuildYellow").removeClass("btn-outline-warning");
+	$("#BTN_changeGuildYellow").removeClass("swgt-btn-transparent");
+	$("#BTN_changeGuildYellow").removeClass("btn-warning");
+	
+	
+	switch(color){
+		case "Blue":
+			$("#MODAL_guild").val(color);
+			
+			$("#BTN_changeGuildBlue").addClass("btn-primary");
+			$("#BTN_changeGuildRed").addClass("btn-outline-danger");
+			
+			$("#BTN_changeGuildYellow").addClass("btn-outline-warning");
+			
+			break;
+		case "Red":
+			$("#MODAL_guild").val(color);
+			
+			$("#BTN_changeGuildBlue").addClass("btn-outline-primary");
+			$("#BTN_changeGuildRed").addClass("btn-danger");
+			
+			$("#BTN_changeGuildYellow").addClass("btn-outline-warning");
+			
+			break;
+		
+		case "Yellow":
+			$("#MODAL_guild").val(color);
+			
+			$("#BTN_changeGuildBlue").addClass("btn-outline-primary");
+			$("#BTN_changeGuildRed").addClass("btn-outline-danger");
+			
+			$("#BTN_changeGuildYellow").addClass("btn-warning");
+			
+			break;
+		
+	}
+}
+function function_changeStyle(style){
+	$("#BTN_styleNone").removeClass("btn-outline-primary");
+	$("#BTN_styleNone").removeClass("swgt-btn-transparent");
+	$("#BTN_styleNone").removeClass("btn-primary");
+	
+	for(var i = 1; i <= 5; i++){
+		$("#BTN_styleTarget"+i).removeClass("btn-outline-primary");
+		$("#BTN_styleTarget"+i).removeClass("swgt-btn-transparent");
+		$("#BTN_styleTarget"+i).removeClass("btn-primary");
+	}
+
+	$("#BTN_styleProhibit").removeClass("btn-outline-primary");
+	$("#BTN_styleProhibit").removeClass("swgt-btn-transparent");
+	$("#BTN_styleProhibit").removeClass("btn-primary");
+	
+	switch(style){
+		case "NONE":
+			$("#MODAL_style").val(style);
+			
+			$("#BTN_styleNone").addClass("btn-primary");
+			$("#BTN_styleTarget1").addClass("btn-outline-primary");
+			$("#BTN_styleTarget2").addClass("btn-outline-primary");
+			$("#BTN_styleTarget3").addClass("btn-outline-primary");
+			$("#BTN_styleTarget4").addClass("btn-outline-primary");
+			$("#BTN_styleTarget5").addClass("btn-outline-primary");
+			$("#BTN_styleProhibit").addClass("btn-outline-primary");
+			break;
+		case "T1":
+			$("#MODAL_style").val(style);
+			
+			$("#BTN_styleNone").addClass("btn-outline-primary");
+			$("#BTN_styleTarget1").addClass("btn-primary");
+			$("#BTN_styleTarget2").addClass("btn-outline-primary");
+			$("#BTN_styleTarget3").addClass("btn-outline-primary");
+			$("#BTN_styleTarget4").addClass("btn-outline-primary");
+			$("#BTN_styleTarget5").addClass("btn-outline-primary");
+			$("#BTN_styleProhibit").addClass("btn-outline-primary");
+			break;
+		case "T2":
+			$("#MODAL_style").val(style);
+			
+			$("#BTN_styleNone").addClass("btn-outline-primary");
+			$("#BTN_styleTarget1").addClass("btn-outline-primary");
+			$("#BTN_styleTarget2").addClass("btn-primary");
+			$("#BTN_styleTarget3").addClass("btn-outline-primary");
+			$("#BTN_styleTarget4").addClass("btn-outline-primary");
+			$("#BTN_styleTarget5").addClass("btn-outline-primary");
+			$("#BTN_styleProhibit").addClass("btn-outline-primary");
+			break;
+		case "T3":
+			$("#MODAL_style").val(style);
+			
+			$("#BTN_styleNone").addClass("btn-outline-primary");
+			$("#BTN_styleTarget1").addClass("btn-outline-primary");
+			$("#BTN_styleTarget2").addClass("btn-outline-primary");
+			$("#BTN_styleTarget3").addClass("btn-primary");
+			$("#BTN_styleTarget4").addClass("btn-outline-primary");
+			$("#BTN_styleTarget5").addClass("btn-outline-primary");
+			$("#BTN_styleProhibit").addClass("btn-outline-primary");
+			break;
+		case "T4":
+			$("#MODAL_style").val(style);
+			
+			$("#BTN_styleNone").addClass("btn-outline-primary");
+			$("#BTN_styleTarget1").addClass("btn-outline-primary");
+			$("#BTN_styleTarget2").addClass("btn-outline-primary");
+			$("#BTN_styleTarget3").addClass("btn-outline-primary");
+			$("#BTN_styleTarget4").addClass("btn-primary");
+			$("#BTN_styleTarget5").addClass("btn-outline-primary");
+			$("#BTN_styleProhibit").addClass("btn-outline-primary");
+			break;
+		case "T5":
+			$("#MODAL_style").val(style);
+			
+			$("#BTN_styleNone").addClass("btn-outline-primary");
+			$("#BTN_styleTarget1").addClass("btn-outline-primary");
+			$("#BTN_styleTarget2").addClass("btn-outline-primary");
+			$("#BTN_styleTarget3").addClass("btn-outline-primary");
+			$("#BTN_styleTarget4").addClass("btn-outline-primary");
+			$("#BTN_styleTarget5").addClass("btn-primary");
+			$("#BTN_styleProhibit").addClass("btn-outline-primary");
+			break;
+		case "P":
+			$("#MODAL_style").val(style);
+			
+			$("#BTN_styleNone").addClass("btn-outline-primary");
+			$("#BTN_styleTarget1").addClass("btn-outline-primary");
+			$("#BTN_styleTarget2").addClass("btn-outline-primary");
+			$("#BTN_styleTarget3").addClass("btn-outline-primary");
+			$("#BTN_styleTarget4").addClass("btn-outline-primary");
+			$("#BTN_styleTarget5").addClass("btn-outline-primary");
+			$("#BTN_styleProhibit").addClass("btn-primary");
+			break;
+	}
+}
+function function_changeHP(hpPercentage){
+	$("#BTN_hp20").removeClass("btn-outline-primary");
+	$("#BTN_hp20").removeClass("swgt-btn-transparent");
+	$("#BTN_hp20").removeClass("btn-primary");
+	
+	$("#BTN_hp40").removeClass("btn-outline-primary");
+	$("#BTN_hp40").removeClass("swgt-btn-transparent");
+	$("#BTN_hp40").removeClass("btn-primary");
+	
+	$("#BTN_hp60").removeClass("btn-outline-primary");
+	$("#BTN_hp60").removeClass("swgt-btn-transparent");
+	$("#BTN_hp60").removeClass("btn-primary");
+	
+	$("#BTN_hp80").removeClass("btn-outline-primary");
+	$("#BTN_hp80").removeClass("swgt-btn-transparent");
+	$("#BTN_hp80").removeClass("btn-primary");
+	
+	$("#BTN_hp100").removeClass("btn-outline-primary");
+	$("#BTN_hp100").removeClass("swgt-btn-transparent");
+	$("#BTN_hp100").removeClass("btn-primary");
+	
+	switch(hpPercentage){
+		case 20:
+			$("#MODAL_hpPercentage").val(hpPercentage);
+			
+			$("#BTN_hp20").addClass("btn-primary");
+			$("#BTN_hp40").addClass("btn-outline-primary");
+			$("#BTN_hp60").addClass("btn-outline-primary");
+			$("#BTN_hp80").addClass("btn-outline-primary");
+			$("#BTN_hp100").addClass("btn-outline-primary");
+			break;
+		case 40:
+			$("#MODAL_hpPercentage").val(hpPercentage);
+			
+			$("#BTN_hp20").addClass("btn-outline-primary");
+			$("#BTN_hp40").addClass("btn-primary");
+			$("#BTN_hp60").addClass("btn-outline-primary");
+			$("#BTN_hp80").addClass("btn-outline-primary");
+			$("#BTN_hp100").addClass("btn-outline-primary");
+			break;
+		case 60:
+			$("#MODAL_hpPercentage").val(hpPercentage);
+			
+			$("#BTN_hp20").addClass("btn-outline-primary");
+			$("#BTN_hp40").addClass("btn-outline-primary");
+			$("#BTN_hp60").addClass("btn-primary");
+			$("#BTN_hp80").addClass("btn-outline-primary");
+			$("#BTN_hp100").addClass("btn-outline-primary");
+			break;
+		case 80:
+			$("#MODAL_hpPercentage").val(hpPercentage);
+			
+			$("#BTN_hp20").addClass("btn-outline-primary");
+			$("#BTN_hp40").addClass("btn-outline-primary");
+			$("#BTN_hp60").addClass("btn-outline-primary");
+			$("#BTN_hp80").addClass("btn-primary");
+			$("#BTN_hp100").addClass("btn-outline-primary");
+			break;
+		case 100:
+			$("#MODAL_hpPercentage").val(hpPercentage);
+			
+			$("#BTN_hp20").addClass("btn-outline-primary");
+			$("#BTN_hp40").addClass("btn-outline-primary");
+			$("#BTN_hp60").addClass("btn-outline-primary");
+			$("#BTN_hp80").addClass("btn-outline-primary");
+			$("#BTN_hp100").addClass("btn-primary");
+			break;
+	}
+}
+function function_max20000(field){
+	let value = $(field).val()*1;
+	if(value > 20000)
+		value = 20000;
+	if(value < 0)
+		value = 0;
+	$(field).val(value);
+}
+function function_getEditGuilds(){
+	var modalMessage = "";
+	
+	modalMessage += "<div class=\"row mt-2\">";
+	modalMessage +=	"	<div class=\"col-md-7 labelColor mt-1\">Blue - Match Score:</div>";
+	modalMessage +=	"	<div class=\"col-md-5\">";
+	modalMessage +=	"		<input type=\"text\" id=\"MODAL_guildMatchScore\" class=\"form-control forceWholeNumbersOnly text-center\" maxlength=\"6\" placeholder=\"Match Score\" value=\"\" onFocus=\"selectTextboxContent(this);\" onkeyup=\"function_max20000(this);\">";
+	modalMessage +=	"	</div>";
+	modalMessage += "</div>";
+	
+	modalMessage += "<div class=\"row mt-2\">";
+	modalMessage +=	"	<div class=\"col-md-7 labelColor mt-1\">Red - Match Score:</div>";
+	modalMessage +=	"	<div class=\"col-md-5\">";
+	modalMessage +=	"		<input type=\"text\" id=\"MODAL_oppGuild1MatchScore\" class=\"form-control forceWholeNumbersOnly text-center\" maxlength=\"6\" placeholder=\"Match Score\" value=\"\" onFocus=\"selectTextboxContent(this);\" onkeyup=\"function_max20000(this);\">";
+	modalMessage +=	"	</div>";
+	modalMessage += "</div>";
+	
+	
+	modalMessage += "<div class=\"row mt-2\">";
+	modalMessage +=	"	<div class=\"col-md-7 labelColor mt-1\">Yellow - Match Score:</div>";
+	modalMessage +=	"	<div class=\"col-md-5\">";
+	modalMessage +=	"		<input type=\"text\" id=\"MODAL_oppGuild2MatchScore\" class=\"form-control forceWholeNumbersOnly text-center\" maxlength=\"6\" placeholder=\"Match Score\" value=\"\" onFocus=\"selectTextboxContent(this);\" onkeyup=\"function_max20000(this);\">";
+	modalMessage +=	"	</div>";
+	modalMessage += "</div>";
+	
+	
+	modalMessage += "<hr/>";
+	
+	modalMessage += "<div class=\"row\">";
+	modalMessage +=	"	<div class=\"col-12 text-center\">";
+	modalMessage +=	"		<button type=\"button\" class=\"btn btn-sm btn-success\" onclick=\"function_saveEditGuilds()\">Save</button>";
+	modalMessage +=	"	</div>";
+	modalMessage += "</div>";
+	
+	
+	BootstrapDialog.show({
+		animate: false,
+		title: 'Match Score',
+		type: BootstrapDialog.TYPE_PRIMARY,
+		size: BootstrapDialog.SIZE_NORMAL,
+		message: modalMessage,
+        closable: true,
+        closeByBackdrop: false,
+        closeByKeyboard: false,
+        onshow: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
+        },
+        onshown: function(dialog){
+        	$("#MODAL_guildMatchScore").val(siegeMapStatsData.guildMatchScore);
+        	
+        	$("#MODAL_oppGuild1MatchScore").val(siegeMapStatsData.oppGuild1MatchScore);
+        	
+        	$("#MODAL_oppGuild2MatchScore").val(siegeMapStatsData.oppGuild2MatchScore);
+        	
+        	
+        	$(".forceWholeNumbersOnly").number(true, 0);
+        },
+        onhide: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1';
+        }
+    });
+}
+function function_saveEditGuilds(){
+	siegeMapStatsData.guildMatchScore = $("#MODAL_guildMatchScore").val();
+	siegeMapStatsData.oppGuild1MatchScore = $("#MODAL_oppGuild1MatchScore").val();
+	
+	
+	siegeMapStatsData.oppGuild2MatchScore = $("#MODAL_oppGuild2MatchScore").val();
+	
+
+	function_closeAll();
+	function_loadMap();
+}
+</script>
+<style type="text/css">
+.siegeMap {
+	position: relative;
+	min-width:980px;
+}
+.siegeTower{
+	position: absolute;
+	/*background-color: rgba(0, 0, 0, 0.75);*/
+	width:50px;
+	height:50px;
+}
+.siegeTowerProgressBar{
+	width:50px;
+	height: 8px;
+	border-radius: 2px;
+}
+.siegeTowerTimer{
+	margin-top: 2px;
+    padding: 1px;
+    border: 1px #000 solid;
+    border-radius: 2px;
+    position: relative;
+	top: 15px;
+    left: 0px;
+}
+.base-notes{
+	position: absolute;
+    bottom: 0px;
+    left: 37px;
+    font-size: 10px;
+    line-height: 1.0;
+    background-color: #444;
+    padding: 3px;
+    white-space: break-spaces;
+    border-radius: 3px;
+    text-align: left;
+    color:#ccc;
+}
+.progress-bar-vertical {
+  -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+  transform: rotate(-90deg);
+}
+.ping-number{
+	background-color: #28ddfb;
+	color: #333;
+	border: 1px #333 solid;
+	position: absolute;
+	bottom: 3px;
+	right: 3px;
+	padding-left: 3px;
+	padding-right: 2px;
+	font-size: 0.6em;
+	min-width: 15px;
+	border-radius: 9px;
+	white-space: nowrap;
+	text-align: center !important;
+}
+#siegeMapReplaySlider .ui-slider-range { 
+	background: #337ab7; 
+}
+
+.swgt-image-circle_0_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_0_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-circle_0_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_0_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-circle_0_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_0_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-shield_0_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_0_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-shield_0_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_0_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-shield_0_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_0_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-square_0_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_0_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-square_0_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_0_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-square_0_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_0_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-circle_1_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_1_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-circle_1_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_1_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-circle_1_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_1_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-shield_1_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_1_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-shield_1_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_1_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-shield_1_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_1_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-square_1_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_1_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-square_1_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_1_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-square_1_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_1_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-circle_2_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_2_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-circle_2_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_2_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-circle_2_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_2_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-shield_2_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_2_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-shield_2_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_2_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-shield_2_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_2_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-square_2_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_2_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-square_2_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_2_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-square_2_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_2_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-circle_3_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_3_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-circle_3_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_3_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-circle_3_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_3_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-shield_3_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_3_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-shield_3_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_3_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-shield_3_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_3_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-square_3_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_3_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-square_3_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_3_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-square_3_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_3_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-circle_4_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_4_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-circle_4_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_4_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-circle_4_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_4_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-shield_4_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_4_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-shield_4_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_4_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-shield_4_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_4_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-square_4_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_4_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-square_4_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_4_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-square_4_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_4_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-circle_5_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_5_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-circle_5_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_5_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-circle_5_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_5_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-shield_5_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_5_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-shield_5_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_5_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-shield_5_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_5_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-square_5_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_5_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-square_5_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_5_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-square_5_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_5_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-circle_6_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_6_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-circle_6_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_6_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-circle_6_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_6_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-shield_6_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_6_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-shield_6_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_6_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-shield_6_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_6_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-square_6_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_6_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-square_6_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_6_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-square_6_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_6_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-circle_7_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_7_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-circle_7_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_7_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-circle_7_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_7_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-shield_7_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_7_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-shield_7_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_7_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-shield_7_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_7_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-square_7_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_7_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-square_7_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_7_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-square_7_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_7_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-circle_8_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_8_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-circle_8_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_8_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-circle_8_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_8_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-shield_8_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_8_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-shield_8_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_8_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-shield_8_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_8_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-square_8_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_8_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-square_8_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_8_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-square_8_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_8_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-circle_9_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_9_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-circle_9_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_9_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-circle_9_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_9_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-shield_9_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_9_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-shield_9_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_9_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-shield_9_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_9_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-square_9_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_9_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-square_9_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_9_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-square_9_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_9_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-circle_10_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_10_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-circle_10_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_10_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-circle_10_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_10_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-shield_10_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_10_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-shield_10_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_10_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-shield_10_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_10_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-square_10_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_10_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-square_10_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_10_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-square_10_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_10_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-circle_11_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_11_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-circle_11_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_11_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-circle_11_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_11_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-shield_11_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_11_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-shield_11_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_11_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-shield_11_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_11_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-square_11_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_11_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-square_11_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_11_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-square_11_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_11_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-circle_12_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_12_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-circle_12_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_12_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-circle_12_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/circle_12_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-shield_12_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_12_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-shield_12_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_12_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-shield_12_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/shield_12_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+.swgt-image-square_12_blue{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_12_blue.png");background-repeat:no-repeat;width:22px;height:22px; }
+.swgt-image-square_12_red{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_12_red.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+.swgt-image-square_12_yellow{ background-image: url("https://do9d4mpqk497d.cloudfront.net/common/images/siege_base_icons/22/square_12_yellow.png");background-repeat:no-repeat;width:22px;height:22px; }
+
+
+
+
+.bannedCounterStyle {
+	color: #252525;
+	background-color:#7f4e4f;
+}
+
+</style>
+<style type="text/css">
+.siegeTowerShieldHQ{
+	top: 453px;
+    left: 41px;
+}
+.siegeTowerShield1{
+	    top: 328px;
+    left: 6px;
+}
+.siegeTowerShield2{
+	top: 389px;
+    left: 135px;
+}
+.siegeTowerShield3{
+	top: 477px;
+    left: 223px;
+}
+.siegeTowerShield4{
+	    top: 316px;
+    left: 197px;
+}
+.siegeTowerShield5{
+	top: 380px;
+    left: 277px;
+}
+.siegeTowerShield6{
+	top: 243px;
+    left: 65px;
+}
+.siegeTowerShield7{
+	top: 226px;
+    left: 179px;
+}
+.siegeTowerShield8{
+	top: 248px;
+    left: 281px;
+}
+.siegeTowerShield9{
+	top: 273px;
+    left: 385px;
+}
+.siegeTowerShield10{
+	top: 353px;
+    left: 393px;
+}
+.siegeTowerShield11{
+	top: 433px;
+    left: 436px;
+}
+.siegeTowerShield12{
+	top: 481px;
+    left: 353px;
+}
+.siegeTowerSquareHQ{
+	top: 453px;
+    left: 879px;
+}
+.siegeTowerSquare1{
+	top: 326px;
+    left: 914px;
+}
+.siegeTowerSquare2{
+	top: 390px;
+    left: 783px;
+}
+.siegeTowerSquare3{
+	top: 467px;
+    left: 680px;
+}
+.siegeTowerSquare4{
+	top: 359px;
+    left: 638px;
+}
+.siegeTowerSquare5{
+	    top: 326px;
+    left: 744px;
+}
+.siegeTowerSquare6{
+	top: 480px;
+    left: 510px;
+}
+.siegeTowerSquare7{
+	    top: 417px;
+    left: 552px;
+}
+.siegeTowerSquare8{
+	top: 354px;
+    left: 508px;
+}
+.siegeTowerSquare9{
+	top: 279px;
+    left: 529px;
+}
+.siegeTowerSquare10{
+	top: 253px;
+    left: 641px;
+}
+.siegeTowerSquare11{
+	top: 240px;
+    left: 748px;
+}
+.siegeTowerSquare12{
+	top: 234px;
+    left: 863px;
+}
+.siegeTowerCircleHQ{
+	top: 14px;
+    left: 466px;
+}
+.siegeTowerCircle1{
+	top: 80px;
+    left: 612px;
+}
+.siegeTowerCircle2{
+	top: 87px;
+    left: 468px;
+}
+.siegeTowerCircle3{
+	top: 81px;
+    left: 296px;
+}
+.siegeTowerCircle4{
+	top: 133px;
+    left: 543px;
+}
+.siegeTowerCircle5{
+	top: 119px;
+    left: 386px;
+}
+.siegeTowerCircle6{
+	top: 151px;
+    left: 767px;
+}
+.siegeTowerCircle7{
+	top: 171px;
+    left: 675px;
+}
+.siegeTowerCircle8{
+	top: 198px;
+    left: 576px;
+}
+.siegeTowerCircle9{
+	top: 210px;
+    left: 462px;
+}
+.siegeTowerCircle10{
+	top: 192px;
+    left: 350px;
+}
+.siegeTowerCircle11{
+	top: 166px;
+    left: 259px;
+}
+.siegeTowerCircle12{
+	top: 150px;
+    left: 160px;
+}
+</style>
+<style type="text/css">
+.siegeBattleLogTowerShieldHQ{
+	top: 453px;
+    left: 41px;
+}
+.siegeBattleLogTowerShield1{
+	    top: 328px;
+    left: 6px;
+}
+.siegeBattleLogTowerShield2{
+	top: 389px;
+    left: 135px;
+}
+.siegeBattleLogTowerShield3{
+	top: 477px;
+    left: 223px;
+}
+.siegeBattleLogTowerShield4{
+	    top: 316px;
+    left: 197px;
+}
+.siegeBattleLogTowerShield5{
+	top: 380px;
+    left: 277px;
+}
+.siegeBattleLogTowerShield6{
+	top: 243px;
+    left: 65px;
+}
+.siegeBattleLogTowerShield7{
+	top: 226px;
+    left: 179px;
+}
+.siegeBattleLogTowerShield8{
+	top: 248px;
+    left: 281px;
+}
+.siegeBattleLogTowerShield9{
+	top: 273px;
+    left: 385px;
+}
+.siegeBattleLogTowerShield10{
+	top: 353px;
+    left: 393px;
+}
+.siegeBattleLogTowerShield11{
+	top: 433px;
+    left: 436px;
+}
+.siegeBattleLogTowerShield12{
+	top: 481px;
+    left: 353px;
+}
+.siegeBattleLogTowerSquareHQ{
+	top: 453px;
+    left: 879px;
+}
+.siegeBattleLogTowerSquare1{
+	top: 326px;
+    left: 914px;
+}
+.siegeBattleLogTowerSquare2{
+	top: 390px;
+    left: 783px;
+}
+.siegeBattleLogTowerSquare3{
+	top: 467px;
+    left: 680px;
+}
+.siegeBattleLogTowerSquare4{
+	top: 359px;
+    left: 638px;
+}
+.siegeBattleLogTowerSquare5{
+	    top: 326px;
+    left: 744px;
+}
+.siegeBattleLogTowerSquare6{
+	top: 480px;
+    left: 510px;
+}
+.siegeBattleLogTowerSquare7{
+	    top: 417px;
+    left: 552px;
+}
+.siegeBattleLogTowerSquare8{
+	top: 354px;
+    left: 508px;
+}
+.siegeBattleLogTowerSquare9{
+	top: 279px;
+    left: 529px;
+}
+.siegeBattleLogTowerSquare10{
+	top: 253px;
+    left: 641px;
+}
+.siegeBattleLogTowerSquare11{
+	top: 240px;
+    left: 748px;
+}
+.siegeBattleLogTowerSquare12{
+	top: 234px;
+    left: 863px;
+}
+.siegeBattleLogTowerCircleHQ{
+	top: 14px;
+    left: 466px;
+}
+.siegeBattleLogTowerCircle1{
+	top: 80px;
+    left: 612px;
+}
+.siegeBattleLogTowerCircle2{
+	top: 87px;
+    left: 468px;
+}
+.siegeBattleLogTowerCircle3{
+	top: 81px;
+    left: 296px;
+}
+.siegeBattleLogTowerCircle4{
+	top: 133px;
+    left: 543px;
+}
+.siegeBattleLogTowerCircle5{
+	top: 119px;
+    left: 386px;
+}
+.siegeBattleLogTowerCircle6{
+	top: 151px;
+    left: 767px;
+}
+.siegeBattleLogTowerCircle7{
+	top: 171px;
+    left: 675px;
+}
+.siegeBattleLogTowerCircle8{
+	top: 198px;
+    left: 576px;
+}
+.siegeBattleLogTowerCircle9{
+	top: 210px;
+    left: 462px;
+}
+.siegeBattleLogTowerCircle10{
+	top: 192px;
+    left: 350px;
+}
+.siegeBattleLogTowerCircle11{
+	top: 166px;
+    left: 259px;
+}
+.siegeBattleLogTowerCircle12{
+	top: 150px;
+    left: 160px;
+}
+</style>
+
+<div class="card card-default box-shadow">
+    <div class="card-header with-nav-tabs">
+    	<div class="float-right" style="border-bottom: 1px solid #476aa5 !important;height: 39px;">
+			<a class="btn btn-xs btn-systemDefault mt-1" style="line-height:1.0" href="https://youtu.be/iVFP_3kC68o" target="_blank">
+				See in action on<br>
+				<span style="color:#f00"><i class="fab fa-youtube"></i> YouTube</span>
+			</a>
+			
+			<a href="/controllers/tools/siegeTournamentSimulator" target="_blank" class="btn btn-sm btn-secondary mt-1">Siege Tournament Map</a>
+			
+			<button type="button" class="btn btn-sm btn-primary mt-1" onClick="function_getImport()" title="Import"><i class="fas fa-cloud-upload"></i></button>
+			<button type="button" class="btn btn-sm btn-info mt-1" onClick="function_export()" title="Export"><i class="fas fa-download"></i></button>
+			<button type="button" class="btn btn-sm btn-primary mt-1" onClick="function_clearAll()">Clear All</button>
+		</div>
+      	<ul class="nav nav-tabs">
+        	<li class="nav-item"><a class="nav-link active" href="#mapTab" id="nav_mapTab" data-toggle="tab" role="tab">Map</a></li>
+        	<li class="nav-item"><a class="nav-link " href="#faqTab" id="nav_faqTab" data-toggle="tab" role="tab">FAQ</a></li>
+      	</ul>
+    </div>
+    <div class="card-body p-0">
+      <div class="tab-content">
+        <div class="tab-pane active" id="mapTab">
+        	<div class="row mt-4">
+        		<div class="col-12 px-0">
+	        		<div class="siegeMap">
+	  					<img src="https://do9d4mpqk497d.cloudfront.net/common/images/siege_maps/SiegeMapBackground_2025-03-23.jpg" alt="Siege Map">
+	        		
+	        			
+	        			<div style="position: absolute;background-color: rgba(0, 0, 0, 0.55);top: -20px;left: 0px;width: 970px;height: 50px;">
+	        				<div class="row font-size-09em" style="height:25px">
+	        					<div class="col pt-1 px-2 bg-primary text-white">
+	        						<div class="float-left">
+	        							<button type="button" class="btn btn-xs btn-secondary" onclick="function_getEditGuilds()">Edit</button>
+	        						</div>
+	        						<div class="float-left ml-3" id="DIV_guildMatchScore">
+	        							0 Points
+	        						</div>
+	        						<div class="float-right" id="DIV_guildWinTime">
+	        						
+	        						</div>
+	        					</div>
+	        					<div class="col pt-1 px-2 bg-danger text-white">
+	        						<div class="float-left">
+	        							<button type="button" class="btn btn-xs btn-secondary" onclick="function_getEditGuilds()">Edit</button>
+	        						</div>
+	        						<div class="float-left ml-3" id="DIV_oppGuild1MatchScore">
+	        							0 Points
+	        						</div>
+	        						<div class="float-right" id="DIV_oppGuild1WinTime">
+	        						
+	        						</div>
+	        					</div>
+	        					
+	        					<div class="col pt-1 px-2 bg-warning text-dark">
+	        						<div class="float-left">
+	        							<button type="button" class="btn btn-xs btn-secondary" onclick="function_getEditGuilds()">Edit</button>
+	        						</div>
+	        						<div class="float-left ml-3" id="DIV_oppGuild2MatchScore">
+	        							0 Points
+	        						</div>
+	        						<div class="float-right" id="DIV_oppGuild2WinTime">
+	        						
+	        						</div>
+	        					</div>
+	        					
+	        				</div>
+	        				<div class="row font-size-09em">
+	        					<div class="col py-1 px-2 " id="TD_guildMatchScoreIncrement">&nbsp;</div>
+	        					<div class="col py-1 px-2  text-right" id="TD_guildConnectedTowers">&nbsp;</div>
+	        					
+	        					<div class="col py-1 px-2 " id="TD_oppGuild1MatchScoreIncrement">&nbsp;</div>
+	        					<div class="col py-1 px-2  text-right" id="TD_oppGuild1ConnectedTowers">&nbsp;</div>
+	        					
+	        					
+	        					<div class="col py-1 px-2 " id="TD_oppGuild2MatchScoreIncrement">&nbsp;</div>
+	        					<div class="col py-1 px-2  text-right" id="TD_oppGuild2ConnectedTowers">&nbsp;</div>
+	        					
+	        				</div>
+	        			</div>
+	        			<div class="pt-1 text-center text-disabled font-size-09em rounded d-none" style="position: absolute;background-color: rgba(0, 0, 50, 0.85);top: 32px;left: 786px;width: 182px;height: 23px;" id="DIV_siegeMapUpdatedDateTime">&nbsp;</div>
+	        			
+	        		</div>
+        		</div>
+        	</div>
+      	</div>
+      	
+      	<div class="tab-pane px-0 py-1 p-sm-3 " id="faqTab"> 
+      		
+			<div class="row mt-2">
+				<div class="col-12 text-center font-size-07em">
+					<span style="color:#aaa">Last updated on 03/24/2025 12:28 AM UTC</span>
+					<hr class="mb-1"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<p><span style="background-color: inherit; color: rgb(255, 0, 0);">A very special thanks to 006 for helping me figure out how to calculate the connected towers, and another special thanks to MageEye and Mazo for the inspiration to create this new feature.</span><br></p><p><br></p><p><span style="color: rgb(57, 132, 198);">Special note: the new siege map published by Com2us on March 23, 2025 is lopsided graphically.  This is not a SWGT graphical display issue.</span><br></p><p><br></p><p>This tool is designed to allow players to simulate different scenarios in a siege or siege tournament battle.</p><p><br></p><p><u>How to use:</u></p><p>Click on a tower to change it's properties. The map and battle statistics will update automatically. It's that simple.</p><p><br></p><p><u>Features:</u></p><p>You can currently set the guild ownership of each tower, any style (targets and prohibits), notes and base remaining HP %.</p><p><br></p><p><u>Import/Export functionality:</u></p><p>Similar to SWOP, the Siege Simulator allows you to export or import files from your computer. This allows users to share their map setup with others, archive maps, handle defaults, and more!</p>
+				</div>
+			</div>
+			
+      	</div>
+    </div>
+  </div>
+</div>  
+	
+	
+
+
+
+
+
+
+
+
+
+
+<a href="#" class="back-to-top" style="z-index:2;"><i class="fas fa-arrow-to-top"></i></a>
+<div class="row mx-0 mt-3" style="font-size:0.9em;z-index:1;">
+	<div class="col-12 text-center">
+		<span style="white-space: nowrap;padding:5px;">7.13.1</span> - 
+		<span style="white-space: nowrap;padding:5px;">&copy; SWGT 2026 All rights reserved</span><br> 
+		
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;">Designed By Cerusa</span> | 
+		</div>
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;"><a href="/controllers/common/viewChangeLog">Change Log</a></span> | 
+		</div>
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;"><a href="/dataprivacy">Data Privacy</a></span> | 
+		</div>
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;"><a href="/useragreement">User Agreement</a></span> | 
+		</div>
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;"><a href="/controllers/common/viewCredits">Credits</a></span>
+		</div>
+	</div>
+	<div class="col-12 text-center">
+		Support my work on Patreon (<a href="https://www.patreon.com/swgtguild" target="_blank">Guild</a> or <a href="https://www.patreon.com/swgtpersonal" target="_blank">Personal</a>)<br>
+		Monster and Siege Map images belong to Com2Us
+	</div>
+</div>
+
+<script type="text/javascript">
+$( document ).ready(function() {
+	
+    $('input').keypress(function(e) {
+		if (e.keyCode == 13){ // enter was pressed
+			$.blockUI({ 
+				message: '<h5>Processing, Please wait...<\/h5>', 
+					css: {
+					border: 'none',
+					padding: '15px',
+					backgroundColor: '#000', 
+					'-webkit-border-radius': '10px', 
+					'-moz-border-radius': '10px', 
+					opacity: .5, 
+					color: '#fff' 
+				} 
+			});
+        	$(this).closest("form").submit(); // submit the current form
+		}
+	});
+	
+	
+	$('form').attr('autocomplete','off');
+	
+	$(document).on('hidden.bs.modal', '.modal', function () {
+        $('.modal:visible').length && $(document.body).addClass('modal-open');
+    });
+    
+    var offset = 220;
+    var duration = 500;
+    $(window).scroll(function() {
+        if (jQuery(this).scrollTop() > offset) {
+            $('.back-to-top').fadeIn(duration);
+        } else {
+            $('.back-to-top').fadeOut(duration);
+        }
+    });
+    
+    $('.back-to-top').click(function(event) {
+        event.preventDefault();
+        $('html, body').animate({scrollTop: 0}, duration);
+        return false;
+    });
+    
+    observeSWGTLazyLoad();
+    
+    //Handle any datatables page changes
+    $(document).on('draw.dt', function (e) {
+    	observeSWGTLazyLoad(e.target);
+  	});
+    $(document).on('shown.bs.modal', '.modal', function () {
+        observeSWGTLazyLoad(this);
+    });
+    
+    swgtSyncFloatingHeaders();
+
+    const observer = new MutationObserver(function () {
+        swgtSyncFloatingHeaders();
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+    $(document).on('draw.dt', swgtSyncFloatingHeaders);
+    $(window).on('scroll resize', swgtSyncFloatingHeaders);
+    
+ 	// Datatables in tabs cleanup
+    $(document).on('shown.bs.tab', 'a[data-toggle="tab"], button[data-toggle="tab"]', function () {
+    	swgtFixDataTablesLayout();
+    });
+
+    var swgtDtResizeTimer;
+    $(window).on('resize', function () {
+    	clearTimeout(swgtDtResizeTimer);
+    	swgtDtResizeTimer = setTimeout(swgtFixDataTablesLayout, 150);
+    });
+});
+</script>
+
+
+</div>
+</body>
+</html>

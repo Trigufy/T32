@@ -1,0 +1,1923 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"/>
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link rel="icon" href="/favicon.ico">
+
+<link href="/apple-touch-icon.png" rel="apple-touch-icon">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta name="format-detection" content="telephone=no">
+<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+<meta http-equiv="Content-Language" content="en">
+
+<!-- for Facebook && googleplus-->
+<meta property="og:url"           content="https://swgt.io" />
+<meta property="og:type"          content="website" />
+<meta property="og:title"         content="SWGT: Summoners War Game Tools" />
+<meta property="og:description"   content="A mobile first platform to make managing your guild easier in Summoners War." />
+<meta property="og:image" content="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_Logo_v5a_white_bg.png" />
+
+<!-- for Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="SWGT: Summoners War Game Tools" />
+<meta name="twitter:description" content="A mobile first platform to make managing your guild easier in Summoners War." />
+<meta name="twitter:image" content="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_Logo_v5a_white_bg.png" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+
+<title>SWGT &gt; Tools &gt; Artifact Monster Finder</title>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Flag Icons -->
+<link rel="stylesheet" type="text/css" href="https://do9d4mpqk497d.cloudfront.net/common/includes/flag-icon/css/flag-icon.min.css?2021-08-23"/>
+
+<!-- jQuery -->
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/jquery/jquery-3.3.1.min.js"></script>
+
+<!-- popper.js -->
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/popper.min.js"></script>
+
+
+
+
+
+
+
+
+
+<!-- Number Input -->
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/jquery/number/jquery.number.2.1.5.min.js"></script>
+
+
+
+<!-- jQuery UI -->
+<link type="text/css" rel="stylesheet" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/jquery/ui/1.11.4/jquery-ui.min.css">
+<link type="text/css" rel="stylesheet" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/jquery/ui/1.11.4/jquery-ui.theme.min.css">
+
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/jquery/ui/1.12.1/jquery-ui.min.js"></script>
+
+<!-- jQuery Touch-Punch -->
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/jquery/touchPunch/jquery.ui.touch-punch-0.2.3a.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- jQuery BlockUI -->
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/jquery/blockUI/jquery.blockUI-2.70.0.js?2020-01-20_1605"></script>
+
+
+
+
+
+<!-- Tooltipster -->
+<link href="https://do9d4mpqk497d.cloudfront.net/common/includes/jquery/tooltipster/tooltipster.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/jquery/tooltipster/jquery.tooltipster.min.js"></script>
+<link href="https://do9d4mpqk497d.cloudfront.net/common/includes/jquery/tooltipster/themes/tooltipster-shadow.css" type="text/css" rel="stylesheet">
+
+
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/jquery/isotope.pkgd.min.js"></script>
+
+
+
+<!-- Bootstrap core CSS -->
+<link type="text/css" rel="stylesheet" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/4.4.1/css/bootstrap.css">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script	src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/4.4.1/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap Dialog --> 
+<link type="text/css" rel="stylesheet" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/bootstrap-dialog/bootstrap-dialog.custom-2022-03-17.min.css" />
+<script src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/bootstrap-dialog/bootstrap-dialog.custom-2022-03-17.min.js"></script>
+
+<!-- Bootstrap Select -->
+<link type="text/css" rel="stylesheet" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/bootstrap-select/1.13.14/css/bootstrap-select.min.css">
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/bootstrap-select/1.13.14/js/bootstrap-select-swgt_v3.js?20250829_0000"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- WebSlide Menu -->
+<link rel="stylesheet" type="text/css" media="all" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/webslidemenu/v1.0/webslidemenu.css?2019-08-28_0000" />
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/webslidemenu/v1.0/webslidemenu.js"></script>
+
+<!-- WebSlide Menu 2.5 -->
+<link rel="stylesheet" type="text/css" media="all" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/webslidemenu/v2.5/webslidemenu.css?2022-03-16_0000" />
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/webslidemenu/v2.5/webslidemenu.js?2022-03-16_0000"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" type="text/css" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/fontawesome/pro-6.1.1/css/all.min.css"/>
+
+
+
+
+
+
+
+<!-- SWGT Platform Standards -->
+<script type="text/javascript">
+window.SWGT_CONFIG = {
+	languageCode: "EN",
+	isAutoDarkMode: false,
+	isLoggedIn: false,
+	allowRegistration: true,
+	cloudfrontURL: "https://do9d4mpqk497d.cloudfront.net",
+	monsterImageBase36URL: "https://do9d4mpqk497d.cloudfront.net/common/images/monsters36/",
+	lazyloadPlaceholderImageURL: "https://do9d4mpqk497d.cloudfront.net/common/images/swgt-gray-pulse-loader-100.gif",
+	userID: "",
+	selectedFocus: "",
+	phrases: {
+		loadingPleaseWait: "Loading Please Wait...",
+		help: "Help",
+		language: "Language",
+		message: "Message",
+		darkMode: "Dark Mode",
+		register: "Register",
+		pleaseLogin: "Please Login.",
+		processingPleaseWait: "Processing, Please wait...",
+		unexpectedError: "An unexpected error has occurred",
+		runeRankAnalysis: "Rune - Rank - Analysis"
+	}
+};
+</script>
+<script type="text/javascript" src="/common/includes/common.js?2026-10-17_0853"></script>
+<link type="text/css" rel="stylesheet" href="/common/includes/common.css?2026-10-17_0853">
+
+
+
+<!-- Dark Mode -->
+<link type="text/css" rel="stylesheet" href="/common/includes/darkmode.css?2026-10-17_0853">
+
+
+
+
+<script type="text/javascript">
+var searchMonsterByIconMode = "";
+var swgtSelectPickerFromEvent = "";
+var swgtSelectPickerLastAction = "";
+
+window.cloudfrontURL = "https://do9d4mpqk497d.cloudfront.net";
+var monsterImageBase36URL = window.cloudfrontURL+"/common/images/monsters36/";
+var swgtLazyloadPlaceholderImageURL = "https://do9d4mpqk497d.cloudfront.net/common/images/swgt-gray-pulse-loader-100.gif";
+
+var formChanged = false;
+function setFormChanged(){
+	formChanged = true;
+}
+</script>
+<script type="text/javascript">
+var selectedOptions = new Map();
+var selectedOptionsValues = new Map();
+var artifactAttribute = "Water";
+var artifactSide = "Left";
+var artifactQuality = "";
+var numberOfEnemies = 3;
+var isAttackBuffed = false;
+var isDefenseBuffed = false;
+var isSpeedBuffed = false;
+
+var artifactLineData = {
+	
+	    "artifactSubStat-200": { name: "ATK+ prop. lost HP, max X%", min: 9.0, max: 70.0 },
+	    "artifactSubStat-201": { name: "DEF+ prop. lost HP, max X%", min: 9.0, max: 70.0 },
+	    "artifactSubStat-202": { name: "SPD+ prop. lost HP, max X%", min: 9.0, max: 70.0 },
+	    "artifactSubStat-203": { name: "SPD w/inability +X%", min: 3.0, max: 30.0 },
+	    "artifactSubStat-204": { name: "ATK UP effect +X%", min: 3.0, max: 25.0 },
+	    "artifactSubStat-205": { name: "DEF UP effect +X%", min: 3.0, max: 20.0 },
+	    "artifactSubStat-206": { name: "SPD UP effect +X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-207": { name: "CRIT Rate UP effect +X%", min: 3.0, max: 30.0 },
+	    "artifactSubStat-208": { name: "Counterattack DMG +X%", min: 2.0, max: 20.0 },
+	    "artifactSubStat-209": { name: "Co-op attack DMG +X%", min: 2.0, max: 20.0 },
+	    "artifactSubStat-210": { name: "Bomb DMG +X%", min: 2.0, max: 20.0 },
+	    "artifactSubStat-211": { name: "Reflected DMG +X%", min: 1.0, max: 15.0 },
+	    "artifactSubStat-212": { name: "Crushing Hit DMG +X%", min: 2.0, max: 20.0 },
+	    "artifactSubStat-213": { name: "DMG taken w/inability -X%", min: 1.0, max: 15.0 },
+	    "artifactSubStat-214": { name: "CRIT DMG taken -X%", min: 2.0, max: 20.0 },
+	    "artifactSubStat-215": { name: "Life Drain +X%", min: 5.0, max: 40.0 },
+	    "artifactSubStat-216": { name: "HP when revived +X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-217": { name: "ATK Bar when revived +X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-218": { name: "Add'l DMG by X% of HP", min: 0.2, max: 1.5 },
+	    "artifactSubStat-219": { name: "Add'l DMG by X% of ATK", min: 2.0, max: 20.0 },
+	    "artifactSubStat-220": { name: "Add'l DMG by X% of DEF", min: 2.0, max: 20.0 },
+	    "artifactSubStat-221": { name: "Add'l DMG by X% of SPD", min: 25.0, max: 200.0 },
+	    "artifactSubStat-222": { name: "CD+ as more enemy HP, max X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-223": { name: "CD+ as less enemy HP, max X%", min: 8.0, max: 60.0 },
+	    "artifactSubStat-224": { name: "Own turn 1-target CD +X%", min: 2.0, max: 20.0 },
+	    "artifactSubStat-225": { name: "Counterattack/Co-op Attack DMG +X%", min: 2.0, max: 20.0 },
+	    "artifactSubStat-226": { name: "ATK/DEF UP effect +X%", min: 3.0, max: 25.0 },
+	    "artifactSubStat-300": { name: "DMG dealt on Fire +X%", min: 3.0, max: 25.0 },
+	    "artifactSubStat-301": { name: "DMG dealt on Water +X%", min: 3.0, max: 25.0 },
+	    "artifactSubStat-302": { name: "DMG dealt on Wind +X%", min: 3.0, max: 25.0 },
+	    "artifactSubStat-303": { name: "DMG dealt on Light +X%", min: 3.0, max: 25.0 },
+	    "artifactSubStat-304": { name: "DMG dealt on Dark +X%", min: 3.0, max: 25.0 },
+	    "artifactSubStat-305": { name: "DMG taken from Fire -X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-306": { name: "DMG taken from Water -X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-307": { name: "DMG taken from Wind -X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-308": { name: "DMG taken from Light -X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-309": { name: "DMG taken from Dark -X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-400": { name: "[S1] CRIT DMG +X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-401": { name: "[S2] CRIT DMG +X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-402": { name: "[S3] CRIT DMG +X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-403": { name: "[S4] CRIT DMG +X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-404": { name: "[S1] Recovery +X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-405": { name: "[S2] Recovery +X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-406": { name: "[S3] Recovery +X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-407": { name: "[S1] Accuracy +X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-408": { name: "[S2] Accuracy +X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-409": { name: "[S3] Accuracy +X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-410": { name: "[Skill 3/4] CRIT DMG +X%", min: 4.0, max: 30.0 },
+	    "artifactSubStat-411": { name: "First Attack CRIT DMG +X%", min: 4.0, max: 30.0 },
+};
+
+$(document).ready(function() {
+	function_updateArtifact();
+	
+	$(".swgt-artifact-attribute").on('click', function(event){
+		function_changeArtifactAttribute($(this));
+	});
+	$(".swgt-artifact-substat").on('click', function(event){
+		function_changeSubStat($(this));
+	});
+	$(".swgt-number-of-enemies").on('click', function(event){
+		function_changeNumberOfEnemies($(this));
+	});
+	$(".swgt-attack-buffed").on('click', function(event){
+		function_changeBuff($(this),'attack');
+	});
+	$(".swgt-defense-buffed").on('click', function(event){
+		function_changeBuff($(this),'defense');
+	});
+	$(".swgt-speed-buffed").on('click', function(event){
+		function_changeBuff($(this),'speed');
+	});
+	$('.swgt-artifact-attribute').each(function() {
+		if($(this).data('artifact-attribute') == "Water"){
+			function_changeArtifactAttribute($(this));
+		}
+	});
+	
+	var typingTimers = {};
+	
+	// --- 1. Validate & clamp on typing/paste ---
+	$(document).on("input", ".number-input", function () {
+
+	    var $input = $(this);
+
+	    var rawId = $input.attr("id");
+	    var id = rawId.replace("artifactLineValue-", "");
+	    
+	    clearTimeout(typingTimers[id]);
+
+	    typingTimers[id] = setTimeout(function () {
+	    	var isDecimalAllowed = rawId.endsWith("-218");
+
+		    var value = $input.val();
+
+		    // Clean invalid characters
+		    if (isDecimalAllowed) {
+		        value = value
+		            .replace(/[^0-9.]/g, '')
+		            .replace(/(\..*?)\..*/g, '$1'); // only one decimal
+		    } else {
+		        value = value.replace(/[^0-9]/g, '');
+		    }
+
+		    if (value === "") {
+		        $input.val("");
+		        return;
+		    }
+
+		    var num = isDecimalAllowed ? parseFloat(value) : parseInt(value, 10);
+
+		    if (isNaN(num)) {
+		        $input.val("");
+		        return;
+		    }
+
+		    // Clamp using artifactLineData
+		    var key = "artifactSubStat-" + id;
+		    if (artifactLineData[key]) {
+		        var min = artifactLineData[key].min;
+		        var max = artifactLineData[key].max;
+
+		        if (num < min) num = min;
+		        if (num > max) num = max;
+		    }
+
+		    // Fix decimal precision
+		    if (isDecimalAllowed) num = num.toFixed(1);
+
+		    $input.val(num);
+		    
+		    selectedOptionsValues.set((id*1),num);
+	    }, 500); // 500ms delay after last keystroke
+	});
+
+	// --- 2. Arrow key increment/decrement ---
+	$(document).on("keydown", ".number-input", function (e) {
+
+	    if (e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
+
+	    e.preventDefault(); // stop cursor move / page scroll
+
+	    var $input = $(this);
+
+	    var rawId = $input.attr("id");
+	    var id = rawId.replace("artifactLineValue-", "");
+
+	    var isDecimalAllowed = rawId.endsWith("-218");
+	    
+	    var step = isDecimalAllowed ? 0.1 : 1;
+	    if (e.key === "ArrowDown") step *= -1;
+
+	    var value = $input.val();
+	    var num = isDecimalAllowed ? parseFloat(value) : parseInt(value, 10);
+	    if (isNaN(num)) num = 0;
+
+	    num += step;
+
+	    // Clamp using artifactLineData
+	    var key = "artifactSubStat-" + id;
+	    if (artifactLineData[key]) {
+	        var min = artifactLineData[key].min;
+	        var max = artifactLineData[key].max;
+
+	        if (num < min) num = min;
+	        if (num > max) num = max;
+	    }
+
+	    if (isDecimalAllowed) num = num.toFixed(1);
+
+	    $input.val(num);
+	    
+	    selectedOptionsValues.set((id*1),num);
+	});
+
+});
+
+function function_changeArtifactAttribute(button){
+	artifactAttribute = $(button).data('artifact-attribute');
+	artifactSide = $(button).data('artifact-side');
+	
+	//Clear all
+	$('.swgt-artifact-attribute').each(function() {
+		$(this).removeClass("btn-primary");
+		$(this).addClass("btn-outline-primary");
+		$(this).addClass("swgt-btn-transparent");
+	});
+	
+	//Add the one we need
+	$('.swgt-artifact-attribute').each(function() {
+		if($(this).data('artifact-attribute') == artifactAttribute){
+			$(this).removeClass("btn-outline-primary");
+			$(this).removeClass("swgt-btn-transparent");
+			$(this).addClass("btn-primary");
+		}
+	});
+	
+	function_updateArtifact();
+}
+function function_changeBuff(button,attribute){
+	//Clear all
+	$('.swgt-'+attribute+'-buffed').each(function() {
+		$(this).removeClass("btn-primary");
+		$(this).addClass("btn-outline-primary");
+		$(this).addClass("swgt-btn-transparent");
+	});
+	
+	if(attribute == 'attack'){
+		if(isAttackBuffed == true){
+			isAttackBuffed = false;
+		}else{
+			isAttackBuffed = true;
+			
+			$('.swgt-'+attribute+'-buffed').removeClass("btn-outline-primary");
+			$('.swgt-'+attribute+'-buffed').removeClass("swgt-btn-transparent");
+			$('.swgt-'+attribute+'-buffed').addClass("btn-primary");
+		}
+	}
+	if(attribute == 'defense'){
+		if(isDefenseBuffed == true){
+			isDefenseBuffed = false;
+		}else{
+			isDefenseBuffed = true;
+			
+			$('.swgt-'+attribute+'-buffed').removeClass("btn-outline-primary");
+			$('.swgt-'+attribute+'-buffed').removeClass("swgt-btn-transparent");
+			$('.swgt-'+attribute+'-buffed').addClass("btn-primary");
+		}
+	}
+	if(attribute == 'speed'){
+		if(isSpeedBuffed == true){
+			isSpeedBuffed = false;
+		}else{
+			isSpeedBuffed = true;
+			
+			$('.swgt-'+attribute+'-buffed').removeClass("btn-outline-primary");
+			$('.swgt-'+attribute+'-buffed').removeClass("swgt-btn-transparent");
+			$('.swgt-'+attribute+'-buffed').addClass("btn-primary");
+		}
+	}
+}
+function function_changeNumberOfEnemies(button){
+	numberOfEnemies = $(button).data('number-of-enemies')*1;
+	if(numberOfEnemies < 3 || numberOfEnemies > 5)
+		numberOfEnemies = 3;
+	
+	//Clear all
+	$('.swgt-number-of-enemies').each(function() {
+		$(this).removeClass("btn-primary");
+		$(this).addClass("btn-outline-primary");
+		$(this).addClass("swgt-btn-transparent");
+	});
+	
+	//Add the one we need
+	$('.swgt-number-of-enemies').each(function() {
+		if($(this).data('number-of-enemies') == numberOfEnemies){
+			$(this).removeClass("btn-outline-primary");
+			$(this).removeClass("swgt-btn-transparent");
+			$(this).addClass("btn-primary");
+		}
+	});
+}
+function function_changeSubStat(button){
+	var substat = $(button).data('substat');
+	if($(button).hasClass("btn-primary")){
+		//Remove
+		selectedOptions.delete(substat);
+		selectedOptionsValues.delete(substat);
+		$(button).removeClass("btn-primary");
+		$(button).addClass("btn-outline-primary");
+		$(button).addClass("swgt-btn-transparent");
+	}else{
+		//Add
+		selectedOptions.set(substat,artifactLineData["artifactSubStat-"+substat].name);
+		selectedOptionsValues.set(substat,0);
+		$(button).removeClass("btn-outline-primary");
+		$(button).removeClass("swgt-btn-transparent");
+		$(button).addClass("btn-primary");
+	}
+	function_updateArtifact();
+}
+function function_clear(){
+	$('.swgt-artifact-substat').each(function() {
+		if($(this).hasClass("btn-primary")){
+			$(this).removeClass("btn-primary");
+			$(this).addClass("btn-outline-primary");
+			$(this).addClass("swgt-btn-transparent");
+		}
+	});
+	selectedOptions = new Map();
+	selectedOptionsValues = new Map();
+	function_updateArtifact()
+}
+function function_updateArtifact(){
+	var artifactBackground = "";
+	var artifactIcon = "";
+	var baseCDN = "https://do9d4mpqk497d.cloudfront.net";
+	switch(selectedOptions.size) {
+		case 1:
+			artifactQuality = "Magic"
+	    	break;
+		case 2:
+			artifactQuality = "Rare"
+	    	break;
+		case 3:
+			artifactQuality = "Hero"
+	    	break;
+		case 4:
+			artifactQuality = "Legend"
+	    	break;
+	  	default:
+			artifactQuality = "Common"
+	} 
+	
+	if("Water" == artifactAttribute || "Fire" == artifactAttribute || "Wind" == artifactAttribute || "Light" == artifactAttribute || "Dark" == artifactAttribute){
+		artifactBackground = "element_"+artifactQuality.toLowerCase()+"_v2.png";
+		artifactIcon = artifactAttribute.toLowerCase()+"_"+artifactQuality.toLowerCase()+"_v2.png";
+	}else{
+		artifactBackground = "archetype_"+artifactQuality.toLowerCase()+"_v2.png";
+		artifactIcon = artifactAttribute.toLowerCase()+"_"+artifactQuality.toLowerCase()+"_v2.png";
+	}
+	//Background
+	$(".artifactPreview").removeClass("artifact-quality-border-common");
+	$(".artifactPreview").removeClass("artifact-quality-border-magic");
+	$(".artifactPreview").removeClass("artifact-quality-border-rare");
+	$(".artifactPreview").removeClass("artifact-quality-border-hero");
+	$(".artifactPreview").removeClass("artifact-quality-background-legend");
+	
+	$(".artifactPreview").addClass("artifact-quality-border-"+artifactQuality.toLowerCase());
+
+	//Icon
+	$("#TD_artifactIcon").html(
+   		"<div class=\"artifact-v2 rounded\" style=\"background-image:url("+baseCDN+"/common/images/artifact_icons/bg_"+artifactQuality.toLowerCase()+".png)\">"+
+		"	<div class=\"artifact-style-v2 element\" style=\"background-image:url("+baseCDN+"/common/images/artifact_icons/"+artifactBackground+")\">"+
+		"		<div class=\"artifact-symbol-v2\" style=\"background-image:url("+baseCDN+"/common/images/artifact_icons/"+artifactIcon+")\"></div>"+
+    	"	</div>"+
+    	"</div>"
+    );
+	
+	//Title
+	$("#artifactTitle").removeClass("artifact-quality-text-common");
+	$("#artifactTitle").removeClass("artifact-quality-text-magic");
+	$("#artifactTitle").removeClass("artifact-quality-text-rare");
+	$("#artifactTitle").removeClass("artifact-quality-text-hero");
+	$("#artifactTitle").removeClass("artifact-quality-text-legend");
+	
+	$("#artifactTitle").addClass("artifact-quality-text-"+artifactQuality.toLowerCase());
+	
+	//Label
+	$("#artifactQualityLabel").removeClass("artifact-quality-preview-common");
+	$("#artifactQualityLabel").removeClass("artifact-quality-preview-magic");
+	$("#artifactQualityLabel").removeClass("artifact-quality-preview-rare");
+	$("#artifactQualityLabel").removeClass("artifact-quality-preview-hero");
+	$("#artifactQualityLabel").removeClass("artifact-quality-preview-legend");
+	
+	$("#artifactQualityLabel").addClass("artifact-quality-preview-"+artifactQuality.toLowerCase());
+	$("#artifactQualityLabel").html(artifactQuality);
+	
+	
+	if(artifactSide == "left"){
+		$(".artifactRightSideSubStat").each(function(){
+			$(this).hide();
+		});
+		$(".artifactLeftSideSubStat").each(function(){
+			$(this).show();
+		});
+	}
+	if(artifactSide == "right"){
+		$(".artifactRightSideSubStat").each(function(){
+			$(this).show();
+		});
+		$(".artifactLeftSideSubStat").each(function(){
+			$(this).hide();
+		});
+	}
+	//Uncheck options that are not allowed based on side
+	$('.swgt-artifact-substat').each(function() {
+		if($(this).hasClass("btn-primary")){
+			var lineSubstat = $(this).data('substat');
+			var lineDataSide = $(this).data('artifact-side');
+			if(artifactSide == "left" && lineDataSide == "right"){
+				selectedOptions.delete(lineSubstat);
+				$(this).removeClass("btn-primary");
+				$(this).addClass("btn-outline-primary");
+				$(this).addClass("swgt-btn-transparent");
+			}
+	
+			if(artifactSide == "right" && lineDataSide == "left"){
+				selectedOptions.delete(lineSubstat);
+				$(this).removeClass("btn-primary");
+				$(this).addClass("btn-outline-primary");
+				$(this).addClass("swgt-btn-transparent");
+			}
+		}
+	});
+	
+	var artifactOptionsHTML = "";
+	var artifactValueOptionsHTML = "";
+	if(selectedOptions.size == 0){
+		artifactOptionsHTML = "<li>Select options below</li>";
+		$("#BTN_search").prop('disabled',true);
+	}else{
+		for (let [key, value] of selectedOptions) {
+			artifactOptionsHTML += "<li><span class=\"badge badge-secondary mr-1 artifact-powerupcount-badge artifact-line-powerupcount-nocolor\">0</span>"+value+"</li>";
+			
+			let selectedValue = selectedOptionsValues.get(key);
+			
+			artifactValueOptionsHTML += "<div class=\"input-group input-group-sm my-1\">";
+			artifactValueOptionsHTML += "	<div class=\"input-group-prepend\">";
+			artifactValueOptionsHTML += "		<input type=\"text\" class=\"form-control form-control-sm number-input text-center\" id=\"artifactLineValue-"+key+"\" style=\"max-width:90px;\" inputmode=\"decimal\" autocomplete=\"off\" placeholder=\""+(key == 218 ? "#.#":"###")+"\" value="+(selectedValue?selectedValue:"")+">";
+			artifactValueOptionsHTML += "	</div>";
+
+			artifactValueOptionsHTML += "	<div class=\"input-group-append flex-fill\">";
+			artifactValueOptionsHTML += "		<span class=\"input-group-text w-100 text-left\">";
+			artifactValueOptionsHTML += "			"+value+"";
+			artifactValueOptionsHTML += "		</span>";
+			artifactValueOptionsHTML += "	</div>";
+			artifactValueOptionsHTML += "</div>";
+		}
+		$("#BTN_search").prop('disabled',false);
+	}
+	
+	if(artifactAttribute){
+		$("#TEXT_artifactAttribute").html(artifactAttribute);
+
+		//Handle button disabling
+		if(selectedOptions.size < 4){
+			$('.swgt-artifact-substat').each(function() {
+				if($(this).hasClass("btn-outline-primary") || $(this).hasClass("btn-outline-secondary")){
+					$(this).prop('disabled',false);
+					$(this).removeClass("btn-outline-secondary");
+					$(this).addClass("btn-outline-primary");
+				}
+			});
+		}else{
+			$('.swgt-artifact-substat').each(function() {
+				if($(this).hasClass("btn-outline-primary") || $(this).hasClass("btn-outline-secondary")){
+					$(this).prop('disabled',true);
+					$(this).removeClass("btn-outline-primary");
+					$(this).addClass("btn-outline-secondary");
+				}
+			});
+		}
+		$(".artifact_options").html("<ul>"+artifactOptionsHTML+"</ul>");
+		
+		if(artifactValueOptionsHTML == ""){
+			artifactValueOptionsHTML += "<div class=\"row mt-md-4\">";
+			artifactValueOptionsHTML += "	<div class=\"col-12 text-center mt-md-4 pt-md-3\">";
+			artifactValueOptionsHTML += "		Select options below to enter values";
+			artifactValueOptionsHTML += "	</div>";
+			artifactValueOptionsHTML += "</div>";
+		}
+
+		$("#DIV_artifactEntryLines").html(artifactValueOptionsHTML);
+	}
+}
+function function_search(){	
+	if(artifactAttribute){
+		let noCache = new Date().getTime();
+		let url = '/controllers/artifactMonsterFinder/ajaxSearch?nocache='+noCache;
+		url += '&artifactAttribute='+artifactAttribute;
+		url += "&artifactMainStat="+$("#artifactMainStat").val();
+		url += "&artifactQuality="+artifactQuality;
+		
+		let hideValues = true;
+		let subStatCount = 1;
+		for (let [key, value] of selectedOptions) {
+			url += "&subStatID_"+(subStatCount)+"="+key;
+			
+			let selectedValue = selectedOptionsValues.get(key);
+			if(selectedValue){
+				url += "&subStatValue_"+(subStatCount)+"="+(selectedValue/100.0);
+				hideValues = false;
+			}
+			
+			subStatCount++;
+		}
+		url += "&numberOfEnemies="+numberOfEnemies;
+		url += "&isAttackBuffed="+isAttackBuffed;
+		url += "&isDefenseBuffed="+isDefenseBuffed;
+		url += "&isSpeedBuffed="+isSpeedBuffed;
+		url += "&hideValues="+hideValues;
+		
+		BootstrapDialog.show({
+			animate: false,
+			title: 'Search Result',
+			type: BootstrapDialog.TYPE_PRIMARY,
+			size: BootstrapDialog.SIZE_WIDE,
+			message: $('<div class=\"col-12\"><div class=\"text-center\">Loading Please Wait...</div></div>').load(url, function() {
+				observeSWGTLazyLoad(this);
+			}),
+	        closable: true,
+	        closeByBackdrop: true,
+	        closeByKeyboard: true,
+	        onshow: function(dialog) {
+	        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
+	        },
+	        onhide: function(dialog) {
+	        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1';
+	        }
+	    });
+	}
+}
+</script>
+</head>
+
+<body role="document">
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+function function_common_modal_alert(alertMessage){
+	BootstrapDialog.show({
+		animate: false,
+		title: 'Alert',
+		type: BootstrapDialog.TYPE_DANGER,
+        message: alertMessage,
+        onshow: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
+        },
+        onhide: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1';
+        },
+		buttons: [
+            {
+            	label: 'OK',
+            	cssClass: 'btn-sm btn-systemDefault',
+            	action: function(dialogItself){
+                	dialogItself.close();
+            	}
+        	}
+        ]
+    });
+}
+</script>
+
+
+
+
+
+
+
+<script type="text/javascript">
+function function_common_modal_message(title,message){
+	BootstrapDialog.show({
+		animate: false,
+		title: title,
+        message: message,
+        onshow: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0';
+        },
+        onhide: function(dialog) {
+        	document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1';
+        },
+		buttons: [
+            {
+            	label: 'OK',
+            	cssClass: 'btn-sm btn-systemDefault',
+            	action: function(dialogItself){
+                	dialogItself.close();
+            	}
+        	}
+        ]
+    });
+}
+</script>
+
+<div class="swgtMenu" >
+    <div class="logo clearfix">
+    	<div class="d-block d-lg-none text-norwap"><a href="/" class="d-inline-block"><img src="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_v5a_logo_dark_mode.png" alt="Logo"><img src="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_Banner_SWGT_v5a_dark_mode.png" alt="Logo"></a></div>
+    	
+    	<div class="wsmenucontainer clearfix d-none d-lg-block">
+			<div class="headerfull pm_buttoncolor02 whitebg">
+		      <!--Main Menu HTML Code-->
+		      <div class="wsmain p-0">
+		        <div class="smllogo"><a href="/" class="text-norwap"><img src="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_v5a_logo_dark_mode.png" alt="Logo"><img src="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_Banner_SWGT_v5a_dark_mode.png" alt="Logo"></a></div>
+		        
+		        <div id="SWGT_PINNED_MENU">
+		        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		        </div>
+		      </div>
+		      <!--Menu HTML Code-->
+		    </div>
+		</div>
+    </div>
+    <div class="swgt-top-right" >
+	    
+	    <a href="/" class="swgt-top-icon d-none" title="Dashboard">
+			<i class="fas fa-home"></i>
+		</a>
+	    
+	    
+	    <a href="/faq" class="swgt-top-icon" title="FAQ">
+			<i class="far fa-question-circle"></i>
+		</a>
+	    
+	    
+	    <a href="javascript:function_changeLanguage()" class="swgt-top-icon swgt-flag" title="English">
+			<span class="flag-icon flag-icon-us"></span>
+			<i class="fas fa-angle-down ml-1"></i>
+		</a>
+	</div>
+	
+	
+    <div id="wstoggle"><span></span></div>
+    <nav class="wsfmain clearfix">
+      <div class="wsfmenufull ani01">
+        <div class="wsfwrap">
+          <div class="wsfwrapinner clearfix" style="padding-left: 15px; padding-right: 15px;">
+          	<div class="row">
+          		<div class="col-3 d-none d-md-block pr-0" style="padding-top: 12px">
+          			<a href="/" style="color:#a3a9b3"><i class="fas fa-home" style="font-size: 26px;" title="Dashboard"></i></a>
+          			<a href="javascript:function_viewChangeDarkMode()" style="color:#a3a9b3;display:none;" class="ml-1">
+          				
+			    		<i class="fas fa-adjust" style="font-size: 26px;" title="Dark Mode"></i>
+			    		
+          			</a>
+          		</div>
+          		<div class="col-8 col-md-6 px-md-0 text-md-center">
+          			<a href="javascript:function_hamburgerMenuIsotope()" class="text-norwap"><img src="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_v5a_logo_dark_mode.png" alt="Logo"><img src="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_Banner_SWGT_v5a_dark_mode.png" alt="Logo"></a>
+          		</div>
+          			
+          		<div class="col-3 text-right pl-0" style="padding-top:16px;padding-right:85px;">
+          				<a href="/login.jsp">Login</a>
+          		</div>
+          			
+          	</div>
+          	<div class="row">
+          		<div class="col-12 px-0 text-center">
+          			<hr class="mt-2 mb-1" style="border-top: 1px solid #eee;">
+          		</div>
+          	</div>
+          	
+          	
+    		<div class="row mb-1">
+    			<div class="col-12 px-md-2">
+        			<div class="input-group swgtSearchHamburgerMenu">
+    					<input type="text" name="searchHamburgerMenu" id="searchHamburgerMenu" style="height: 38px;" class="form-control" placeholder="Search" aria-label="Search" value="" onKeyUp="function_searchHamburgerMenu()">
+    					<button type="button" class="btn bg-transparent" style="margin-left: -37px; z-index: 100; display:none;" onclick="function_clearSearchHamburgerMenu()" id="BTN_clearHamburgerMenuSearch">
+		     				<i class="fa fa-times" style="color:#ddd;"></i>
+		    			</button>
+			          	<div class="input-group-append">
+			           		<a class="btn btn-primary px-1" href="javascript:function_searchHamburgerMenu()"><i class="fas fa-search"></i></a>
+			          	</div>
+          			</div>
+    			</div>
+    		</div>
+          	
+          	<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 grid-hm d-block">
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Account Analytics
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Account Summary">Account Summary</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Summoner Skill">Summoner Skill</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Monsters">Monsters</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Monster Collection">Monster Collection</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Monster Summon Log">Monster Summon Log</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Decks">Decks</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Team Builder">Team Builder</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Rune Detail">Rune Detail</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Rune Graph">Rune Graph</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Rune Efficiency Analysis">Rune Efficiency Analysis</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Gem Optimizer">Gem Optimizer</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Grind Optimizer">Grind Optimizer</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Recent Runes">Recent Runes</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Gem+Grind - Inventory">Gem+Grind - Inventory</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Gem+Grind - Needs">Gem+Grind - Needs</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Artifact Detail">Artifact Detail</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Artifact Graph">Artifact Graph</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Recent Artifacts">Recent Artifacts</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Artifact Additional Damage Optimizer">Artifact Additional Damage Optimizer</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Relic Detail">Relic Detail</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Relic Graph">Relic Graph</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Account Analytics Recent Relics">Recent Relics</li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			All Server Analytics
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="All Server Analytics Defense - Trending"><a href="/pageLoading.jsp?redirect=/controllers/allServerAnalytics/defenseTrending/load">Defense - Trending</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="All Server Analytics Monster - Defense - Trending"><a href="/pageLoading.jsp?redirect=/controllers/allServerAnalytics/monsterDefenseTrending/load">Monster - Defense - Trending</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="All Server Analytics Monster - Offense - Trending"><a href="/pageLoading.jsp?redirect=/controllers/allServerAnalytics/monsterOffenseTrending/load">Monster - Offense - Trending</a></li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Guild
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members">Members</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Monster Search">Monster Search</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Guild - Account Summary">Guild - Account Summary</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Guild Rune Analysis">Guild Rune Analysis</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Guild Artifact Analysis">Guild Artifact Analysis</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Recruitment Applications">Recruitment Applications</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Guild Battle Notes">Guild Battle Notes</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Team Builder">Team Builder</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Guild Polls">Guild Polls</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Monster Checklist">Monster Checklist</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Battle Registration">Battle Registration</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Guild Actively Recruiting Guilds"><a href="/recruiting/">Actively Recruiting Guilds</a></li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Guild Members
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members Account Analytics">Account Analytics</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members Performance - Summary">Performance - Summary</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members Siege Offense">Siege Offense</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members Siege Defense">Siege Defense</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members World Guild Battle Offense">World Guild Battle Offense</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members World Guild Battle Defense">World Guild Battle Defense</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members Labyrinth">Labyrinth</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members Monster Subjugation">Monster Subjugation</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members Notes">Notes</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Guild Members Reminders">Reminders</li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			3MDC
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="3MDC Search"><a href="/3mdc/">Search</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC My Favorites">My Favorites</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC My Ratings">My Ratings</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="3MDC Where 2 use?"><a href="/where2use/">Where 2 use?</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="3MDC Statistics"><a href="/3mdcstats/">Statistics</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC Pending Approvals">Pending Approvals</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC Maintenance">Maintenance</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC Banned Counter Maintenance">Banned Counter Maintenance</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC Monster Nicknames">Monster Nicknames</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC Defense Nicknames">Defense Nicknames</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC Battle Logs">Battle Logs</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="3MDC Live Battle Companion">Live Battle Companion</li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Siege
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Siege Leaderboards"><a href="/leaderboards/siege/">Leaderboards</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Siege Siege Planner">Siege Planner</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Siege Battles">Battles</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Siege Offense">Offense</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Siege Defense">Defense</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Siege Summary">Summary</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Siege Season - Performance">Season - Performance</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Siege Siege Battle Week Summary">Siege Battle Week Summary</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Siege Siege Tournament Planner">Siege Tournament Planner</li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			World Guild Battle
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="World Guild Battle Leaderboards"><a href="/leaderboards/worldguildbattle/">Leaderboards</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="World Guild Battle Battles">Battles</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="World Guild Battle Offense">Offense</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="World Guild Battle Defense">Defense</li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="World Guild Battle Summary">Summary</li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Labyrinth
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Labyrinth Leaderboards"><a href="/leaderboards/labyrinth/">Leaderboards</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Labyrinth Battles">Battles</li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Monster Subjugation
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Monster Subjugation Leaderboards"><a href="/leaderboards/monsterSubjugation/">Leaderboards</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Monster Subjugation Battles">Battles</li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Tools
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Tools Notifications">Notifications</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Game Codes"><a href="/gamecodes">Game Codes</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Game Guides"><a href="/gameguides/?selectedFocus=">Game Guides</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Monster Catalog"><a href="/controllers/tools/monsterCatalog?displayAs=GRID">Monster Catalog</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Monster Search"><a href="/monsterSearch/">Monster Search</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Tools Monster Battle Rankings">Monster Battle Rankings</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Artifact Monster Finder"><a href="/controllers/artifactMonsterFinder">Artifact Monster Finder</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Speed Tick Bracket Calculator"><a href="/controllers/speedTickBracketCalculator/load">Speed Tick Bracket Calculator</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Dungeon Stats"><a href="/controllers/dungeonAnalysis/load">Dungeon Stats</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Balance Patches"><a href="/pageLoading.jsp?redirect=/controllers/balancePatch/list">Balance Patches</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Discord Bot"><a href="/controllers/discordBot">Discord Bot</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Siege Calculator"><a href="/controllers/tools/siegeCalculator">Siege Calculator</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Siege Tournament Calculator"><a href="/controllers/tools/siegeTournamentCalculator">Siege Tournament Calculator</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Siege Simulator"><a href="/controllers/tools/siegeSimulator">Siege Simulator</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Tools Siege Tournament Simulator"><a href="/controllers/tools/siegeTournamentSimulator">Siege Tournament Simulator</a></li>
+							
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Help
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Help FAQ"><a href="/faq/">FAQ</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Help About SWGT"><a href="/about/">About SWGT</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Help Change Log"><a href="/controllers/common/viewChangeLog">Change Log</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Help SWGT Discord"><a href="javascript:function_discord()">SWGT Discord</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Help Credits"><a href="/controllers/common/viewCredits">Credits</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Help User Agreement"><a href="/controllers/common/viewUserAgreement">User Agreement</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Help Data Privacy"><a href="/controllers/faq/view?faqEntryID=43">Data Privacy</a></li>
+							
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem">	<a href="https://www.patreon.com/swgtguild" target="_blank" style="color: #fd7078">		<i class="fab fa-patreon mr-1" aria-hidden="true"></i>Patreon (Guild)	</a></li>
+          				
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem">	<a href="https://www.patreon.com/swgtpersonal" target="_blank" style="color: #fd7078">		<i class="fab fa-patreon mr-1" aria-hidden="true"></i>Patreon (Personal)	</a></li>
+          				
+          			</ul>
+          		</div>
+          		
+          		<div class="col grid-hm-item px-md-2 mb-1" >
+	          		<span class="swgtMenuHeading">
+	          			Setup
+	          			
+	          		</span>
+					<hr class="mt-0 mb-1" style="border-top: 1px solid #476aa5;">
+					<ul class="swgtMenuMenu mb-0">
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem">	<a href="javascript:function_changeLanguage()" style="text-decoration: none;" title="English">  		English&nbsp;<span class="flag-icon flag-icon-us"></span>   		<i class="fas fa-angle-down d-none d-lg-inline"></i>	</a></li>
+          				
+          				<li class="swgtMenuItem swgtSearchableHamburgerMenuItem py-0"><hr class="mt-0 mb-0"></li>
+          				
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Setup Users">Users</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Setup Guilds">Guilds</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Setup Friends">Friends</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Setup Homepage Notes">Homepage Notes</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Setup Tags">Tags</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Setup Site Setup">Site Setup</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem text-disabled" data-menupath="Setup SWGT Guild setup with SWEX">SWGT Guild setup with SWEX</li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Setup Register"><a href="javascript:function_register()">Register</a></li>
+							
+          					
+						<li class="swgtMenuItem swgtSearchableHamburgerMenuItem" data-menupath="Setup Login"><a href="/login.jsp">Login</a></li>
+							
+          			</ul>
+          		</div>
+          		
+          		<!-- <div class="grid-hm-sizer col"></div> -->
+          	</div>
+          	<div class="wsbottompart clearfix" style="padding-left: 15px; padding-right: 15px;">
+            	
+
+
+
+
+
+
+
+
+
+
+<a href="#" class="back-to-top" style="z-index:2;"><i class="fas fa-arrow-to-top"></i></a>
+<div class="row mx-0 " style="font-size:0.9em;z-index:1;">
+	<div class="col-md-7 text-center">
+		<span style="white-space: nowrap;padding:5px;">7.13.1</span> - 
+		<span style="white-space: nowrap;padding:5px;">&copy; SWGT 2026 All rights reserved</span><br> 
+		
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;">Designed By Cerusa</span> | 
+		</div>
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;"><a href="/controllers/common/viewChangeLog">Change Log</a></span> | 
+		</div>
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;"><a href="/dataprivacy">Data Privacy</a></span> | 
+		</div>
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;"><a href="/useragreement">User Agreement</a></span> | 
+		</div>
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;"><a href="/controllers/common/viewCredits">Credits</a></span>
+		</div>
+	</div>
+	<div class="col-md-5 text-center">
+		Support my work on Patreon (<a href="https://www.patreon.com/swgtguild" target="_blank">Guild</a> or <a href="https://www.patreon.com/swgtpersonal" target="_blank">Personal</a>)<br>
+		Monster and Siege Map images belong to Com2Us
+	</div>
+</div>
+
+
+          	</div>
+          	
+          </div>
+        </div>
+      </div>
+    </nav>
+	
+</div>
+
+	<div class="container px-0 px-sm-1">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb box-shadow">
+				<li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+				<li class="breadcrumb-item"><a>Tools</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Artifact Monster Finder</li>
+			</ol>
+		</nav>
+
+		<div class="card card-default box-shadow">
+			<div class="card-header pl-3 pr-3">Artifact Monster Finder</div>
+			<div class="card-body px-0 py-1 py-sm-2 px-1">
+				<div class="row">
+					<div class="col-12">
+						<div class="d-flex flex-column flex-md-row">
+  							
+  							<div class="text-center text-md-left mr-md-3">
+		  						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div class="artifactPreview artifact-quality-border-common" style="" onClick="">
+			<div class="row">
+				<div class="col-2 text-center px-0"></div>
+				<div class="col-8 px-0">
+					<h3 id="artifactTitle" class="artifact-quality-text-common" style=""><span id="TEXT_artifactAttribute">Water</span> Artifact</h3>
+				</div>
+				<div class="col-2 pr-0 font-size-065em text-disabled text-right">
+					
+				</div>
+			</div>
+			
+			<table style="width: 100%;color: #fff;padding: 0 10px;">
+				<tbody>
+					<tr>
+						<td style="width:50px;height:50px;" id="TD_artifactIcon">
+							<div class="artifact-v2 rounded" style="background-image:url(https://do9d4mpqk497d.cloudfront.net/common/images/artifact_icons/bg_common.png)">
+								<div class="artifact-style-v2 element" style="background-image:url(https://do9d4mpqk497d.cloudfront.net/common/images/artifact_icons/element_common_v2.png)">
+	                           		<div class="artifact-symbol-v2" style="background-image:url(https://do9d4mpqk497d.cloudfront.net/common/images/artifact_icons/water_common_v2.png)"></div>
+	                        	</div>
+	                        </div>
+						</td>
+						<td id="option" style="text-align: left;">
+							
+							<select name="artifactMainStat" id="artifactMainStat" >
+								<option value="ATK" selected="selected">ATK +100</option>
+								<option value="HP" >HP +1500</option>
+								<option value="DEF" >DEF +100</option>
+							</select>
+							
+						</td>
+						<td style="width: 80px;" class="text-center">
+							<div id="artifactQualityLabel" class="font-size-08em artifact-quality-preview-common" style="padding: 1px 0px;border-radius: 4px;">Common</div>
+							
+							<div id="runeCom2usScoreLabel" class="font-size-08em" style="padding: 1px 0px;color:#af8346;background-color:#402510;border-radius: 4px;margin-top: 2px;">N/A</div>
+							
+							
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" class="artifact_options pt-1">
+							<ul class="list-unstyled">
+							
+							<li>Select options below</li>
+							
+							</ul>
+						</td>
+						<!-- 
+						<td class="artifact-summoners-btn pt-2" class="text-center">
+							<p style="margin-top: 0;" class="text-center">Engrave</p>
+							<p class="text-center">Power-up</p>
+							<p class="text-center">Sell</p>
+						</td> -->
+					</tr>
+					
+				</tbody>
+			</table>
+			
+			
+		</div>
+
+							</div>
+  
+  							<div class="flex-md-grow-1 mt-3 mt-md-0 p-1 border border-secondary rounded" id="DIV_artifactEntryLines">
+  							
+  							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row mt-4">
+       				<div class="col-12 mt-1 text-center pr-md-1 col-md-6 mt-md-0 text-md-left">
+       					<div class="swgt-outline-panel">
+				    		<div class="swgt-outline-panel-title">Artifact Attribute</div>
+				    		<div class="swgt-outline-panel-divider"></div>
+       					
+	       					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-attribute" data-artifact-attribute="Water" data-artifact-side="left">Water</button>
+							<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-attribute" data-artifact-attribute="Fire" data-artifact-side="left">Fire</button>
+							<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-attribute" data-artifact-attribute="Wind" data-artifact-side="left">Wind</button>
+							<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-attribute" data-artifact-attribute="Light" data-artifact-side="left">Light</button>
+							<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-attribute" data-artifact-attribute="Dark" data-artifact-side="left">Dark</button>
+						</div>
+       				</div>
+	              				
+       				<div class="col-12 mt-3 mt-md-0 text-center pl-md-1 col-md-6 mt-md-0 text-md-left">
+       					<div class="swgt-outline-panel">
+				    		<div class="swgt-outline-panel-title">Artifact Type</div>
+				    		<div class="swgt-outline-panel-divider"></div>
+	              					
+			    			<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-attribute" data-artifact-attribute="Attack" data-artifact-side="right">Attack</button>
+			    			<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-attribute" data-artifact-attribute="HP" data-artifact-side="right">HP</button>
+			    			<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-attribute" data-artifact-attribute="Defense" data-artifact-side="right">Defense</button>
+			    			<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-attribute" data-artifact-attribute="Support" data-artifact-side="right">Support</button>
+			    		</div>
+	              	</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-12">
+				
+						<div class="swgt-outline-panel">
+				    		<div class="swgt-outline-panel-title">Artifact Options</div>
+				    		<div class="swgt-outline-panel-divider"></div>
+				        
+					        
+							<div class="row px-4 px-md-3">
+								
+			    				<div class="col-md-6 px-0 mb-2 artifactLeftSideSubStat" style="display:none;">
+			    					DMG dealt on <span class="text-primary">[element]</span> +X%
+			    				</div>
+			    				<div class="col-md-6 px-0 mb-0 mb-md-2 artifactLeftSideSubStat" style="display:none;">
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="301" data-artifact-side="left">Water</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="300" data-artifact-side="left">Fire</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="302" data-artifact-side="left">Wind</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="303" data-artifact-side="left">Light</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="304" data-artifact-side="left">Dark</button>
+			    				</div>
+			    				
+			    				
+			    				<div class="col-md-6 px-0 mb-2 artifactLeftSideSubStat" style="display:none;">
+			    					DMG taken from <span class="text-primary">[element]</span> -X%
+			    				</div>
+			    				<div class="col-md-6 px-0 mb-0 mb-md-2 artifactLeftSideSubStat" style="display:none;">
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="306" data-artifact-side="left">Water</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="305" data-artifact-side="left">Fire</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="307" data-artifact-side="left">Wind</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="308" data-artifact-side="left">Light</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="309" data-artifact-side="left">Dark</button>
+			    				</div>
+			    				
+			    				
+			    				<div class="col-md-6 px-0 mb-2 artifactBothSideSubStat">
+			    					Add'l DMG by X% of <span class="text-primary">[HP/ATK/SPD/DEF]</span>
+			    				</div>
+			    				<div class="col-md-6 px-0 mb-0 mb-md-2 artifactBothSideSubStat">
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="219" data-artifact-side="both">ATK</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="220" data-artifact-side="both">DEF</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="221" data-artifact-side="both">SPD</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="218" data-artifact-side="both">HP</button>
+			    				</div>
+			    				
+			    				
+			    				<div class="col-md-6 px-0 mb-2 artifactBothSideSubStat">
+			    					<span class="text-primary">[ATK/DEF/SPD]</span> Up effect +X%
+			    				</div>
+			    				<div class="col-md-6 px-0 mb-0 mb-md-2 artifactBothSideSubStat">
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="226" data-artifact-side="both">ATK/DEF</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="206" data-artifact-side="both">SPD</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 artifactLineDeprecated" data-substat="204" data-artifact-side="both">ATK</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 artifactLineDeprecated" data-substat="205" data-artifact-side="both">DEF</button>
+			    				</div>
+			    				
+			    				
+			    				<div class="col-md-6 px-0 mb-2 artifactRightSideSubStat" style="display:none;">
+			    					<span class="text-primary">[S1/S2/S3/S4]</span> CRIT DMG +X%
+			    				</div>
+			    				<div class="col-md-6 px-0 mb-0 mb-md-2 artifactRightSideSubStat" style="display:none;">
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="400" data-artifact-side="right">Skill 1</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="401" data-artifact-side="right">Skill 2</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="410" data-artifact-side="right">Skill 3/4</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="411" data-artifact-side="right">First Attack</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 artifactLineDeprecated" data-substat="402" data-artifact-side="right">Skill 3</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 artifactLineDeprecated" data-substat="403" data-artifact-side="right">Skill 4</button>
+			    				</div>
+			    				
+			    				
+			    				<div class="col-md-6 px-0 mb-2 artifactRightSideSubStat" style="display:none;">
+			    					<span class="text-primary">[S1/S2/S3]</span> Accuracy +X%
+			    				</div>
+			    				<div class="col-md-6 px-0 mb-0 mb-md-2 artifactRightSideSubStat" style="display:none;">
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="407" data-artifact-side="right">Skill 1</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="408" data-artifact-side="right">Skill 2</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="409" data-artifact-side="right">Skill 3</button>
+			    				</div>
+			    				
+			    				
+			    				<div class="col-md-6 px-0 mb-2 artifactRightSideSubStat" style="display:none;">
+			    					<span class="text-primary">[S1/S2/S3]</span> Recovery +X%
+			    				</div>
+			    				<div class="col-md-6 px-0 mb-0 mb-md-2 artifactRightSideSubStat" style="display:none;">
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="404" data-artifact-side="right">Skill 1</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="405" data-artifact-side="right">Skill 2</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="406" data-artifact-side="right">Skill 3</button>
+			    				</div>
+			    				
+			    				
+			    				<div class="col-md-6 px-0 mb-2 artifactBothSideSubStat">
+			    					<span class="text-primary">[More HP/Less HP/Own turn 1-target]</span> Crit Damage +X%
+			    				</div>
+			    				<div class="col-md-6 px-0 mb-0 mb-md-2 artifactBothSideSubStat">
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="222" data-artifact-side="both">More HP</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="223" data-artifact-side="both">Less HP</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="224" data-artifact-side="both">Own turn 1-target</button>
+			    				</div>
+			    				
+			    				
+			    				<div class="col-md-6 px-0 mb-2 artifactBothSideSubStat">
+			    					<span class="text-primary">[Counterattack/Co-op Attack/Bomb]</span> Damage +X%
+			    				</div>
+			    				<div class="col-md-6 px-0 mb-0 mb-md-2 artifactBothSideSubStat" >
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="225" data-artifact-side="both">Counterattack/Co-op</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 " data-substat="210" data-artifact-side="both">Bomb</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 artifactLineDeprecated" style="min-width:55px;" data-substat="208" data-artifact-side="both">Counterattack</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 artifactLineDeprecated" style="min-width:55px;" data-substat="209" data-artifact-side="both">Co-op Attack</button>
+			    				</div>
+			    				
+			    				
+			    				<div class="col-md-6 px-0 mb-2 artifactBothSideSubStat">
+			    					<span class="text-primary">[ATK/DEF/SPD]</span>+ Prop. lost HP, max X%
+			    				</div>
+			    				<div class="col-md-6 px-0 mb-0 mb-md-2 artifactBothSideSubStat">
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 artifactLineDeprecated" style="min-width:55px;" data-substat="200" data-artifact-side="both">ATK</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 artifactLineDeprecated" style="min-width:55px;" data-substat="201" data-artifact-side="both">DEF</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 artifactLineDeprecated" style="min-width:55px;" data-substat="202" data-artifact-side="both">SPD</button>
+			    				</div>
+			    				
+			    				
+			    				<div class="col-md-6 px-0 mb-2 artifactBothSideSubStat">
+			    					<span class="text-primary">[HP/ATK Bar]</span> when revived +X%
+			    				</div>
+			    				<div class="col-md-6 px-0 mb-0 mb-md-2 artifactBothSideSubStat" >
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 artifactLineDeprecated" data-substat="216" data-artifact-side="both">HP</button>
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 mb-md-0 artifactLineDeprecated" data-substat="217" data-artifact-side="both">ATK Bar</button>
+			    				</div>
+			    				
+			    				<div class="col-12">
+			    					<hr class="swgt-hr"/>
+			    				</div>
+			    				
+			    				<div class="col-12 px-0 mb-2 artifactBothSideSubStat">
+			    				
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 " data-substat="215" data-artifact-side="both">Life Drain +X%</button>
+			    				
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 " data-substat="214" data-artifact-side="both">CRIT DMG taken -X%</button>
+			    				
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 artifactLineDeprecated" data-substat="203" data-artifact-side="both">SPD w/inability +X%</button>
+			    				
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 artifactLineDeprecated" data-substat="207" data-artifact-side="both">CRIT Rate UP effect +X%</button>
+			    				
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 artifactLineDeprecated" data-substat="211" data-artifact-side="both">Reflected DMG +X%</button>
+			    				
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 artifactLineDeprecated" data-substat="212" data-artifact-side="both">Crushing Hit DMG +X%</button>
+			    				
+			    					<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-artifact-substat mb-2 artifactLineDeprecated" data-substat="213" data-artifact-side="both">DMG taken w/inability -X%</button>
+			    				
+			    				</div>
+			    			</div>
+		    			</div>
+		    		</div>
+		    	</div>
+    			
+    			<div class="row">
+					<div class="col-12">
+		    			<div class="swgt-outline-panel">
+				    		<div class="swgt-outline-panel-title">Miscellaneous Options</div>
+				    		<div class="swgt-outline-panel-divider"></div>
+				            			
+			    			<div class="row mb-4">
+				   				<div class="col-sm-6 col-md-4 col-lg-3 px-0 mb-2">
+				   					<label class="control-label labelColor font-size-08em mb-1">Number of enemies:</label><br>
+				   					<div class="btn-group" role="group" aria-label="Number of enemies">
+					   					<button type="button" class="btn btn-sm btn-primary swgt-number-of-enemies" data-number-of-enemies="3">3</button>
+			       						<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-number-of-enemies" data-number-of-enemies="4">4</button>
+			       						<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-number-of-enemies" data-number-of-enemies="5">5</button>
+				      				</div>
+				   				</div>
+				   				<div class="col-sm-6 col-md-4 col-lg-4 px-0 mb-2">
+				   					<label class="control-label labelColor font-size-08em mb-1">Buff:</label><br>
+				      				<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-attack-buffed"><img src="https://do9d4mpqk497d.cloudfront.net/common/images/skill_effects36/buff_attack_up.png" alt="Increase ATK" class="monster-image-xs buff-image-xs rounded"/>ATK</button>
+				      				<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-defense-buffed"><img src="https://do9d4mpqk497d.cloudfront.net/common/images/skill_effects36/buff_defence_up.png" alt="Increase DEF" class="monster-image-xs buff-image-xs rounded"/>DEF</button>
+				      				<button type="button" class="btn btn-sm btn-outline-primary swgt-btn-transparent swgt-speed-buffed"><img src="https://do9d4mpqk497d.cloudfront.net/common/images/skill_effects36/buff_speed.png" alt="Increase SPD" class="monster-image-xs buff-image-xs rounded"/>SPD</button>
+				   				</div>
+				   			</div>
+				   		</div>
+			   		</div>
+		   		</div>
+    			
+    			<div class="row mb-2">
+    				<div class="col-12 text-center"> 
+			        	<button class="btn btn-sm btn-systemDefault" onClick="function_clear();">Clear</button>
+			        	<button class="btn btn-sm btn-success" onClick="function_search();" disabled="disabled" id="BTN_search">Search</button>
+			        </div>
+    			</div>
+				
+			</div>
+		</div>
+	
+
+
+
+
+
+
+
+
+
+
+<a href="#" class="back-to-top" style="z-index:2;"><i class="fas fa-arrow-to-top"></i></a>
+<div class="row mx-0 mt-3" style="font-size:0.9em;z-index:1;">
+	<div class="col-12 text-center">
+		<span style="white-space: nowrap;padding:5px;">7.13.1</span> - 
+		<span style="white-space: nowrap;padding:5px;">&copy; SWGT 2026 All rights reserved</span><br> 
+		
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;">Designed By Cerusa</span> | 
+		</div>
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;"><a href="/controllers/common/viewChangeLog">Change Log</a></span> | 
+		</div>
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;"><a href="/dataprivacy">Data Privacy</a></span> | 
+		</div>
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;"><a href="/useragreement">User Agreement</a></span> | 
+		</div>
+		<div class="d-inline-block">
+			<span style="white-space: nowrap;padding:5px;"><a href="/controllers/common/viewCredits">Credits</a></span>
+		</div>
+	</div>
+	<div class="col-12 text-center">
+		Support my work on Patreon (<a href="https://www.patreon.com/swgtguild" target="_blank">Guild</a> or <a href="https://www.patreon.com/swgtpersonal" target="_blank">Personal</a>)<br>
+		Monster and Siege Map images belong to Com2Us
+	</div>
+</div>
+
+<script type="text/javascript">
+$( document ).ready(function() {
+	
+    $('input').keypress(function(e) {
+		if (e.keyCode == 13){ // enter was pressed
+			$.blockUI({ 
+				message: '<h5>Processing, Please wait...<\/h5>', 
+					css: {
+					border: 'none',
+					padding: '15px',
+					backgroundColor: '#000', 
+					'-webkit-border-radius': '10px', 
+					'-moz-border-radius': '10px', 
+					opacity: .5, 
+					color: '#fff' 
+				} 
+			});
+        	$(this).closest("form").submit(); // submit the current form
+		}
+	});
+	
+	
+	$('form').attr('autocomplete','off');
+	
+	$(document).on('hidden.bs.modal', '.modal', function () {
+        $('.modal:visible').length && $(document.body).addClass('modal-open');
+    });
+    
+    var offset = 220;
+    var duration = 500;
+    $(window).scroll(function() {
+        if (jQuery(this).scrollTop() > offset) {
+            $('.back-to-top').fadeIn(duration);
+        } else {
+            $('.back-to-top').fadeOut(duration);
+        }
+    });
+    
+    $('.back-to-top').click(function(event) {
+        event.preventDefault();
+        $('html, body').animate({scrollTop: 0}, duration);
+        return false;
+    });
+    
+    observeSWGTLazyLoad();
+    
+    //Handle any datatables page changes
+    $(document).on('draw.dt', function (e) {
+    	observeSWGTLazyLoad(e.target);
+  	});
+    $(document).on('shown.bs.modal', '.modal', function () {
+        observeSWGTLazyLoad(this);
+    });
+    
+    swgtSyncFloatingHeaders();
+
+    const observer = new MutationObserver(function () {
+        swgtSyncFloatingHeaders();
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+    $(document).on('draw.dt', swgtSyncFloatingHeaders);
+    $(window).on('scroll resize', swgtSyncFloatingHeaders);
+    
+ 	// Datatables in tabs cleanup
+    $(document).on('shown.bs.tab', 'a[data-toggle="tab"], button[data-toggle="tab"]', function () {
+    	swgtFixDataTablesLayout();
+    });
+
+    var swgtDtResizeTimer;
+    $(window).on('resize', function () {
+    	clearTimeout(swgtDtResizeTimer);
+    	swgtDtResizeTimer = setTimeout(swgtFixDataTablesLayout, 150);
+    });
+});
+</script>
+
+
+	</div>
+</body>
+</html>

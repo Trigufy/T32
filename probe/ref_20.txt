@@ -1,0 +1,251 @@
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+
+
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"/>
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link rel="icon" href="/favicon.ico">
+
+<link href="/apple-touch-icon.png" rel="apple-touch-icon">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta name="format-detection" content="telephone=no">
+<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+<meta http-equiv="Content-Language" content="en">
+
+<!-- for Facebook && googleplus-->
+<meta property="og:url"           content="https://swgt.io" />
+<meta property="og:type"          content="website" />
+<meta property="og:title"         content="SWGT: Summoners War Game Tools" />
+<meta property="og:description"   content="A mobile first platform to make managing your guild easier in Summoners War." />
+<meta property="og:image" content="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_Logo_v5a_white_bg.png" />
+
+<!-- for Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="SWGT: Summoners War Game Tools" />
+<meta name="twitter:description" content="A mobile first platform to make managing your guild easier in Summoners War." />
+<meta name="twitter:image" content="https://do9d4mpqk497d.cloudfront.net/common/images/SWGT_Logo_v5a_white_bg.png" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+
+<title>Loading Please Wait...</title>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Flag Icons -->
+<link rel="stylesheet" type="text/css" href="https://do9d4mpqk497d.cloudfront.net/common/includes/flag-icon/css/flag-icon.min.css?2021-08-23"/>
+
+<!-- jQuery -->
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/jquery/jquery-3.3.1.min.js"></script>
+
+<!-- popper.js -->
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/popper.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- jQuery BlockUI -->
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/jquery/blockUI/jquery.blockUI-2.70.0.js?2020-01-20_1605"></script>
+
+
+
+
+
+<!-- Tooltipster -->
+<link href="https://do9d4mpqk497d.cloudfront.net/common/includes/jquery/tooltipster/tooltipster.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/jquery/tooltipster/jquery.tooltipster.min.js"></script>
+<link href="https://do9d4mpqk497d.cloudfront.net/common/includes/jquery/tooltipster/themes/tooltipster-shadow.css" type="text/css" rel="stylesheet">
+
+
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/jquery/isotope.pkgd.min.js"></script>
+
+
+
+<!-- Bootstrap core CSS -->
+<link type="text/css" rel="stylesheet" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/4.4.1/css/bootstrap.css">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script	src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/4.4.1/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap Dialog --> 
+<link type="text/css" rel="stylesheet" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/bootstrap-dialog/bootstrap-dialog.custom-2022-03-17.min.css" />
+<script src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/bootstrap-dialog/bootstrap-dialog.custom-2022-03-17.min.js"></script>
+
+<!-- Bootstrap Select -->
+<link type="text/css" rel="stylesheet" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/bootstrap-select/1.13.14/css/bootstrap-select.min.css">
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/bootstrap-select/1.13.14/js/bootstrap-select-swgt_v3.js?20250829_0000"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- WebSlide Menu -->
+<link rel="stylesheet" type="text/css" media="all" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/webslidemenu/v1.0/webslidemenu.css?2019-08-28_0000" />
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/webslidemenu/v1.0/webslidemenu.js"></script>
+
+<!-- WebSlide Menu 2.5 -->
+<link rel="stylesheet" type="text/css" media="all" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/webslidemenu/v2.5/webslidemenu.css?2022-03-16_0000" />
+<script type="text/javascript" src="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/webslidemenu/v2.5/webslidemenu.js?2022-03-16_0000"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" type="text/css" href="https://do9d4mpqk497d.cloudfront.net/common/includes/bootstrap4/fontawesome/pro-6.1.1/css/all.min.css"/>
+
+
+
+
+
+
+
+<!-- SWGT Platform Standards -->
+<script type="text/javascript">
+window.SWGT_CONFIG = {
+	languageCode: "EN",
+	isAutoDarkMode: false,
+	isLoggedIn: false,
+	allowRegistration: true,
+	cloudfrontURL: "https://do9d4mpqk497d.cloudfront.net",
+	monsterImageBase36URL: "https://do9d4mpqk497d.cloudfront.net/common/images/monsters36/",
+	lazyloadPlaceholderImageURL: "https://do9d4mpqk497d.cloudfront.net/common/images/swgt-gray-pulse-loader-100.gif",
+	userID: "",
+	selectedFocus: "",
+	phrases: {
+		loadingPleaseWait: "Loading Please Wait...",
+		help: "Help",
+		language: "Language",
+		message: "Message",
+		darkMode: "Dark Mode",
+		register: "Register",
+		pleaseLogin: "Please Login.",
+		processingPleaseWait: "Processing, Please wait...",
+		unexpectedError: "An unexpected error has occurred",
+		runeRankAnalysis: "Rune - Rank - Analysis"
+	}
+};
+</script>
+<script type="text/javascript" src="/common/includes/common.js?2026-10-17_0853"></script>
+<link type="text/css" rel="stylesheet" href="/common/includes/common.css?2026-10-17_0853">
+
+
+
+<!-- Dark Mode -->
+<link type="text/css" rel="stylesheet" href="/common/includes/darkmode.css?2026-10-17_0853">
+
+
+
+
+<script type="text/javascript">
+var searchMonsterByIconMode = "";
+var swgtSelectPickerFromEvent = "";
+var swgtSelectPickerLastAction = "";
+
+window.cloudfrontURL = "https://do9d4mpqk497d.cloudfront.net";
+var monsterImageBase36URL = window.cloudfrontURL+"/common/images/monsters36/";
+var swgtLazyloadPlaceholderImageURL = "https://do9d4mpqk497d.cloudfront.net/common/images/swgt-gray-pulse-loader-100.gif";
+
+var formChanged = false;
+function setFormChanged(){
+	formChanged = true;
+}
+</script>
+<script type="text/javascript">
+function function_loading(){
+	$.blockUI({ 
+		message: '<h5>Loading Please Wait...<\/h5>',
+		centerX: true,
+		centerY: true,
+		css: {
+			border: 'none',
+			padding: '15px',
+			backgroundColor: '#000', 
+			'-webkit-border-radius': '10px', 
+			'-moz-border-radius': '10px', 
+			opacity: .5, 
+			color: '#fff'
+		} 
+	});
+	function_launchPage();
+}
+function function_launchPage(){
+	if(document.all){	
+		document.location.replace('\/controllers\/allServerAnalytics\/defenseTrending\/load');
+	} else {	
+		var loadhomePage = "document.location.replace('\/controllers\/allServerAnalytics\/defenseTrending\/load')";
+		window.setTimeout(loadhomePage, 0);
+		
+	}
+}
+</script>
+</head>
+
+<body onload="function_loading();">
+</body>
+</html>
