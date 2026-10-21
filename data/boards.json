@@ -8,7 +8,7 @@
  "servers": {
   "Global": {
    "key": "global",
-   "lastUpdated": "2026-10-21T16:35:00.000Z",
+   "lastUpdated": "2026-10-21T21:40:00.000Z",
    "rows": [
     [
      1,
@@ -416,11 +416,6 @@
      1443
     ],
     [
-     74,
-     "TheOldGuard",
-     1442
-    ],
-    [
      75,
      "DecimateLegion",
      1441
@@ -626,7 +621,7 @@
   },
   "Europe": {
    "key": "europe",
-   "lastUpdated": "2026-10-21T17:14:00.000Z",
+   "lastUpdated": "2026-10-21T21:39:00.000Z",
    "rows": [
     [
      1,
@@ -1139,7 +1134,7 @@
   },
   "Asia+China": {
    "key": "asiaChina",
-   "lastUpdated": "2026-10-21T15:28:00.000Z",
+   "lastUpdated": "2026-10-21T20:19:00.000Z",
    "rows": [
     [
      1,
