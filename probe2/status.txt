@@ -1,0 +1,5 @@
+200 375264 global
+200 332173 europe
+200 222063 asiaChina
+200 228339 japanKorea
+200 187763 s21
