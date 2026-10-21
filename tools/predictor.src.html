@@ -1,0 +1,1005 @@
+<title>Trig's T32 Predictor</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Marcellus&display=swap">
+<style>
+/* Layout: castle-stone tool page. Cutoff hero on top; inputs + Discord post on the left, guild table on the right; one column on phones. Gold marks "the line" everywhere. */
+:root{
+  --bg:#eceef3; --surface:#ffffff; --sunk:#f4f5f9; --ink:#171a2c; --muted:#5b6180; --line:#d8dbe6;
+  --accent:#3d41b8; --accent-ink:#ffffff; --accent-soft:#e6e7fb;
+  --gold:#9c6c0a; --gold-soft:#f6ecd2; --silver:#5f6679; --silver-soft:#e8eaf0; --bronze:#94542a; --bronze-soft:#f4e3d6;
+  --good:#167a54; --good-soft:#ddf2e8; --bad:#b3362d; --bad-soft:#f8e1de;
+  --f-display:"Marcellus", "Cinzel", Georgia, "Times New Roman", serif;
+  --f-body:"Barlow", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --f-data:"Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f111b; --surface:#171a28; --sunk:#121420; --ink:#e8eaf6; --muted:#9aa0bc; --line:#2a2e44;
+    --accent:#9599ff; --accent-ink:#11132a; --accent-soft:#262961;
+    --gold:#e3b653; --gold-soft:#372d13; --silver:#b8bed2; --silver-soft:#272b3a; --bronze:#dc9661; --bronze-soft:#38261a;
+    --good:#55c695; --good-soft:#163428; --bad:#f2827a; --bad-soft:#3c1f1d;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f111b; --surface:#171a28; --sunk:#121420; --ink:#e8eaf6; --muted:#9aa0bc; --line:#2a2e44;
+  --accent:#9599ff; --accent-ink:#11132a; --accent-soft:#262961;
+  --gold:#e3b653; --gold-soft:#372d13; --silver:#b8bed2; --silver-soft:#272b3a; --bronze:#dc9661; --bronze-soft:#38261a;
+  --good:#55c695; --good-soft:#163428; --bad:#f2827a; --bad-soft:#3c1f1d;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--f-body); font-size:15px; line-height:1.5;
+  padding-block:20px 40px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+}
+input,select,textarea,button{font:inherit;color:inherit}
+a{color:var(--accent);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+h1,h2{font-family:var(--f-display);font-weight:400;margin:0;text-wrap:balance;letter-spacing:.01em}
+h1{font-size:clamp(27px,5vw,38px);line-height:1.08}
+h2{font-size:21px;line-height:1.2}
+p{margin:0}
+.label,.eyebrow{font-family:var(--f-data);font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:flex-end;justify-content:space-between}
+.brand{display:flex;flex-direction:column;gap:4px;min-width:0}
+.board{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.ctl{height:40px;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:0 10px;min-width:0;width:100%}
+#server{width:120px}
+#season{width:150px}
+.btn{height:40px;border-radius:8px;border:1px solid var(--line);background:var(--surface);padding:0 14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.06)}
+.btn.small{height:32px;padding:0 10px;font-size:13px}
+.btn:disabled{opacity:.55;cursor:default}
+.linkbtn{border:0;background:none;padding:0;color:var(--accent);font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.status{font-size:13px;color:var(--muted);min-height:1.2em}
+.savebox{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+
+.note{background:var(--gold-soft);border-radius:10px;padding:10px 14px;font-size:14px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
+
+/* hero */
+.hero{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px 28px;align-items:center}
+.sieges{display:flex;flex-direction:column;gap:6px}
+.stepper{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--sunk);width:max-content}
+.stepper button{width:44px;height:50px;border:0;background:transparent;font-size:24px;line-height:1;cursor:pointer}
+.stepper button:hover{background:var(--accent-soft)}
+.stepper input{width:50px;height:50px;border:0;border-inline:1px solid var(--line);background:var(--surface);text-align:center;font-family:var(--f-data);font-size:28px;font-weight:700;-moz-appearance:textfield;appearance:textfield}
+.stepper input::-webkit-inner-spin-button,.stepper input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.cut{display:flex;flex-direction:column;gap:2px;min-width:0}
+.big{font-family:var(--f-display);font-size:clamp(54px,12vw,80px);line-height:1;font-variant-numeric:tabular-nums;padding-bottom:8px;border-bottom:3px solid var(--gold);width:max-content;max-width:100%}
+.sub{font-family:var(--f-data);font-size:18px;font-weight:500;color:var(--muted);padding-top:6px}
+.sub b{color:var(--gold);font-weight:700}
+.formula{grid-column:1/-1;border-top:1px dashed var(--line);padding-top:10px;font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 16px}
+.formula strong{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+
+/* main grid */
+.main{display:grid;gap:16px;grid-template-columns:minmax(0,1fr);grid-template-areas:"input" "discord" "results" "history"}
+#inputCard{grid-area:input}
+#discordCard{grid-area:discord}
+#resultsCard{grid-area:results}
+#historyCard{grid-area:history}
+@media (min-width:940px){
+  .main{grid-template-columns:minmax(320px,390px) minmax(0,1fr);grid-template-rows:auto auto auto 1fr;grid-template-areas:"input results" "discord results" "history results" ". results";align-items:start}
+}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card-h{display:flex;align-items:baseline;justify-content:space-between;gap:6px 12px;flex-wrap:wrap}
+
+/* leaderboard input */
+#inputCard.dragging{outline:2px dashed var(--accent);outline-offset:-6px}
+.shots{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}
+textarea{width:100%;height:230px;min-height:140px;resize:vertical;border:1px solid var(--line);border-radius:8px;background:var(--sunk);padding:10px;font-family:var(--f-mono);font-size:12.5px;line-height:1.6;tab-size:4;white-space:pre;overflow:auto}
+.readout{font-size:14px;display:flex;flex-direction:column;gap:4px}
+.readout .warn{color:var(--bad)}
+details{border-top:1px solid var(--line);padding-top:10px}
+summary{cursor:pointer;font-weight:600;list-style-position:inside}
+.settings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.settings .wide{grid-column:1/-1}
+.settings .hint{font-size:12.5px;color:var(--muted)}
+.observed{font-size:13.5px;background:var(--accent-soft);border-radius:8px;padding:8px 10px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center}
+
+/* results */
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{height:32px;border-radius:999px;border:1px solid var(--line);background:var(--surface);padding:0 12px;font-family:var(--f-data);font-weight:600;font-size:15px;cursor:pointer;display:inline-flex;gap:7px;align-items:center}
+.chip .n{font-variant-numeric:tabular-nums;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip[aria-pressed="true"] .n{color:inherit;opacity:.75}
+.chip .dot{width:8px;height:8px;border-radius:50%}
+.dot.safe{background:var(--good)} .dot.need{background:var(--accent)} .dot.out{background:var(--bad)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--muted);align-items:center}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+.tablewrap{overflow-x:auto;margin-inline:-6px}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{font-family:var(--f-data);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:left;padding:6px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+td.rk{font-family:var(--f-data);font-weight:600;font-size:15px;color:var(--muted);width:1%;white-space:nowrap;padding-left:10px}
+td.nm{font-weight:500;overflow-wrap:anywhere;min-width:84px}
+.num{text-align:right;font-family:var(--f-data);font-size:17px;font-weight:600;white-space:nowrap}
+th.num{font-size:12px}
+td.rc,th.rc{width:1%;white-space:nowrap}
+.rec{display:inline-flex;gap:3px}
+.rec i{font-style:normal;width:24px;height:26px;border-radius:6px;display:inline-grid;place-items:center;font-family:var(--f-data);font-weight:700;font-size:16px}
+.rec-h{display:inline-flex;gap:3px}
+.rec-h span{width:24px;text-align:center}
+.m1{background:var(--gold-soft);color:var(--gold)}
+.m2{background:var(--silver-soft);color:var(--silver)}
+.m3{background:var(--bronze-soft);color:var(--bronze)}
+.rec i.z{opacity:.42}
+.out{display:inline-grid;place-items:center;height:26px;width:78px;border-radius:6px;background:var(--bad-soft);color:var(--bad);font-family:var(--f-data);font-weight:700;letter-spacing:.1em;font-size:14px}
+.max{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-right:4px}
+tr td:first-child{box-shadow:inset 3px 0 0 transparent}
+tr.st-safe td:first-child{box-shadow:inset 3px 0 0 var(--good)}
+tr.st-need td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
+tr.st-out td:first-child{box-shadow:inset 3px 0 0 var(--bad)}
+tr.st-out td.nm,tr.st-out td.fin,tr.st-out td.now{color:var(--muted)}
+tr.st-safe td.fin{color:var(--good)}
+tr.line td{padding:0;border-bottom:0}
+.lineinner{display:flex;align-items:center;gap:10px;color:var(--gold);font-family:var(--f-data);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:7px 0;white-space:nowrap}
+.lineinner::before,.lineinner::after{content:"";height:2px;background:var(--gold);flex:1}
+tr.empty td{padding:22px 10px;color:var(--muted);text-align:center}
+
+/* discord */
+.dc-part{display:flex;flex-direction:column;gap:8px}
+.dc-actions{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+pre.dc{margin:0;background:var(--sunk);border:1px solid var(--line);border-radius:8px;padding:12px;font-family:var(--f-mono);font-size:12px;line-height:1.5;overflow:auto;max-height:340px;white-space:pre}
+
+/* history */
+.hist{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.hist th,.hist td{padding:6px 4px;border-bottom:1px solid var(--line);text-align:right}
+.hist th:first-child,.hist td:first-child{text-align:left}
+.hist td{font-family:var(--f-data);font-size:16px;font-weight:600}
+.up{color:var(--good)}
+
+footer{font-size:13px;color:var(--muted);max-width:70ch;display:flex;flex-direction:column;gap:4px;padding-top:4px}
+footer strong{color:var(--ink);font-weight:600}
+
+@media (max-width:520px){
+  .hero{padding:16px;gap:12px 18px}
+  .stepper button{width:38px}
+  .stepper input{width:44px}
+  #server{width:104px}
+  #season{width:128px}
+  .card{padding:14px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .btn,.chip,.stepper button{transition:background-color .15s, border-color .15s, filter .15s}
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <span class="eyebrow">Summoners War · Siege tournament</span>
+      <h1>Trig's T32 Predictor</h1>
+    </div>
+    <div class="board">
+      <div class="field">
+        <label class="label" for="server">Server</label>
+        <select class="ctl" id="server">
+          <option value="Global">Global</option><option value="Europe">Europe</option><option value="Asia+China">Asia+China</option><option value="Japan+Korea">Japan+Korea</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="label" for="season">Season</label>
+        <input class="ctl" id="season" list="seasonList" autocomplete="off" spellcheck="false">
+        <datalist id="seasonList"></datalist>
+      </div>
+      <div class="savebox" id="saveBox" hidden>
+        <button class="btn primary" id="saveBtn" type="button">Save season</button>
+      </div>
+    </div>
+  </header>
+  <p class="status" id="saveStatus" aria-live="polite"></p>
+
+  <div class="note" id="exampleNote" hidden>
+    <span>Example leaderboard built from Trig's verification numbers. Replace it with your server's rankings.</span>
+    <button class="linkbtn" id="clearExample" type="button">Clear example</button>
+  </div>
+
+  <section class="hero" aria-label="Projected T32 cutoff">
+    <div class="sieges">
+      <label class="label" for="remaining">Sieges left</label>
+      <div class="stepper">
+        <button type="button" id="minus" aria-label="One fewer siege">−</button>
+        <input id="remaining" type="number" inputmode="numeric" min="0" max="30" value="3">
+        <button type="button" id="plus" aria-label="One more siege">+</button>
+      </div>
+    </div>
+    <div class="cut">
+      <span class="label" id="cutLabel">Points needed for T32</span>
+      <div class="big" id="target">—</div>
+      <div class="sub" id="projLine"></div>
+    </div>
+    <div class="formula" id="formula"></div>
+  </section>
+
+  <div class="main">
+    <section class="card" id="inputCard" aria-labelledby="lbTitle">
+      <div class="card-h">
+        <h2 id="lbTitle">Leaderboard</h2>
+        <span class="label">Top 100</span>
+      </div>
+      <div class="shots" id="shotRow" hidden>
+        <button class="btn primary" id="shotBtn" type="button">Read screenshots</button>
+        <button class="btn" id="shotStop" type="button" hidden>Stop</button>
+        <input type="file" id="shotInput" multiple hidden>
+        <span class="status" id="shotStatus" aria-live="polite">Pick every screenshot at once. Claude reads rank, name and points.</span>
+      </div>
+      <textarea id="lb" spellcheck="false" aria-label="Leaderboard, one guild per line" placeholder="1	Guild name	1734&#10;2	Another guild	1716&#10;…"></textarea>
+      <div class="readout" id="readout" aria-live="polite"></div>
+      <div class="shots" id="tidyRow" hidden>
+        <button class="btn small" id="tidyBtn" type="button">Clean up with Claude</button>
+        <button class="btn small" id="tidyStop" type="button" hidden>Stop</button>
+        <span class="status" id="tidyStatus" aria-live="polite"></span>
+      </div>
+      <p class="small muted">One guild per line: rank, name, points. Tabs, spaces or commas all work. Overlapping duplicates are removed.</p>
+      <p class="small muted" id="bakedNote">Loaded with the latest top 100 from <a href="https://swgt.io/leaderboards/siege/" target="_blank" rel="noopener">swgt.io</a>. Change the server above, or paste your own rankings.</p>
+
+      <details id="settings">
+        <summary>Cutoff and scoring</summary>
+        <div class="settings">
+          <div class="field wide">
+            <label class="label" for="cutoff">Known cutoff (optional)</label>
+            <input class="ctl" id="cutoff" type="number" inputmode="decimal" step="any" placeholder="Leave blank to project it">
+            <span class="hint">If you already know the T32 cutoff, enter it and it replaces the projection.</span>
+          </div>
+          <div class="field wide">
+            <label class="label" for="rate">32nd-place rise per siege</label>
+            <input class="ctl" id="rate" type="number" inputmode="decimal" step="0.001">
+          </div>
+          <div class="observed wide" id="observed" hidden></div>
+          <div class="field">
+            <label class="label" for="pWin">1st place</label>
+            <input class="ctl" id="pWin" type="number" inputmode="numeric" step="any">
+          </div>
+          <div class="field">
+            <label class="label" for="pSecond">2nd place</label>
+            <input class="ctl" id="pSecond" type="number" inputmode="numeric" step="any">
+          </div>
+          <div class="field">
+            <label class="label" for="pThird">3rd place</label>
+            <input class="ctl" id="pThird" type="number" inputmode="numeric" step="any">
+          </div>
+          <div class="field" style="justify-content:flex-end">
+            <button class="btn" id="resetDefaults" type="button">Trig's defaults</button>
+          </div>
+          <p class="hint wide">Trig's defaults: +8.254 per siege; 1st +18, 2nd +3, 3rd −2.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="card" id="discordCard" aria-labelledby="dcTitle">
+      <div class="card-h">
+        <h2 id="dcTitle">Discord post</h2>
+        <span class="label">Code block</span>
+      </div>
+      <div id="discordParts"></div>
+      <p class="small muted" id="dcNote">Discord caps messages at 2,000 characters, so long lists split into parts.</p>
+    </section>
+
+    <section class="card" id="resultsCard" aria-labelledby="resTitle">
+      <div class="card-h">
+        <h2 id="resTitle">What each guild needs</h2>
+      </div>
+      <p class="small muted" id="resSub"></p>
+      <div class="chips" role="group" aria-label="Filter guilds">
+        <button class="chip" type="button" data-f="all" aria-pressed="true">All <span class="n" id="nAll">0</span></button>
+        <button class="chip" type="button" data-f="safe" aria-pressed="false"><span class="dot safe"></span>Safe <span class="n" id="nSafe">0</span></button>
+        <button class="chip" type="button" data-f="need" aria-pressed="false"><span class="dot need"></span>Need results <span class="n" id="nNeed">0</span></button>
+        <button class="chip" type="button" data-f="out" aria-pressed="false"><span class="dot out"></span>Out <span class="n" id="nOut">0</span></button>
+      </div>
+      <input class="ctl" id="search" type="search" placeholder="Find a guild" aria-label="Find a guild" autocomplete="off">
+      <div class="legend">
+        <span><i class="sw m1"></i><span id="lg1">1st +18</span></span>
+        <span><i class="sw m2"></i><span id="lg2">2nd +3</span></span>
+        <span><i class="sw m3"></i><span id="lg3">3rd −2</span></span>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr>
+            <th>#</th><th>Guild</th><th class="num">Now</th>
+            <th class="rc"><span class="rec-h"><span>1st</span><span>2nd</span><span>3rd</span></span></th>
+            <th class="num">Final</th>
+          </tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" id="historyCard" aria-labelledby="hTitle" hidden>
+      <div class="card-h">
+        <h2 id="hTitle">Cutoff history</h2>
+        <span class="label" id="hWhere"></span>
+      </div>
+      <div id="histBody"></div>
+    </section>
+  </div>
+
+  <footer>
+    <p><a href="./">← Back to the T32 table</a></p>
+    <p><strong>Trig's Algorithm v1.0.</strong> Cutoff = 32nd-place score + 8.254 × sieges left, rounded up. Each guild gets the record with the fewest 1st places, then the fewest 2nd places, that reaches it.</p>
+    <p>Reaching the projected cutoff is a mathematical projection, not a guarantee of T32 qualification.</p>
+  </footer>
+</div>
+
+<script>
+/* CORE START */
+const DEF = {rate: 8.254, win: 18, second: 3, third: -2};
+
+function toNum(v, d){
+  if (typeof v === "number") return Number.isFinite(v) ? v : d;
+  const n = parseFloat(String(v == null ? "" : v).replace(/,/g, "").replace(/[−–]/g, "-"));
+  return Number.isFinite(n) ? n : d;
+}
+
+function parseLine(line){
+  const int = s => parseInt(String(s).replace(/[#,.\s]/g, ""), 10);
+  const mk = (rank, name, points) => {
+    name = String(name).trim();
+    if (!name || !Number.isFinite(points)) return null;
+    return {rank: Number.isFinite(rank) && rank > 0 ? rank : null, name, points};
+  };
+  if (line.indexOf("\t") !== -1){
+    // Table copies (e.g. swgt.io) can carry extra columns: rank first, name = first text cell, points = largest number after it.
+    const p = line.split("\t").map(s => s.trim()).filter(Boolean);
+    const isInt = s => /^#?\d[\d,]*\.?$/.test(s);
+    let rank = null, k = 0;
+    if (p.length >= 3 && /^#?\d{1,4}\.?$/.test(p[0])){ rank = int(p[0]); k = 1; }
+    const ni = p.findIndex((s, i) => i >= k && !isInt(s));
+    if (ni !== -1){
+      const nums = p.slice(ni + 1).filter(isInt).map(int);
+      if (nums.length) return mk(rank, p[ni], Math.max.apply(null, nums));
+    }
+  }
+  // Separators only count when spaced ("Guild - 1461") or a comma, so names like "-AMATERASU-" or "Nu||" stay whole.
+  const SEP = "(?:\\s+[-\\u2013\\u2014|:]\\s+|\\s*,\\s*|\\s+)";
+  let m = line.match(new RegExp("^#?(\\d{1,4})(?:[.):]\\s*|\\s+[-\\u2013\\u2014|:]\\s+|\\s*,\\s*|\\s+)(.+?)" + SEP + "(\\d[\\d,]*)\\s*(?:pts?|points)?$", "i"));
+  if (m) return mk(+m[1], m[2], int(m[3]));
+  m = line.match(new RegExp("^(.+?)" + SEP + "(\\d[\\d,]*)\\s*(?:pts?|points)?$", "i"));
+  if (m) return mk(null, m[1], int(m[2]));
+  return null;
+}
+
+function parseBoard(text){
+  const rows = [], skipped = [], sameName = [];
+  let removed = 0;
+  const seen = new Set();
+  for (const raw of String(text || "").split(/\r?\n/)){
+    const line = raw.trim();
+    if (!line) continue;
+    const r = parseLine(line);
+    if (!r){ skipped.push(line); continue; }
+    const key = r.name.toLowerCase() + "|" + r.points;
+    if (seen.has(key)){ removed++; continue; }
+    if (rows.some(x => x.name.toLowerCase() === r.name.toLowerCase())) sameName.push(r.name);
+    seen.add(key);
+    rows.push(r);
+  }
+  let prev = null;
+  rows.forEach((r, i) => {
+    if (r.rank == null) r.rank = (prev && prev.points === r.points) ? prev.rank : i + 1;
+    prev = r;
+  });
+  // Trig's Algorithm covers every guild shown through rank 100, ties included.
+  const kept = rows.filter(r => r.rank <= 100);
+  return {rows: kept, skipped, sameName, removed, beyond: rows.length - kept.length};
+}
+
+function needFor(p, N, T, W, S, L){
+  for (let w = 0; w <= N; w++){
+    for (let s = 0; s <= N - w; s++){
+      const l = N - w - s;
+      const f = p + W * w + S * s + L * l;
+      if (f >= T) return {w, s, l, final: f, status: (w === 0 && s === 0) ? "safe" : "need"};
+    }
+  }
+  return {status: "out", final: p + Math.max(W, S, L) * N};
+}
+
+function project(rows, o){
+  const N = Math.max(0, Math.min(30, Math.round(toNum(o.remaining, 0))));
+  const W = toNum(o.win, DEF.win), S = toNum(o.second, DEF.second), L = toNum(o.third, DEF.third);
+  const rate = toNum(o.rate, DEF.rate);
+  const byPts = rows.map((r, i) => ({r, i})).sort((a, b) => b.r.points - a.r.points || a.i - b.i);
+  const cutRow = byPts.length >= 32 ? byPts[31].r : null;
+  // The T32 line sits after the last listed guild tied at the 32nd guild's rank.
+  let cutIndex = -1;
+  if (cutRow) rows.forEach((r, i) => { if (r.rank <= cutRow.rank) cutIndex = i; });
+  const raw = String(o.cutoff == null ? "" : o.cutoff).trim();
+  const manual = raw !== "" && Number.isFinite(toNum(raw, NaN)) ? toNum(raw, NaN) : null;
+  const projected = manual != null ? manual : (cutRow ? cutRow.points + rate * N : null);
+  const target = projected == null ? null : Math.ceil(Math.round(projected * 1000) / 1000);
+  const results = rows.map(r => {
+    const x = Object.assign({}, r, target == null ? {status: "none"} : needFor(r.points, N, target, W, S, L));
+    if (x.status === "safe" || x.status === "need"){
+      const check = x.points + W * x.w + S * x.s + L * x.l;
+      if (check !== x.final || check < target || x.w + x.s + x.l !== N) x.status = "out";
+    }
+    return x;
+  });
+  return {N, W, S, L, rate, cutRow, cutIndex, manual, projected, target, results};
+}
+
+function fmtN(n){ return Number.isInteger(n) ? String(n) : n.toFixed(1); }
+function fmtSigned(n){ return (n < 0 ? "−" : "+") + fmtN(Math.abs(n)); }
+
+function discordParts(c, meta, limit){
+  limit = limit || 1990;
+  const head = ["🏆 TRIG’S T32 TOURNAMENT PROJECTION"];
+  const where = [meta.server, meta.season].filter(Boolean).join(" · ");
+  if (where) head.push(where);
+  head.push(c.N + " SIEGE" + (c.N === 1 ? "" : "S") + " REMAINING");
+  if (c.manual != null) head.push("T32 Cutoff: " + fmtN(c.manual) + " (provided)");
+  else head.push("Projected T32 Cutoff: " + c.projected.toFixed(3) + " (need " + c.target + ")");
+  head.push("", "Scoring: " + fmtSigned(c.W) + " / " + fmtSigned(c.S) + " / " + fmtSigned(c.L), "");
+  const res = c.results;
+  const recOf = r => r.status === "out" ? "OUT" : r.w + "/" + r.s + "/" + r.l;
+  const rankW = Math.max(2, ...res.map(r => String(r.rank).length + 1));
+  const nameW = Math.min(16, Math.max(1, ...res.map(r => r.name.length)));
+  const recW = Math.max(3, ...res.map(r => recOf(r).length));
+  const lines = res.map(r => ("#" + r.rank).padEnd(rankW) + " " + r.name.padEnd(nameW) + " " + recOf(r).padEnd(recW) + " → " + fmtN(r.final) + (r.status === "out" ? " max" : ""));
+  const foot = ["", "Trig’s Algorithm · a projection, not a guarantee"];
+  const size = arr => arr.join("\n").length + 8;
+  const parts = [];
+  let cur = head.slice();
+  for (const ln of lines){
+    if (cur.length && size(cur.concat([ln])) > limit){ parts.push(cur); cur = []; }
+    cur.push(ln);
+  }
+  if (cur.length && size(cur.concat(foot)) > limit){ parts.push(cur); cur = []; }
+  cur = cur.concat(cur.length ? foot : foot.slice(1));
+  parts.push(cur);
+  return parts.map(p => "```\n" + p.join("\n") + "\n```");
+}
+/* CORE END */
+
+(function(){
+  const SERVERS = ["Global", "Europe", "Asia+China", "Japan+Korea"];
+  // Latest swgt.io leaderboards, filled in by tools/build.js on each update.
+  const BAKED = /*__T32_BOARDS__*/null;
+  const LS = "trig-t32-draft-v1";
+  const EXAMPLE = [
+    [1,"Valhalla",1734],[2,"Crimson Pact",1716],[3,"Ironclad",1702],[4,"Starfall",1689],[5,"Lumen",1671],
+    [6,"Dragonborn",1660],[7,"Nocturne",1648],[8,"Aegis",1637],[9,"Wildfire",1625],[10,"Seraph",1614],
+    [11,"Frostbite",1601],[12,"Kings Guard",1588],[12,"Mirage",1588],[14,"Ragnarok",1576],[15,"Hollow Moon",1565],
+    [16,"Tempest",1553],[17,"Obsidian",1544],[18,"Eclipse",1536],[19,"Vanguard",1529],[20,"Phoenix Rise",1521],
+    [21,"Sakura",1514],[22,"Blacklight",1508],[23,"Nomads",1502],[24,"Wolfpack",1497],[25,"Zenith",1493],
+    [26,"Ember",1489],[27,"Paladins",1485],[28,"Wanderers",1481],[29,"Cobalt",1477],[30,"Riftwalkers",1474],
+    [31,"Asgard",1471],[32,"Harbinger",1468],[33,"Poison",1461],[34,"VIP",1454],[35,"Lotus",1449],
+    [36,"Halcyon",1443],[37,"Grimoire",1437],[38,"Silverwing",1430],[39,"Outcasts",1422],[40,"Monarchs",1415]
+  ].map(r => r.join("\t")).join("\n");
+
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+  const slug = s => String(s || "").toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "season";
+  const boardId = (server, season) => slug(server) + "--" + slug(season);
+  const defaultSeason = () => { try { return new Date().toLocaleString("en-US", {month: "short", year: "numeric"}); } catch (e) { return "Season"; } };
+  const fmtTime = iso => { const t = Date.parse(iso || ""); if (!t) return ""; try { return new Date(t).toLocaleString(undefined, {month: "short", day: "numeric", hour: "numeric", minute: "2-digit"}); } catch (e) { return ""; } };
+
+  function bakedState(server){
+    const b = BAKED && BAKED.servers && BAKED.servers[server];
+    if (!b) return null;
+    return {server, season: BAKED.season || defaultSeason(), remaining: b.remaining,
+      text: b.rows.map(r => r[0] + "\t" + r[1] + "\t" + r[2]).join("\n"), cutoff: "",
+      rate: toNum(BAKED.rate, DEF.rate), win: toNum(BAKED.win, DEF.win), second: toNum(BAKED.second, DEF.second), third: toNum(BAKED.third, DEF.third),
+      example: false, dirty: false, editedAt: 0, loadedAt: null, stamp: BAKED.stamp};
+  }
+  function baseState(){
+    return bakedState("Global") || {server: "Global", season: defaultSeason(), remaining: 3, text: EXAMPLE, cutoff: "",
+      rate: DEF.rate, win: DEF.win, second: DEF.second, third: DEF.third,
+      example: true, dirty: false, editedAt: 0, loadedAt: null};
+  }
+  function loadDraft(){
+    try {
+      const raw = localStorage.getItem(LS); if (!raw) return null; const o = JSON.parse(raw);
+      if (!o || typeof o !== "object") return null;
+      if (BAKED && o.stamp !== BAKED.stamp) return null; // new swgt.io data replaces old drafts
+      return o;
+    } catch (e) { return null; }
+  }
+  let st = Object.assign(baseState(), loadDraft() || {});
+  if (!SERVERS.includes(st.server)) st.server = "Global";
+
+  let draftTimer;
+  function saveDraft(){
+    clearTimeout(draftTimer);
+    draftTimer = setTimeout(() => { try { localStorage.setItem(LS, JSON.stringify(st)); } catch (e) {} }, 300);
+  }
+  function markDirty(){ st.dirty = true; st.editedAt = Date.now(); saveDraft(); updateSaveStatus(); }
+
+  // ---------- capabilities ----------
+  const hasClaude = !!(window.claude && typeof window.claude.use === "function");
+  let db = null, canWrite = null, saving = false, initialDone = false;
+  const boards = new Map();
+  let sample = null, imgCap = null, readCtl = null;
+  let extraNote = "";
+
+  // ---------- inputs ----------
+  function fillInputs(){
+    $("server").value = st.server;
+    $("season").value = st.season;
+    $("remaining").value = st.remaining;
+    $("lb").value = st.text;
+    $("cutoff").value = st.cutoff == null ? "" : st.cutoff;
+    $("rate").value = st.rate;
+    $("pWin").value = st.win; $("pSecond").value = st.second; $("pThird").value = st.third;
+  }
+
+  let filter = "all";
+  let lastParts = [];
+
+  function render(){
+    const parsed = parseBoard(st.text);
+    const c = project(parsed.rows, st);
+    $("exampleNote").hidden = !st.example;
+
+    // hero
+    $("target").textContent = c.target == null ? "—" : String(c.target);
+    if (c.target == null){
+      $("projLine").textContent = parsed.rows.length ? "Needs at least 32 guilds, or a known cutoff." : "Add your server's leaderboard to project the cutoff.";
+      $("formula").hidden = true;
+    } else if (c.manual != null){
+      $("projLine").innerHTML = "Cutoff you entered: <b>" + esc(fmtN(c.manual)) + "</b>";
+      $("formula").hidden = false;
+      $("formula").innerHTML = "<span>Using the cutoff from settings instead of the projection.</span>";
+    } else {
+      $("projLine").innerHTML = "Projected cutoff <b>" + c.projected.toFixed(3) + "</b>";
+      $("formula").hidden = false;
+      $("formula").innerHTML =
+        "<span>32nd place <strong>" + esc(c.cutRow.name) + " · " + c.cutRow.points + "</strong></span>" +
+        "<span>+ <strong>" + esc(String(c.rate)) + " × " + c.N + "</strong> siege" + (c.N === 1 ? "" : "s") + "</span>" +
+        "<span>Estimate: assumes the 32nd-place score rises " + esc(String(c.rate)) + " points per siege.</span>";
+    }
+
+    // readout
+    const ro = [];
+    if (extraNote) ro.push("<span>" + esc(extraNote) + "</span>");
+    $("tidyRow").hidden = !(sample && (parsed.skipped.length >= 2 || tidyBusy || $("tidyStatus").textContent));
+    if (parsed.rows.length){
+      ro.push("<span>" + parsed.rows.length + " guild" + (parsed.rows.length === 1 ? "" : "s") +
+        (c.cutRow ? " · 32nd place: " + esc(c.cutRow.name) + " (" + c.cutRow.points + ")" : "") + "</span>");
+    }
+    if (parsed.rows.length && parsed.rows.length < 32 && c.manual == null) ro.push('<span class="warn">Fewer than 32 guilds. Add more rows or enter a known cutoff in settings.</span>');
+    if (parsed.beyond) ro.push('<span class="muted">Left out ' + parsed.beyond + " guild" + (parsed.beyond === 1 ? "" : "s") + " ranked below #100.</span>");
+    if (parsed.removed) ro.push('<span class="muted">Removed ' + parsed.removed + " duplicate row" + (parsed.removed === 1 ? "" : "s") + ".</span>");
+    if (parsed.sameName.length) ro.push('<span class="warn">Listed twice with different points: ' + esc(parsed.sameName.slice(0, 3).join(", ")) + ". Remove the stale row.</span>");
+    if (parsed.skipped.length) ro.push('<span class="warn">Couldn’t read ' + parsed.skipped.length + " line" + (parsed.skipped.length === 1 ? "" : "s") + ": “" + esc(parsed.skipped[0].slice(0, 40)) + "”" + (parsed.skipped.length > 1 ? " and more" : "") + ". Use rank, name, points.</span>");
+    $("readout").innerHTML = ro.join("");
+
+    // results
+    $("lg1").textContent = "1st " + fmtSigned(c.W);
+    $("lg2").textContent = "2nd " + fmtSigned(c.S);
+    $("lg3").textContent = "3rd " + fmtSigned(c.L);
+    $("resSub").textContent = c.target == null ? "Records appear once there's a cutoff." :
+      "Fewest 1st places, then fewest 2nd places, to reach " + c.target + " in " + c.N + " siege" + (c.N === 1 ? "" : "s") + ".";
+    renderTable(c);
+    renderDiscord(c);
+    renderHistory();
+  }
+
+  function rowHtml(r){
+    let rec, fin;
+    if (r.status === "out"){ rec = '<span class="out">OUT</span>'; fin = '<span class="max">max</span>' + fmtN(r.final); }
+    else if (r.status === "none"){ rec = '<span class="muted">—</span>'; fin = "—"; }
+    else {
+      const z = n => n === 0 ? " z" : "";
+      rec = '<span class="rec" aria-label="' + r.w + " first, " + r.s + " second, " + r.l + ' third"><i class="m1' + z(r.w) + '">' + r.w + '</i><i class="m2' + z(r.s) + '">' + r.s + '</i><i class="m3' + z(r.l) + '">' + r.l + "</i></span>";
+      fin = fmtN(r.final);
+    }
+    return '<tr class="st-' + r.status + '"><td class="rk">' + esc(r.rank) + '</td><td class="nm">' + esc(r.name) + '</td><td class="num now">' + r.points + '</td><td class="rc">' + rec + '</td><td class="num fin">' + fin + "</td></tr>";
+  }
+
+  function renderTable(c){
+    const q = $("search").value.trim().toLowerCase();
+    const counts = {safe: 0, need: 0, out: 0};
+    c.results.forEach(r => { if (counts[r.status] != null) counts[r.status]++; });
+    $("nAll").textContent = c.results.length;
+    $("nSafe").textContent = counts.safe; $("nNeed").textContent = counts.need; $("nOut").textContent = counts.out;
+    const showLine = filter === "all" && !q && c.cutRow;
+    let html = "", shown = 0;
+    c.results.forEach((r, i) => {
+      if (filter !== "all" && r.status !== filter) return;
+      if (q && r.name.toLowerCase().indexOf(q) === -1) return;
+      shown++;
+      html += rowHtml(r);
+      if (showLine && i === c.cutIndex) html += '<tr class="line"><td colspan="5"><div class="lineinner">Current T32 line · ' + c.cutRow.points + "</div></td></tr>";
+    });
+    if (!shown) html = '<tr class="empty"><td colspan="5">' + (c.results.length ? "No guilds match." : "Add your server's rankings to see what each guild needs.") + "</td></tr>";
+    $("tbody").innerHTML = html;
+  }
+
+  function renderDiscord(c){
+    const box = $("discordParts");
+    if (c.target == null || !c.results.length){
+      box.innerHTML = '<p class="muted small">The post appears once there’s a cutoff.</p>';
+      lastParts = []; $("dcNote").hidden = true; return;
+    }
+    const parts = discordParts(c, {server: st.server, season: String(st.season || "").trim()});
+    lastParts = parts;
+    $("dcNote").hidden = parts.length < 2;
+    box.innerHTML = parts.map((p, i) =>
+      '<div class="dc-part"><div class="dc-actions"><span class="label">' +
+      (parts.length > 1 ? "Message " + (i + 1) + " of " + parts.length : "Ready to paste") + " · " + p.length.toLocaleString() + " chars</span>" +
+      '<button class="btn small copy" type="button" data-i="' + i + '">' + (parts.length > 1 ? "Copy part " + (i + 1) : "Copy for Discord") + "</button></div>" +
+      '<pre class="dc" id="dc' + i + '">' + esc(p) + "</pre></div>").join("");
+  }
+
+  // ---------- history + observed rate ----------
+  function validHistory(b){
+    if (!b || !Array.isArray(b.history)) return [];
+    return b.history.filter(h => h && Number.isFinite(+h.left) && Number.isFinite(+h.cut32))
+      .map(h => ({left: +h.left, cut32: +h.cut32, at: h.at})).sort((a, b) => b.left - a.left);
+  }
+  function observedRate(server){
+    let pts = 0, sieges = 0, seasons = 0;
+    for (const b of boards.values()){
+      if (b.server !== server) continue;
+      const h = validHistory(b);
+      if (h.length < 2) continue;
+      const first = h[0], last = h[h.length - 1];
+      if (first.left - last.left <= 0) continue;
+      pts += last.cut32 - first.cut32; sieges += first.left - last.left; seasons++;
+    }
+    return sieges > 0 ? {rate: pts / sieges, sieges, seasons} : null;
+  }
+  function renderHistory(){
+    const card = $("historyCard");
+    if (!db){ card.hidden = true; $("observed").hidden = true; return; }
+    card.hidden = false;
+    $("hWhere").textContent = [st.server, String(st.season || "").trim()].filter(Boolean).join(" · ");
+    const b = boards.get(boardId(st.server, st.season));
+    const h = validHistory(b);
+    const obs = observedRate(st.server);
+    let html = "";
+    if (!h.length){
+      html = '<p class="small muted">Nothing saved for this season yet. Save after each siege and this tracks how fast the 32nd-place score actually rises on ' + esc(st.server) + ".</p>";
+    } else {
+      html = '<table class="hist"><thead><tr><th class="label">Sieges left</th><th class="label">32nd place</th><th class="label">Per siege</th></tr></thead><tbody>' +
+        h.map((x, i) => {
+          let d = "—";
+          if (i > 0){ const gap = h[i - 1].left - x.left; if (gap > 0){ const v = (x.cut32 - h[i - 1].cut32) / gap; d = '<span class="' + (v >= 0 ? "up" : "") + '">' + (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(1) + "</span>"; } }
+          return "<tr><td>" + x.left + "</td><td>" + x.cut32 + "</td><td>" + d + "</td></tr>";
+        }).join("") + "</tbody></table>";
+    }
+    if (obs) html += '<p class="small" style="margin-top:8px">Observed on ' + esc(st.server) + ": <strong>+" + obs.rate.toFixed(3) + "</strong> per siege over " + obs.sieges + " siege" + (obs.sieges === 1 ? "" : "s") + " (" + obs.seasons + " season" + (obs.seasons === 1 ? "" : "s") + ").</p>";
+    $("histBody").innerHTML = html;
+
+    const ob = $("observed");
+    if (obs && Math.abs(obs.rate - toNum(st.rate, DEF.rate)) > 0.0005){
+      ob.hidden = false;
+      ob.innerHTML = "<span>Observed on " + esc(st.server) + ": +" + obs.rate.toFixed(3) + " per siege (" + obs.sieges + " sieges)</span>" +
+        '<button class="linkbtn" type="button" id="useObserved">Use this rate</button>';
+      $("useObserved").onclick = () => { st.rate = Math.round(obs.rate * 1000) / 1000; $("rate").value = st.rate; markDirty(); render(); };
+    } else ob.hidden = true;
+  }
+
+  // ---------- boards ----------
+  function refreshSeasonList(){
+    const list = [...boards.values()].filter(b => b.server === st.server && typeof b.season === "string")
+      .sort((a, b) => String(b.updatedAt || "").localeCompare(String(a.updatedAt || "")));
+    $("seasonList").innerHTML = list.map(b => '<option value="' + esc(b.season) + '"></option>').join("");
+  }
+  function applyBoard(id, b){
+    const rows = Array.isArray(b.rows) ? b.rows.filter(r => r && typeof r.name === "string" && Number.isFinite(+r.points)) : [];
+    if (SERVERS.includes(b.server)) st.server = b.server;
+    if (typeof b.season === "string") st.season = b.season;
+    if (Number.isFinite(+b.remaining)) st.remaining = Math.max(0, Math.min(30, Math.round(+b.remaining)));
+    st.text = rows.map(r => (Number.isFinite(+r.rank) && +r.rank > 0 ? +r.rank : "") + "\t" + String(r.name).replace(/[\t\r\n]+/g, " ") + "\t" + Math.round(+r.points)).join("\n");
+    st.cutoff = b.cutoff == null || !Number.isFinite(+b.cutoff) ? "" : String(+b.cutoff);
+    st.rate = toNum(b.rate, DEF.rate); st.win = toNum(b.win, DEF.win); st.second = toNum(b.second, DEF.second); st.third = toNum(b.third, DEF.third);
+    st.example = false; st.dirty = false; st.loadedAt = b.updatedAt || null;
+    fillInputs(); refreshSeasonList(); render(); updateSaveStatus(); saveDraft();
+  }
+  function latestFor(server){
+    let best = null;
+    for (const [id, b] of boards){
+      if (server && b.server !== server) continue;
+      if (!best || String(b.updatedAt || "") > String(best[1].updatedAt || "")) best = [id, b];
+    }
+    return best;
+  }
+  function initialPick(){
+    if (!boards.size) return;
+    const latest = latestFor(null);
+    const mineId = boardId(st.server, st.season), mine = boards.get(mineId);
+    if (st.example) return applyBoard(latest[0], latest[1]);
+    if (mine){
+      const t = Date.parse(mine.updatedAt || "") || 0;
+      if (st.dirty && st.editedAt > t) return;
+      return applyBoard(mineId, mine);
+    }
+    if (!st.dirty) applyBoard(latest[0], latest[1]);
+  }
+  function updateSaveStatus(){
+    const s = $("saveStatus");
+    if (!db){ $("saveBox").hidden = true; s.textContent = ""; return; }
+    $("saveBox").hidden = canWrite === false;
+    const b = boards.get(boardId(st.server, st.season));
+    if (saving) s.textContent = "Saving…";
+    else if (canWrite === false) s.textContent = b ? "Viewing the saved board · updated " + fmtTime(b.updatedAt) : "Nothing saved for this season. Changes stay on this device.";
+    else if (st.example) s.textContent = "Showing the example. Add your leaderboard, then save the season.";
+    else if (!b) s.textContent = "Not saved yet for " + st.server + " · " + (String(st.season || "").trim() || "this season") + ".";
+    else if (st.dirty) s.textContent = "Unsaved changes · last saved " + fmtTime(b.updatedAt);
+    else s.textContent = "Saved " + fmtTime(b.updatedAt);
+  }
+  async function save(){
+    if (!db || saving) return;
+    const season = String(st.season || "").trim();
+    if (!season){ $("saveStatus").textContent = "Name the season before saving."; $("season").focus(); return; }
+    const parsed = parseBoard(st.text);
+    if (!parsed.rows.length){ $("saveStatus").textContent = "Add the leaderboard before saving."; return; }
+    const c = project(parsed.rows, st);
+    const id = boardId(st.server, season);
+    const prev = boards.get(id);
+    const history = validHistory(prev).filter(h => h.left !== c.N);
+    if (c.cutRow) history.push({left: c.N, cut32: c.cutRow.points, at: new Date().toISOString()});
+    history.sort((a, b) => b.left - a.left);
+    const body = {
+      server: st.server, season, remaining: c.N,
+      rows: parsed.rows.map(r => ({rank: r.rank, name: r.name, points: r.points})),
+      cutoff: c.manual, rate: c.rate, win: c.W, second: c.S, third: c.L,
+      history, updatedAt: new Date().toISOString()
+    };
+    saving = true; $("saveBtn").disabled = true; updateSaveStatus();
+    try {
+      await db.doc("boards/" + id).set(body);
+      st.season = season; st.dirty = false; st.example = false; st.loadedAt = body.updatedAt;
+      boards.set(id, body);
+      saving = false; saveDraft(); updateSaveStatus(); refreshSeasonList(); render();
+    } catch (e) {
+      saving = false;
+      const code = e && e.code;
+      if (code === "invalid_argument"){ canWrite = false; $("saveStatus").textContent = "You can view saved boards here but not change them."; $("saveBox").hidden = true; }
+      else if (code === "quota_exceeded") $("saveStatus").textContent = "Storage is full. Delete an old season to save new ones.";
+      else if (code === "revoked") $("saveStatus").textContent = "Saving isn't available on this view.";
+      else $("saveStatus").textContent = "Couldn't save. Check your connection and try again.";
+    } finally { $("saveBtn").disabled = false; }
+  }
+
+  async function initDb(){
+    db = await window.claude.use("db");
+    if (!db){ render(); return; }
+    try {
+      const user = await window.claude.use("user");
+      if (user) canWrite = await user.can("data.write");
+    } catch (e) { canWrite = null; }
+    updateSaveStatus(); render();
+    db.collection("boards").onSnapshot(snap => {
+      boards.clear();
+      for (const d of snap.docs){ if (d.exists){ const v = d.data(); if (v && typeof v === "object") boards.set(d.id, v); } }
+      refreshSeasonList();
+      if (!initialDone){ initialDone = true; initialPick(); }
+      else {
+        const id = boardId(st.server, st.season), b = boards.get(id);
+        if (b && !st.dirty && !saving && b.updatedAt && b.updatedAt !== st.loadedAt) applyBoard(id, b);
+      }
+      render(); updateSaveStatus();
+    }, () => { $("saveStatus").textContent = "Saved seasons couldn't load. Your work stays on this device."; });
+  }
+
+  // ---------- screenshots ----------
+  const PROMPT = [
+    "These images are screenshots of a Summoners War guild siege ranking leaderboard. Extract every guild row you can see.",
+    "For each row give:",
+    "- rank: the rank number shown for that guild (integer). Tied guilds share a rank.",
+    "- name: the guild name exactly as shown, keeping symbols, capitalisation and non-Latin characters.",
+    "- points: the guild's current ranking points on that row (integer, no commas). Not the guild level or member count.",
+    "On sites like swgt.io, a small green or red number under the rank (like +13 or -2) is the rank change, and a number in brackets under the points (like (+16) or (-1)) is the change from the last siege. Ignore both; never use them as rank or points.",
+    "Rows are not always sorted by points. Keep them in the order shown, top to bottom, image by image.",
+    "The screenshots can overlap, so the same guild may appear in more than one image. List each guild only once.",
+    "Never guess or invent. If a row's rank, name or points can't be read clearly, leave it out and describe it in \"unreadable\".",
+    "Reply with only JSON in this shape:",
+    '{"rows":[{"rank":1,"name":"Example Guild","points":1734}],"unreadable":["rank 57: points cut off"]}'
+  ].join("\n");
+
+  function setReading(on, msg){
+    $("shotBtn").disabled = on; $("shotStop").hidden = !on;
+    if (msg != null) $("shotStatus").textContent = msg;
+  }
+  async function readShots(fileList){
+    if (!sample || !imgCap) return;
+    let files = [...fileList].filter(f => /^image\//.test(f.type));
+    const tooBig = files.filter(f => imgCap.maxInputBytes && f.size > imgCap.maxInputBytes);
+    files = files.filter(f => !tooBig.includes(f));
+    if (!files.length){ $("shotStatus").textContent = tooBig.length ? "Those images are too large. Use PNG or JPG screenshots." : "Pick PNG or JPG screenshots."; return; }
+    const per = Math.max(1, imgCap.maxCount || 1);
+    const chunks = [];
+    for (let i = 0; i < files.length; i += per) chunks.push(files.slice(i, i + per));
+    readCtl = new AbortController();
+    const got = [], unreadable = [];
+    try {
+      for (let i = 0; i < chunks.length; i++){
+        setReading(true, chunks.length > 1 ? "Reading batch " + (i + 1) + " of " + chunks.length + "…" : "Reading " + files.length + " screenshot" + (files.length === 1 ? "" : "s") + "…");
+        const res = await sample.json(PROMPT, {images: chunks[i], signal: readCtl.signal});
+        const rows = res && Array.isArray(res.rows) ? res.rows : [];
+        for (const r of rows){
+          const rank = parseInt(r && r.rank, 10), points = parseInt(String(r && r.points).replace(/[,\s]/g, ""), 10);
+          const name = r && typeof r.name === "string" ? r.name.replace(/[\t\r\n]+/g, " ").trim() : "";
+          if (name && Number.isFinite(points)) got.push({rank: Number.isFinite(rank) && rank > 0 ? rank : null, name, points});
+        }
+        if (res && Array.isArray(res.unreadable)) unreadable.push(...res.unreadable.filter(x => typeof x === "string").slice(0, 10));
+      }
+    } catch (e) {
+      const code = e && e.code;
+      const msg = {
+        cancelled: "Stopped. The leaderboard wasn't changed.",
+        not_granted: "Screenshot reading wasn't allowed. Paste the rankings as text instead.",
+        sampling_disabled: "Screenshot reading isn't available on this account. Paste the rankings as text instead.",
+        rate_limited: "Too many requests right now. Wait a minute and try again.",
+        image_rejected: "One of those images couldn't be opened. Try PNG or JPG screenshots.",
+        invalid_json: "Couldn't find rankings in those images. Try sharper screenshots of the ranking list.",
+        refused: "Those images couldn't be read. Try screenshots of just the ranking list.",
+        images_unavailable: "Screenshot reading isn't available here. Paste the rankings as text instead."
+      }[code] || "Reading failed. Check your connection and try again.";
+      setReading(false, msg);
+      if (["not_granted", "sampling_disabled", "images_unavailable", "capability_disabled", "capability_removed", "not_declared"].includes(code)) $("shotBtn").hidden = true;
+      return;
+    }
+    setReading(false, "Pick every screenshot at once. Claude reads rank, name and points.");
+    if (!got.length){ $("shotStatus").textContent = "No guild rows found in those screenshots."; return; }
+    applyRows(got, unreadable);
+  }
+
+  function cleanRows(list){
+    const out = [];
+    for (const r of Array.isArray(list) ? list : []){
+      const rank = parseInt(r && r.rank, 10), points = parseInt(String(r && r.points).replace(/[,\s]/g, ""), 10);
+      const name = r && typeof r.name === "string" ? r.name.replace(/[\t\r\n]+/g, " ").trim() : "";
+      if (name && Number.isFinite(points)) out.push({rank: Number.isFinite(rank) && rank > 0 ? rank : null, name, points});
+    }
+    return out;
+  }
+  function applyRows(got, unreadable){
+    const seen = new Set(), rows = [];
+    got.sort((a, b) => (a.rank == null ? 1e9 : a.rank) - (b.rank == null ? 1e9 : b.rank));
+    for (const r of got){ const k = r.name.toLowerCase() + "|" + r.points; if (seen.has(k)) continue; seen.add(k); rows.push(r); }
+    st.text = rows.map(r => (r.rank == null ? "" : r.rank) + "\t" + r.name + "\t" + r.points).join("\n");
+    st.example = false;
+    $("lb").value = st.text;
+    extraNote = "Claude read " + rows.length + " guild" + (rows.length === 1 ? "" : "s") + ". Check names and points before posting." +
+      (unreadable.length ? " Couldn’t read: " + unreadable.slice(0, 3).join("; ") + "." : "");
+    markDirty(); render();
+  }
+
+  const TIDY_PROMPT = [
+    "Below is text a user copied from a Summoners War guild siege leaderboard (for example the swgt.io siege leaderboard). It may have extra columns, odd spacing, or one cell per line.",
+    "Extract every guild: rank (integer shown for that guild; ties share a rank), name (exactly as written), and points (the guild's current ranking points, integer, no commas; not guild level, member count or trend).",
+    "On swgt.io copies, a signed number near the rank (like +13) is the rank change and a bracketed number near the points (like (+16)) is the change since the last siege. Ignore both.",
+    "Keep the leaderboard order. List each guild once. Never guess or invent; if a guild's rank, name or points are unclear, leave it out and describe it in \"unreadable\".",
+    "Reply with only JSON in this shape:",
+    '{"rows":[{"rank":1,"name":"Example Guild","points":1734}],"unreadable":["line 57: no points"]}',
+    "",
+    "Copied text:",
+    "<<<"
+  ].join("\n");
+  let tidyCtl = null, tidyBusy = false;
+  async function tidyText(){
+    if (!sample || tidyBusy) return;
+    const raw = String(st.text || "").slice(0, 60000);
+    if (!raw.trim()) return;
+    tidyBusy = true; tidyCtl = new AbortController();
+    $("tidyBtn").disabled = true; $("tidyStop").hidden = false; $("tidyStatus").textContent = "Reading the pasted text…";
+    try {
+      const res = await sample.json(TIDY_PROMPT + "\n" + raw + "\n>>>", {modelTier: "quick", signal: tidyCtl.signal});
+      const got = cleanRows(res && res.rows);
+      const unreadable = res && Array.isArray(res.unreadable) ? res.unreadable.filter(x => typeof x === "string").slice(0, 10) : [];
+      tidyBusy = false;
+      if (!got.length) $("tidyStatus").textContent = "No guild rows found in that text.";
+      else { $("tidyStatus").textContent = ""; applyRows(got, unreadable); }
+    } catch (e) {
+      tidyBusy = false;
+      const code = e && e.code;
+      $("tidyStatus").textContent = {
+        cancelled: "Stopped. The leaderboard wasn't changed.",
+        not_granted: "Claude wasn't allowed here. Fix the lines by hand: rank, name, points.",
+        rate_limited: "Too many requests right now. Wait a minute and try again.",
+        invalid_json: "Couldn't find rankings in that text. Try copying just the table rows.",
+        prompt_too_large: "That's too much text. Copy only the ranking table."
+      }[code] || "Clean-up failed. Check your connection and try again.";
+      if (["not_granted", "sampling_disabled", "capability_disabled", "capability_removed", "not_declared"].includes(code)) sample = null;
+    } finally {
+      tidyBusy = false; $("tidyBtn").disabled = false; $("tidyStop").hidden = true; render();
+    }
+  }
+
+  async function initSample(){
+    sample = await window.claude.use("sample");
+    if (!sample) return;
+    render();
+    let lim = null;
+    try { lim = await sample.limits(); } catch (e) { lim = null; }
+    if (!lim || !lim.images) return;
+    imgCap = lim.images;
+    if (Array.isArray(imgCap.mediaTypes)) $("shotInput").accept = imgCap.mediaTypes.join(",");
+    $("shotRow").hidden = false;
+  }
+
+  // ---------- wiring ----------
+  let renderTimer;
+  const soon = () => { clearTimeout(renderTimer); renderTimer = setTimeout(render, 120); };
+
+  $("server").addEventListener("change", e => {
+    st.server = e.target.value;
+    refreshSeasonList();
+    const same = boards.get(boardId(st.server, st.season));
+    if (same) return applyBoard(boardId(st.server, st.season), same);
+    const latest = latestFor(st.server);
+    if (latest) return applyBoard(latest[0], latest[1]);
+    const baked = bakedState(st.server);
+    if (baked){ Object.assign(st, baked); fillInputs(); render(); saveDraft(); return; }
+    markDirty(); render();
+  });
+  $("season").addEventListener("input", e => { st.season = e.target.value; markDirty(); renderHistory(); });
+  $("season").addEventListener("change", () => {
+    const b = boards.get(boardId(st.server, st.season));
+    if (b) applyBoard(boardId(st.server, st.season), b); else { render(); updateSaveStatus(); }
+  });
+  const setRemaining = v => { st.remaining = Math.max(0, Math.min(30, Math.round(toNum(v, 0)))); $("remaining").value = st.remaining; markDirty(); render(); };
+  $("remaining").addEventListener("input", e => { if (e.target.value === "") return; st.remaining = Math.max(0, Math.min(30, Math.round(toNum(e.target.value, 0)))); markDirty(); render(); });
+  $("remaining").addEventListener("change", e => setRemaining(e.target.value));
+  $("minus").addEventListener("click", () => setRemaining(toNum(st.remaining, 0) - 1));
+  $("plus").addEventListener("click", () => setRemaining(toNum(st.remaining, 0) + 1));
+  $("lb").addEventListener("input", e => { st.text = e.target.value; st.example = false; extraNote = ""; $("tidyStatus").textContent = ""; markDirty(); soon(); });
+  $("tidyBtn").addEventListener("click", tidyText);
+  $("tidyStop").addEventListener("click", () => { if (tidyCtl) tidyCtl.abort(); });
+  $("clearExample").addEventListener("click", () => { st.text = ""; st.example = false; $("lb").value = ""; markDirty(); render(); $("lb").focus(); });
+  [["cutoff", "cutoff"], ["rate", "rate"], ["pWin", "win"], ["pSecond", "second"], ["pThird", "third"]].forEach(([id, key]) => {
+    $(id).addEventListener("input", e => { st[key] = e.target.value; markDirty(); soon(); });
+  });
+  $("resetDefaults").addEventListener("click", () => {
+    st.rate = DEF.rate; st.win = DEF.win; st.second = DEF.second; st.third = DEF.third; st.cutoff = "";
+    fillInputs(); markDirty(); render();
+  });
+  document.querySelectorAll(".chip").forEach(btn => btn.addEventListener("click", () => {
+    filter = btn.dataset.f;
+    document.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
+    render();
+  }));
+  $("search").addEventListener("input", soon);
+  $("saveBtn").addEventListener("click", save);
+
+  $("discordParts").addEventListener("click", async e => {
+    const b = e.target.closest(".copy"); if (!b) return;
+    const i = +b.dataset.i, text = lastParts[i]; if (!text) return;
+    const label = b.textContent;
+    const flash = t => { b.textContent = t; setTimeout(() => { b.textContent = label; }, 1800); };
+    try { await navigator.clipboard.writeText(text); flash("Copied"); }
+    catch (err) {
+      const pre = $("dc" + i);
+      try { const range = document.createRange(); range.selectNodeContents(pre); const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range); } catch (x) {}
+      flash("Selected · copy it");
+    }
+  });
+
+  $("shotBtn").addEventListener("click", () => $("shotInput").click());
+  $("shotInput").addEventListener("change", e => { const f = e.target.files; if (f && f.length) readShots(f); e.target.value = ""; });
+  $("shotStop").addEventListener("click", () => { if (readCtl) readCtl.abort(); });
+  const card = $("inputCard");
+  card.addEventListener("dragover", e => { if (!imgCap) return; if ([...(e.dataTransfer && e.dataTransfer.types || [])].includes("Files")){ e.preventDefault(); card.classList.add("dragging"); } });
+  card.addEventListener("dragleave", e => { if (!card.contains(e.relatedTarget)) card.classList.remove("dragging"); });
+  card.addEventListener("drop", e => { card.classList.remove("dragging"); if (!imgCap) return; const f = e.dataTransfer && e.dataTransfer.files; if (f && f.length){ e.preventDefault(); readShots(f); } });
+  document.addEventListener("paste", e => {
+    if (!imgCap) return;
+    const f = [...(e.clipboardData && e.clipboardData.files || [])].filter(x => /^image\//.test(x.type));
+    if (f.length){ e.preventDefault(); readShots(f); }
+  });
+
+  fillInputs();
+  render();
+  updateSaveStatus();
+  if (hasClaude){ initDb(); initSample(); }
+})();
+</script>

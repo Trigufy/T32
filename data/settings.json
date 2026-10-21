@@ -1,0 +1,17 @@
+{
+  "_help": "Edit cutoffDate each season: the date of the last siege that counts (YYYY-MM-DD). Sieges left are counted automatically (two per week, Mon-Tue and Thu-Fri rounds). To force a number, set siegesLeftOverride, e.g. {\"Global\": 2}; set it back to {} to return to automatic.",
+  "cutoffDate": "2026-10-30",
+  "season": "",
+  "siegesLeftOverride": {},
+  "rate": 8.254,
+  "win": 18,
+  "second": 3,
+  "third": -2,
+  "servers": [
+    {"label": "Global", "key": "global", "timeZone": "America/Los_Angeles"},
+    {"label": "Europe", "key": "europe", "timeZone": "Europe/Berlin"},
+    {"label": "Asia+China", "key": "asiaChina", "timeZone": "Asia/Shanghai"},
+    {"label": "Japan+Korea", "key": "japanKorea", "timeZone": "Asia/Seoul"}
+  ],
+  "siegeEndsAt": "23:00"
+}

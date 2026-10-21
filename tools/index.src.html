@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SW T32 Cutoff Tracker</title>
+<meta name="description" content="Projected Summoners War siege T32 cutoff and what every top-100 guild needs, using Trig's Algorithm. Updated from swgt.io after every siege.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=Marcellus&display=swap">
+<style>
+/* Layout: one column; server switcher, cutoff summary, then the guild table. Gold marks the T32 line. */
+:root{
+  --bg:#eceef3; --surface:#ffffff; --sunk:#f4f5f9; --ink:#171a2c; --muted:#5b6180; --line:#d8dbe6;
+  --accent:#3d41b8; --accent-ink:#ffffff; --accent-soft:#e6e7fb;
+  --gold:#9c6c0a; --gold-soft:#f6ecd2; --silver:#5f6679; --silver-soft:#e8eaf0; --bronze:#94542a; --bronze-soft:#f4e3d6;
+  --good:#167a54; --good-soft:#ddf2e8; --bad:#b3362d; --bad-soft:#f8e1de;
+  --f-display:"Marcellus", "Cinzel", Georgia, "Times New Roman", serif;
+  --f-body:"Barlow", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --f-data:"Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f111b; --surface:#171a28; --sunk:#121420; --ink:#e8eaf6; --muted:#9aa0bc; --line:#2a2e44;
+    --accent:#9599ff; --accent-ink:#11132a; --accent-soft:#262961;
+    --gold:#e3b653; --gold-soft:#372d13; --silver:#b8bed2; --silver-soft:#272b3a; --bronze:#dc9661; --bronze-soft:#38261a;
+    --good:#55c695; --good-soft:#163428; --bad:#f2827a; --bad-soft:#3c1f1d;
+    color-scheme:dark;
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;
+  padding-top:max(20px, env(safe-area-inset-top, 0px));padding-bottom:max(40px, env(safe-area-inset-bottom, 0px));
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+input,button{font:inherit;color:inherit}
+a{color:var(--accent);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+h1{font-family:var(--f-display);font-weight:400;margin:0;font-size:clamp(27px,6vw,36px);line-height:1.1;text-wrap:balance}
+p{margin:0}
+.label{font-family:var(--f-data);font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.small{font-size:13px}.muted{color:var(--muted)}
+.head{display:flex;flex-direction:column;gap:6px}
+.servers{display:flex;flex-wrap:wrap;gap:6px}
+.srv{height:36px;border-radius:8px;border:1px solid var(--line);background:var(--surface);padding:0 14px;font-family:var(--f-data);font-weight:600;font-size:16px;letter-spacing:.02em;cursor:pointer}
+.srv[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.sum{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-wrap:wrap;gap:10px 26px;align-items:flex-end}
+.stat{display:flex;flex-direction:column;gap:2px}
+.big{font-family:var(--f-display);font-size:52px;line-height:1;font-variant-numeric:tabular-nums;padding-bottom:6px;border-bottom:3px solid var(--gold)}
+.mid{font-family:var(--f-data);font-size:30px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.how{flex-basis:100%;border-top:1px dashed var(--line);padding-top:8px;font-size:14px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+.how strong{color:var(--ink);font-weight:600}
+.how b{color:var(--gold)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{height:32px;border-radius:999px;border:1px solid var(--line);background:var(--surface);padding:0 12px;font-family:var(--f-data);font-weight:600;font-size:15px;cursor:pointer;display:inline-flex;gap:7px;align-items:center}
+.chip .n{font-variant-numeric:tabular-nums;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip[aria-pressed="true"] .n{color:inherit;opacity:.75}
+.chip .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.chip .dot.safe{background:var(--good)}.chip .dot.need{background:var(--accent)}.chip .dot.out{background:var(--bad);width:8px;height:8px;border-radius:50%}
+.ctl{height:40px;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:0 10px;width:100%;min-width:0}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--muted);align-items:center}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+.tablewrap{overflow-x:auto;margin-inline:-6px}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{font-family:var(--f-data);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:left;padding:6px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+td.rk{font-family:var(--f-data);font-weight:600;font-size:15px;color:var(--muted);width:1%;white-space:nowrap;padding-left:10px}
+td.nm{font-weight:500;overflow-wrap:anywhere;min-width:84px}
+.num{text-align:right;font-family:var(--f-data);font-size:17px;font-weight:600;white-space:nowrap}
+th.num{font-size:12px}
+td.rc,th.rc{width:1%;white-space:nowrap}
+.rec,.rec-h{display:inline-flex;gap:3px}
+.rec i{font-style:normal;width:24px;height:26px;border-radius:6px;display:inline-grid;place-items:center;font-family:var(--f-data);font-weight:700;font-size:16px}
+.rec-h span{width:24px;text-align:center}
+.m1{background:var(--gold-soft);color:var(--gold)}.m2{background:var(--silver-soft);color:var(--silver)}.m3{background:var(--bronze-soft);color:var(--bronze)}
+.rec i.z{opacity:.42}
+.out{display:inline-grid;place-items:center;height:26px;width:78px;border-radius:6px;background:var(--bad-soft);color:var(--bad);font-family:var(--f-data);font-weight:700;letter-spacing:.1em;font-size:14px}
+.max{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-right:4px}
+tr td:first-child{box-shadow:inset 3px 0 0 transparent}
+tr.st-safe td:first-child{box-shadow:inset 3px 0 0 var(--good)}
+tr.st-need td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
+tr.st-out td:first-child{box-shadow:inset 3px 0 0 var(--bad)}
+tr.st-out td.nm,tr.st-out td.fin,tr.st-out td.now{color:var(--muted)}
+tr.st-safe td.fin{color:var(--good)}
+tr.line td{padding:0;border-bottom:0}
+.lineinner{display:flex;align-items:center;gap:10px;color:var(--gold);font-family:var(--f-data);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:7px 0;white-space:nowrap}
+.lineinner::before,.lineinner::after{content:"";height:2px;background:var(--gold);flex:1}
+tr.empty td{padding:22px 10px;color:var(--muted);text-align:center}
+footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+footer strong{color:var(--ink);font-weight:600}
+@media (prefers-reduced-motion:no-preference){.srv,.chip{transition:background-color .15s,border-color .15s}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <span class="label" id="eyebrow">Summoners War · Siege tournament</span>
+    <h1>What each guild needs</h1>
+    <p class="small muted" id="updated"></p>
+  </div>
+
+  <div class="servers" role="group" aria-label="Server" id="servers"></div>
+
+  <section class="sum" aria-label="Projected T32 cutoff">
+    <div class="stat"><span class="label">Points needed for T32</span><span class="big" id="target">—</span></div>
+    <div class="stat"><span class="label">Sieges left</span><span class="mid" id="left">—</span></div>
+    <div class="how" id="how"></div>
+  </section>
+
+  <section class="card" aria-label="Guild table">
+    <div class="chips" role="group" aria-label="Filter guilds">
+      <button class="chip" type="button" data-f="all" aria-pressed="true">All <span class="n" id="nAll">0</span></button>
+      <button class="chip" type="button" data-f="safe" aria-pressed="false"><span class="dot safe"></span>Safe <span class="n" id="nSafe">0</span></button>
+      <button class="chip" type="button" data-f="need" aria-pressed="false"><span class="dot need"></span>Need results <span class="n" id="nNeed">0</span></button>
+      <button class="chip" type="button" data-f="out" aria-pressed="false"><span class="dot out"></span>Out <span class="n" id="nOut">0</span></button>
+    </div>
+    <input class="ctl" id="search" type="search" placeholder="Find a guild" aria-label="Find a guild" autocomplete="off">
+    <div class="legend">
+      <span><i class="sw m1"></i><span id="lg1">1st +18</span></span><span><i class="sw m2"></i><span id="lg2">2nd +3</span></span><span><i class="sw m3"></i><span id="lg3">3rd −2</span></span>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>#</th><th>Guild</th><th class="num">Now</th><th class="rc"><span class="rec-h"><span>1st</span><span>2nd</span><span>3rd</span></span></th><th class="num">Final</th></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <p><a href="predictor.html">Run your own projection</a> with Trig's T32 Predictor, including a ready-to-paste Discord post.</p>
+    <p><strong>Trig's Algorithm v1.0.</strong> Cutoff = 32nd-place score + 8.254 × sieges left, rounded up. Scoring: 1st +18, 2nd +3, 3rd −2.</p>
+    <p>Leaderboard data from <a href="https://swgt.io/leaderboards/siege/" target="_blank" rel="noopener">swgt.io</a>, refreshed automatically after each siege.</p>
+    <p>Reaching the projected cutoff is a mathematical projection, not a guarantee of T32 qualification.</p>
+  </footer>
+</div>
+
+<script>
+/*__CORE__*/
+
+(function(){
+  var DATA = /*__T32_BOARDS__*/null;
+  var $ = function(id){ return document.getElementById(id); };
+  var esc = function(s){ return String(s).replace(/[&<>"']/g, function(ch){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]; }); };
+  var names = DATA ? Object.keys(DATA.servers) : [];
+  var slug = function(n){ return n.toLowerCase().replace(/[^a-z0-9]+/g, "-"); };
+  var server = names[0], filter = "all";
+  var fromHash = location.hash.replace("#", "");
+  names.forEach(function(n){ if (slug(n) === fromHash) server = n; });
+
+  $("servers").innerHTML = names.map(function(n){ return '<button class="srv" type="button" data-s="' + esc(n) + '" aria-pressed="false">' + esc(n) + "</button>"; }).join("");
+
+  function fmtDate(iso, withTime){
+    var t = Date.parse(iso || ""); if (!t) return "";
+    try { return new Date(t).toLocaleString(undefined, withTime ? {weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short"} : {weekday: "short", month: "short", day: "numeric"}); }
+    catch (e) { return new Date(t).toUTCString(); }
+  }
+  function fmtDay(ymd){
+    var p = String(ymd || "").split("-"); if (p.length !== 3) return "";
+    try { return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2], 12)).toLocaleDateString(undefined, {weekday: "short", month: "short", day: "numeric", timeZone: "UTC"}); }
+    catch (e) { return ymd; }
+  }
+
+  function render(){
+    [].forEach.call(document.querySelectorAll(".srv"), function(b){ b.setAttribute("aria-pressed", String(b.getAttribute("data-s") === server)); });
+    var b = DATA.servers[server];
+    var rows = b.rows.map(function(r){ return {rank: r[0], name: r[1], points: r[2]}; });
+    var c = project(rows, {remaining: b.remaining, rate: DATA.rate, win: DATA.win, second: DATA.second, third: DATA.third, cutoff: ""});
+    $("eyebrow").textContent = "Summoners War · Siege tournament · " + server + (DATA.season ? " · " + DATA.season : "");
+    $("updated").textContent = b.lastUpdated ? "swgt.io data updated " + fmtDate(b.lastUpdated, true) : "";
+    $("target").textContent = c.target == null ? "—" : c.target;
+    $("left").textContent = c.N;
+    $("lg1").textContent = "1st " + fmtSigned(c.W); $("lg2").textContent = "2nd " + fmtSigned(c.S); $("lg3").textContent = "3rd " + fmtSigned(c.L);
+    var how = [];
+    if (c.cutRow){
+      how.push("<span>Projected cutoff <b>" + c.projected.toFixed(3) + "</b>: 32nd place <strong>" + esc(c.cutRow.name) + " · " + c.cutRow.points + "</strong> + <strong>" + esc(String(c.rate)) + " × " + c.N + "</strong> siege" + (c.N === 1 ? "" : "s") + ".</span>");
+      how.push("<span>Each record is the fewest 1st places, then the fewest 2nd places, that reaches " + c.target + ".</span>");
+    } else how.push("<span>Fewer than 32 guilds in this leaderboard, so there's no cutoff to project yet.</span>");
+    if (DATA.cutoffDate) how.push("<span>Season cutoff: <strong>" + esc(fmtDay(DATA.cutoffDate)) + "</strong>, two sieges a week.</span>");
+    var h = (b.history || []).slice().sort(function(x, y){ return y.left - x.left; });
+    if (h.length >= 2){
+      var first = h[0], last = h[h.length - 1], gap = first.left - last.left;
+      if (gap > 0) how.push("<span>32nd place has risen <strong>" + ((last.cut32 - first.cut32) / gap >= 0 ? "+" : "") + ((last.cut32 - first.cut32) / gap).toFixed(1) + "</strong> per siege this season (" + h.map(function(x){ return x.cut32; }).join(" → ") + ").</span>");
+    }
+    $("how").innerHTML = how.join("");
+
+    var counts = {safe: 0, need: 0, out: 0};
+    c.results.forEach(function(r){ if (counts[r.status] != null) counts[r.status]++; });
+    $("nAll").textContent = c.results.length; $("nSafe").textContent = counts.safe; $("nNeed").textContent = counts.need; $("nOut").textContent = counts.out;
+    var q = $("search").value.trim().toLowerCase(), showLine = filter === "all" && !q && c.cutRow, html = "", shown = 0;
+    c.results.forEach(function(r, i){
+      if (filter !== "all" && r.status !== filter) return;
+      if (q && r.name.toLowerCase().indexOf(q) === -1) return;
+      shown++;
+      var rec, fin;
+      if (r.status === "out"){ rec = '<span class="out">OUT</span>'; fin = '<span class="max">max</span>' + fmtN(r.final); }
+      else if (r.status === "none"){ rec = '<span class="muted">—</span>'; fin = "—"; }
+      else {
+        var z = function(n){ return n === 0 ? " z" : ""; };
+        rec = '<span class="rec" aria-label="' + r.w + " first, " + r.s + " second, " + r.l + ' third"><i class="m1' + z(r.w) + '">' + r.w + '</i><i class="m2' + z(r.s) + '">' + r.s + '</i><i class="m3' + z(r.l) + '">' + r.l + "</i></span>";
+        fin = fmtN(r.final);
+      }
+      html += '<tr class="st-' + r.status + '"><td class="rk">' + esc(r.rank) + '</td><td class="nm">' + esc(r.name) + '</td><td class="num now">' + r.points + '</td><td class="rc">' + rec + '</td><td class="num fin">' + fin + "</td></tr>";
+      if (showLine && i === c.cutIndex) html += '<tr class="line"><td colspan="5"><div class="lineinner">Current T32 line · ' + c.cutRow.points + "</div></td></tr>";
+    });
+    if (!shown) html = '<tr class="empty"><td colspan="5">No guilds match.</td></tr>';
+    $("tbody").innerHTML = html;
+  }
+
+  if (!DATA || !names.length){ $("tbody").innerHTML = '<tr class="empty"><td colspan="5">Leaderboard data is loading. Check back after the next update.</td></tr>'; return; }
+  $("servers").addEventListener("click", function(e){
+    var btn = e.target.closest(".srv"); if (!btn) return;
+    server = btn.getAttribute("data-s");
+    try { history.replaceState(null, "", "#" + slug(server)); } catch (x) {}
+    render();
+  });
+  [].forEach.call(document.querySelectorAll(".chip"), function(btn){
+    btn.addEventListener("click", function(){
+      filter = btn.getAttribute("data-f");
+      [].forEach.call(document.querySelectorAll(".chip"), function(x){ x.setAttribute("aria-pressed", String(x === btn)); });
+      render();
+    });
+  });
+  $("search").addEventListener("input", render);
+  render();
+})();
+</script>
+</body>
+</html>
