@@ -8,7 +8,7 @@
  "servers": {
   "Global": {
    "key": "global",
-   "lastUpdated": "2026-10-21T23:50:00.000Z",
+   "lastUpdated": "2026-10-22T05:26:00.000Z",
    "rows": [
     [
      1,
@@ -297,11 +297,6 @@
     ],
     [
      58,
-     "V0X Integritas",
-     1446
-    ],
-    [
-     58,
      "Full Farm Br",
      1456
     ],
@@ -319,21 +314,6 @@
      58,
      "Summoner's Bar",
      1456
-    ],
-    [
-     62,
-     "BarelySweat",
-     1444
-    ],
-    [
-     62,
-     "CheioDosAmigos",
-     1444
-    ],
-    [
-     62,
-     "Night•Mare",
-     1444
     ],
     [
      62,
@@ -406,26 +386,6 @@
      1451
     ],
     [
-     70,
-     "DroGaÉosBicO",
-     1443
-    ],
-    [
-     70,
-     "Kindred Shadow",
-     1443
-    ],
-    [
-     75,
-     "DecimateLegion",
-     1441
-    ],
-    [
-     75,
-     "Rainbøw",
-     1441
-    ],
-    [
      76,
      "Bit Heroes",
      1450
@@ -444,16 +404,6 @@
      76,
      "TheArrombeds",
      1450
-    ],
-    [
-     80,
-     "FarmUpBR",
-     1440
-    ],
-    [
-     80,
-     "Toronto",
-     1440
     ],
     [
      80,
@@ -484,16 +434,6 @@
      80,
      "Sacred Stars",
      1449
-    ],
-    [
-     85,
-     "Discordians",
-     1439
-    ],
-    [
-     85,
-     "Rage Gang",
-     1439
     ],
     [
      86,
@@ -531,21 +471,6 @@
      1447
     ],
     [
-     91,
-     "*RisingHeroes*",
-     1438
-    ],
-    [
-     91,
-     "Røll Patrol",
-     1438
-    ],
-    [
-     91,
-     "Zone!!",
-     1438
-    ],
-    [
      93,
      "Ước",
      1446
@@ -554,21 +479,6 @@
      93,
      "Clã D25stino",
      1446
-    ],
-    [
-     95,
-     "Dopamina",
-     1437
-    ],
-    [
-     95,
-     "IllegallyLucky",
-     1437
-    ],
-    [
-     95,
-     "Paladinos",
-     1437
     ],
     [
      95,
@@ -584,16 +494,6 @@
      95,
      "Wholesome",
      1445
-    ],
-    [
-     98,
-     "Canard",
-     1436
-    ],
-    [
-     98,
-     "The Starry Sky",
-     1436
     ],
     [
      98,
@@ -621,7 +521,7 @@
   },
   "Europe": {
    "key": "europe",
-   "lastUpdated": "2026-10-22T00:36:00.000Z",
+   "lastUpdated": "2026-10-22T05:00:00.000Z",
    "rows": [
     [
      1,
@@ -1134,7 +1034,7 @@
   },
   "Asia+China": {
    "key": "asiaChina",
-   "lastUpdated": "2026-10-21T20:19:00.000Z",
+   "lastUpdated": "2026-10-22T05:03:00.000Z",
    "rows": [
     [
      1,
