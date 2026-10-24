@@ -8,7 +8,7 @@
  "servers": {
   "Global": {
    "key": "global",
-   "lastUpdated": "2026-10-24T04:25:00.000Z",
+   "lastUpdated": "2026-10-24T08:37:00.000Z",
    "rows": [
     [
      1,
@@ -18,327 +18,327 @@
     [
      2,
      "Λpoca|ypse",
-     1626
+     1642
     ],
     [
      3,
      "Malevolent.",
-     1614
+     1630
     ],
     [
      4,
      "Belligerent",
-     1571
+     1570
     ],
     [
      5,
      "R.E.D",
-     1551
+     1556
     ],
     [
      6,
      "Nu||",
-     1525
+     1541
     ],
     [
      7,
      "PinkVoid",
-     1512
+     1528
     ],
     [
      8,
-     "HypеrАсtive",
-     1503
+     "Candy Shop",
+     1513
     ],
     [
      9,
-     "B.L.U.E.",
-     1499
+     "Skуfall",
+     1510
     ],
     [
      10,
-     "Candy Shop",
-     1497
+     "HypеrАсtive",
+     1508
     ],
     [
      11,
-     "Skуfall",
-     1492
-    ],
-    [
-     12,
-     "Ascensiøn",
-     1482
-    ],
-    [
-     12,
-     "Bewitchment",
-     1482
+     "B.L.U.E.",
+     1502
     ],
     [
      12,
      "Phantøma",
-     1482
+     1500
+    ],
+    [
+     13,
+     "PhongTrao",
+     1490
+    ],
+    [
+     14,
+     "SINfullyDEEP",
+     1488
     ],
     [
      15,
-     "Solidarity",
-     1480
+     "Bewitchment",
+     1487
     ],
     [
      16,
-     "Zenit Prødigy",
-     1478
+     "Death Cannon",
+     1486
     ],
     [
-     17,
-     "Frauds",
-     1477
+     16,
+     "No Inactives",
+     1486
     ],
     [
-     17,
-     "Rebel Mercs",
-     1477
+     16,
+     "NovaKings",
+     1486
     ],
     [
      19,
-     "Nala",
-     1475
+     "Ascensiøn",
+     1485
     ],
     [
      20,
-     "-AMATERASU-",
-     1474
+     "SKANKS",
+     1483
     ],
     [
-     20,
+     21,
+     "Rebel Mercs",
+     1480
+    ],
+    [
+     22,
      "Adrenalina",
-     1474
+     1479
     ],
     [
-     20,
-     "OneX",
-     1474
+     22,
+     "P0i$0π",
+     1479
     ],
     [
-     23,
-     "Royal♠Madness",
-     1473
-    ],
-    [
-     23,
-     "SENSEI",
-     1473
+     22,
+     "Solidarity",
+     1479
     ],
     [
      25,
-     "PhongTrao",
+     "-AMATERASU-",
+     1477
+    ],
+    [
+     25,
+     "Drama Club",
+     1477
+    ],
+    [
+     25,
+     "OneX",
+     1477
+    ],
+    [
+     25,
+     "Zenit Prødigy",
+     1477
+    ],
+    [
+     29,
+     "™Mugiwaras™",
+     1476
+    ],
+    [
+     29,
+     "Bug2Us™",
+     1476
+    ],
+    [
+     29,
+     "Frauds",
+     1476
+    ],
+    [
+     32,
+     "KingsLanding",
+     1475
+    ],
+    [
+     33,
+     "Nala",
+     1474
+    ],
+    [
+     33,
+     "Summoner's Bar",
+     1474
+    ],
+    [
+     35,
+     "Catac|ysm",
+     1473
+    ],
+    [
+     35,
+     "SūperNøva",
+     1473
+    ],
+    [
+     37,
+     "Royal♠Madness",
      1472
     ],
     [
-     26,
-     "SūperNøva",
-     1470
+     37,
+     "VIP!",
+     1472
     ],
     [
-     26,
-     "SINfullyDEEP",
-     1470
-    ],
-    [
-     28,
-     "4x4 BR",
-     1469
-    ],
-    [
-     29,
-     "BloodRose",
-     1468
-    ],
-    [
-     29,
-     "Death Cannon",
-     1468
-    ],
-    [
-     29,
-     "GrumpyOGs",
-     1468
-    ],
-    [
-     29,
-     "No Inactives",
-     1468
-    ],
-    [
-     29,
-     "NovaKings",
-     1468
-    ],
-    [
-     34,
-     "-AMA2ERASU-",
-     1467
-    ],
-    [
-     34,
-     "Clã D12stino",
-     1467
-    ],
-    [
-     36,
-     "S W A G",
-     1466
-    ],
-    [
-     36,
-     "V0X POPULI",
-     1466
-    ],
-    [
-     38,
-     "Crazy Monkey",
-     1465
-    ],
-    [
-     38,
-     "SKANKS",
-     1465
+     37,
+     "XcL-AlphaSquad",
+     1472
     ],
     [
      40,
+     "BloodRose",
+     1471
+    ],
+    [
+     40,
+     "GrumpyOGs",
+     1471
+    ],
+    [
+     40,
+     "HeartBreakKids",
+     1471
+    ],
+    [
+     40,
+     "SENSEI",
+     1471
+    ],
+    [
+     44,
+     "-AMA2ERASU-",
+     1470
+    ],
+    [
+     44,
+     "Clã D12stino",
+     1470
+    ],
+    [
+     46,
+     "SayNoMore",
+     1469
+    ],
+    [
+     46,
+     "TrashProc",
+     1469
+    ],
+    [
+     48,
+     "4x4 BR",
+     1468
+    ],
+    [
+     48,
+     "Bit Heroes",
+     1468
+    ],
+    [
+     50,
+     "Clã D3stino",
+     1467
+    ],
+    [
+     51,
+     "Clã Destino",
+     1466
+    ],
+    [
+     51,
      "Ground Zero",
+     1466
+    ],
+    [
+     53,
+     "_-RENEGADOS-_",
+     1465
+    ],
+    [
+     53,
+     "Ghostx",
+     1465
+    ],
+    [
+     53,
+     "Syndicate! II",
+     1465
+    ],
+    [
+     56,
+     "Ước",
+     1464
+    ],
+    [
+     56,
+     "Clã D25stino",
+     1464
+    ],
+    [
+     56,
+     "Ephitaph",
+     1464
+    ],
+    [
+     56,
+     "S W A G",
+     1464
+    ],
+    [
+     56,
+     "V0X POPULI",
+     1464
+    ],
+    [
+     61,
+     "Crazy Monkey",
      1463
     ],
     [
-     41,
-     "Ghostx",
-     1462
+     61,
+     "Phenix Five",
+     1463
     ],
     [
-     41,
-     "PRO K",
-     1462
-    ],
-    [
-     41,
-     "RedAlert",
-     1462
-    ],
-    [
-     44,
-     "Ephitaph",
-     1461
-    ],
-    [
-     44,
-     "P0i$0π",
-     1461
-    ],
-    [
-     46,
-     "♤TrumpeD♤",
-     1459
-    ],
-    [
-     46,
-     "Drama Club",
-     1459
-    ],
-    [
-     46,
+     63,
      "Made in Sw",
-     1459
+     1462
     ],
     [
-     46,
+     63,
      "Satellite Lite",
-     1459
-    ],
-    [
-     46,
-     "VN.ANHEM",
-     1459
-    ],
-    [
-     51,
-     "™Mugiwaras™",
-     1458
-    ],
-    [
-     51,
-     "Bug2Us™",
-     1458
-    ],
-    [
-     51,
-     "Extra",
-     1458
-    ],
-    [
-     51,
-     "Grφve",
-     1458
-    ],
-    [
-     55,
-     "光之聖界",
-     1457
-    ],
-    [
-     55,
-     "Brazil",
-     1457
-    ],
-    [
-     55,
-     "KingsLanding",
-     1457
-    ],
-    [
-     58,
-     "Full Farm Br",
-     1456
-    ],
-    [
-     58,
-     "Noodz & BooTea",
-     1456
-    ],
-    [
-     58,
-     "Rejected Dream",
-     1456
-    ],
-    [
-     58,
-     "Summoner's Bar",
-     1456
-    ],
-    [
-     62,
-     "Catac|ysm",
-     1455
+     1462
     ],
     [
      63,
-     "VIP!",
-     1454
+     "V0X Integritas",
+     1462
     ],
     [
      63,
-     "XcL-AlphaSquad",
-     1454
-    ],
-    [
-     65,
-     "Global Heros",
-     1453
-    ],
-    [
-     65,
-     "HeartBreakKids",
-     1453
+     "We Surrender",
+     1462
     ],
     [
      67,
@@ -347,22 +347,32 @@
     ],
     [
      67,
-     "Valiant Reborn",
-     1452
+     "Grφve",
+     1461
+    ],
+    [
+     68,
+     "Night•Mare",
+     1460
+    ],
+    [
+     68,
+     "PRO K",
+     1460
+    ],
+    [
+     68,
+     "Rage Gang",
+     1460
+    ],
+    [
+     68,
+     "RedAlert",
+     1460
     ],
     [
      69,
      "Foodgiwaras",
-     1451
-    ],
-    [
-     69,
-     "NESTLE",
-     1451
-    ],
-    [
-     69,
-     "Paramount",
      1451
     ],
     [
@@ -372,28 +382,28 @@
     ],
     [
      69,
-     "SayNoMore",
-     1451
-    ],
-    [
-     69,
      "Smokin Aces",
      1451
     ],
     [
-     69,
-     "TrashProc",
-     1451
+     72,
+     "Caos",
+     1459
     ],
     [
-     76,
-     "Bit Heroes",
-     1450
+     72,
+     "DroGaÉosBicO",
+     1459
     ],
     [
-     76,
-     "FargoUnited",
-     1450
+     72,
+     "Noodz & BooTea",
+     1459
+    ],
+    [
+     72,
+     "Røll Patrol",
+     1459
     ],
     [
      76,
@@ -406,6 +416,36 @@
      1450
     ],
     [
+     76,
+     "Clã D5stino",
+     1458
+    ],
+    [
+     76,
+     "IllegallyLucky",
+     1458
+    ],
+    [
+     76,
+     "TheOldGuard",
+     1458
+    ],
+    [
+     79,
+     "♤TrumpeD♤",
+     1457
+    ],
+    [
+     79,
+     "Clã D6stino",
+     1457
+    ],
+    [
+     79,
+     "VN.ANHEM",
+     1457
+    ],
+    [
      80,
      "★WPARK060★",
      1449
@@ -413,11 +453,6 @@
     [
      80,
      "⚡Deva Zan⚡",
-     1449
-    ],
-    [
-     80,
-     "Clã D3stino",
      1449
     ],
     [
@@ -436,14 +471,49 @@
      1449
     ],
     [
-     86,
-     "Clã Destino",
-     1448
+     82,
+     "Broken souls_",
+     1456
     ],
     [
-     87,
-     "_-RENEGADOS-_",
-     1447
+     82,
+     "Extra",
+     1456
+    ],
+    [
+     82,
+     "Global Heros",
+     1456
+    ],
+    [
+     82,
+     "Oz Br Proc",
+     1456
+    ],
+    [
+     86,
+     "光之聖界",
+     1455
+    ],
+    [
+     86,
+     "Brazil",
+     1455
+    ],
+    [
+     86,
+     "Discordians",
+     1455
+    ],
+    [
+     86,
+     "FirëZtorM",
+     1455
+    ],
+    [
+     86,
+     "Valiant Reborn",
+     1455
     ],
     [
      87,
@@ -466,19 +536,29 @@
      1447
     ],
     [
-     87,
-     "Syndicate! II",
-     1447
+     91,
+     "Full Farm Br",
+     1454
     ],
     [
-     93,
-     "Ước",
-     1446
+     91,
+     "NESTLE",
+     1454
     ],
     [
-     93,
-     "Clã D25stino",
-     1446
+     91,
+     "Paramount",
+     1454
+    ],
+    [
+     91,
+     "Rejected Dream",
+     1454
+    ],
+    [
+     91,
+     "RoyalOblivion",
+     1454
     ],
     [
      95,
@@ -487,13 +567,18 @@
     ],
     [
      95,
-     "Phenix Five",
+     "Wholesome",
      1445
     ],
     [
-     95,
-     "Wholesome",
-     1445
+     96,
+     "FargoUnited",
+     1453
+    ],
+    [
+     96,
+     "Sandy",
+     1453
     ],
     [
      98,
@@ -507,21 +592,35 @@
     ],
     [
      98,
-     "We Surrender",
-     1444
+     "EternityVN",
+     1452
+    ],
+    [
+     98,
+     "HouseOfWolves!",
+     1452
+    ],
+    [
+     98,
+     "Smoke n play",
+     1452
     ]
    ],
-   "remaining": 3,
+   "remaining": 2,
    "history": [
     {
      "left": 3,
      "cut32": 1468
+    },
+    {
+     "left": 2,
+     "cut32": 1475
     }
    ]
   },
   "Europe": {
    "key": "europe",
-   "lastUpdated": "2026-10-24T01:14:00.000Z",
+   "lastUpdated": "2026-10-24T10:51:00.000Z",
    "rows": [
     [
      1,
@@ -1038,7 +1137,7 @@
   },
   "Asia+China": {
    "key": "asiaChina",
-   "lastUpdated": "2026-10-24T01:50:00.000Z",
+   "lastUpdated": "2026-10-24T10:15:00.000Z",
    "rows": [
     [
      1,
