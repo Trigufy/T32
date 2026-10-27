@@ -8,7 +8,7 @@
  "servers": {
   "Global": {
    "key": "global",
-   "lastUpdated": "2026-10-27T18:07:00.000Z",
+   "lastUpdated": "2026-10-27T22:25:00.000Z",
    "rows": [
     [
      1,
@@ -73,7 +73,7 @@
     [
      13,
      "PhongTrao",
-     1490
+     1495
     ],
     [
      14,
@@ -525,352 +525,362 @@
   },
   "Europe": {
    "key": "europe",
-   "lastUpdated": "2026-10-27T18:22:00.000Z",
+   "lastUpdated": "2026-10-27T22:31:00.000Z",
    "rows": [
     [
      1,
      "Ørigiи",
-     1735
+     1751
     ],
     [
      2,
      "Aftermath Eu",
-     1720
+     1736
     ],
     [
      3,
      "Smash Brøs.",
-     1620
-    ],
-    [
-     4,
-     "Af: Solace",
-     1548
+     1636
     ],
     [
      4,
      "ShowTime",
-     1548
+     1564
+    ],
+    [
+     5,
+     "Doubt",
+     1558
     ],
     [
      6,
-     "Doubt",
-     1542
+     "Af: Solace",
+     1553
     ],
     [
      7,
      "IṨṨΘ⇜",
-     1531
+     1536
     ],
     [
      8,
      "Sacré Cœur 3",
-     1519
+     1517
     ],
     [
      9,
      "7 Deadly Syns",
-     1507
+     1504
     ],
     [
      10,
-     "[haVoc]",
-     1492
+     "Teikøu 2",
+     1501
     ],
     [
      11,
-     "^[O.O]^",
-     1489
+     "[haVoc]",
+     1497
     ],
     [
      12,
-     "Arcadie",
-     1484
+     "Plan Pew Pew",
+     1495
     ],
     [
      13,
-     "Teikøu 2",
-     1483
+     "Raptum",
+     1494
     ],
     [
      14,
-     "-Just For Fun-",
-     1481
+     "Melødix",
+     1490
     ],
     [
-     14,
+     15,
+     "8th sin",
+     1489
+    ],
+    [
+     15,
+     "Arcadie",
+     1489
+    ],
+    [
+     17,
+     "^[O.O]^",
+     1488
+    ],
+    [
+     17,
+     "My Dirty Hobby",
+     1488
+    ],
+    [
+     19,
+     "Prøject: Zer0",
+     1487
+    ],
+    [
+     20,
+     "First Ørder",
+     1486
+    ],
+    [
+     20,
      "Two Sins",
-     1481
-    ],
-    [
-     16,
-     "Nefarious 2.0",
-     1479
-    ],
-    [
-     16,
-     "RachenĐrachen",
-     1479
-    ],
-    [
-     18,
-     "Babylon",
-     1477
-    ],
-    [
-     18,
-     "Plan Pew Pew",
-     1477
-    ],
-    [
-     20,
-     "GodsArmy",
-     1475
-    ],
-    [
-     20,
-     "LegadoDeCairos",
-     1475
+     1486
     ],
     [
      22,
-     "Raptum",
+     "-LazYggdrasil-",
+     1484
+    ],
+    [
+     22,
+     "Partekus",
+     1484
+    ],
+    [
+     24,
+     "Nefarious 2.0",
+     1482
+    ],
+    [
+     25,
+     "-Just For Fun-",
+     1480
+    ],
+    [
+     25,
+     "Babylon",
+     1480
+    ],
+    [
+     25,
+     "The Chaotic",
+     1480
+    ],
+    [
+     28,
+     "L'équipage II",
+     1479
+    ],
+    [
+     29,
+     "LegadoDeCairos",
+     1478
+    ],
+    [
+     30,
+     "Chill Hub",
+     1477
+    ],
+    [
+     30,
+     "RachenĐrachen",
+     1477
+    ],
+    [
+     32,
+     "6thElement",
+     1475
+    ],
+    [
+     33,
+     "GodsArmy",
      1474
     ],
     [
-     23,
-     "L'académie",
-     1473
-    ],
-    [
-     24,
-     "6thElement",
-     1472
-    ],
-    [
-     24,
-     "Melødix",
-     1472
-    ],
-    [
-     26,
-     "8th sin",
-     1471
-    ],
-    [
-     26,
-     "Ch@péus P@lh@",
-     1471
-    ],
-    [
-     28,
-     "All Stars~",
-     1470
-    ],
-    [
-     28,
-     "CrashOut",
-     1470
-    ],
-    [
-     28,
-     "LesTripleBuses",
-     1470
-    ],
-    [
-     28,
-     "My Dirty Hobby",
-     1470
-    ],
-    [
-     28,
-     "OS: Encøre",
-     1470
-    ],
-    [
      33,
-     "[chAos]",
-     1469
-    ],
-    [
-     33,
-     "Prøject: Zer0",
-     1469
+     "White Walkers",
+     1474
     ],
     [
      35,
-     "First Ørder",
-     1468
+     "CrashOut",
+     1473
     ],
     [
-     36,
-     "-LazYggdrasil-",
-     1466
+     35,
+     "ExplodingCats",
+     1473
     ],
     [
-     36,
-     "Chow Main",
-     1466
+     35,
+     "Tenshi Fighter",
+     1473
     ],
     [
-     36,
-     "Partekus",
-     1466
+     38,
+     "[chAos]",
+     1472
     ],
     [
-     39,
-     "Down~",
-     1465
-    ],
-    [
-     40,
-     "-BabYggdrasil-",
-     1464
+     38,
+     "L'académie",
+     1472
     ],
     [
      40,
-     "L'équipage",
-     1464
+     "=PEACE=",
+     1471
+    ],
+    [
+     40,
+     "Crow's Unit",
+     1471
     ],
     [
      42,
+     "-YggdraChill-",
+     1469
+    ],
+    [
+     42,
+     "Ch@péus P@lh@",
+     1469
+    ],
+    [
+     42,
+     "Chow Main",
+     1469
+    ],
+    [
+     45,
+     "All Stars~",
+     1468
+    ],
+    [
+     45,
+     "BrasilianStorm",
+     1468
+    ],
+    [
+     45,
+     "Down~",
+     1468
+    ],
+    [
+     45,
+     "LesTripleBuses",
+     1468
+    ],
+    [
+     45,
+     "OS: Encøre",
+     1468
+    ],
+    [
+     50,
+     "Λstralys",
+     1467
+    ],
+    [
+     50,
+     "=PEACE 2=",
+     1467
+    ],
+    [
+     50,
+     "L'équipage",
+     1467
+    ],
+    [
+     53,
+     "Ordre 66",
+     1466
+    ],
+    [
+     53,
+     "ProccDiff",
+     1466
+    ],
+    [
+     53,
      "TheOlympians",
+     1466
+    ],
+    [
+     56,
+     "ᴍɪꜱꜰɪᴛꜱ",
+     1464
+    ],
+    [
+     56,
+     "AkatsukiDemons",
+     1464
+    ],
+    [
+     56,
+     "Tyrants",
+     1464
+    ],
+    [
+     59,
+     "Kronos7",
      1463
     ],
     [
-     43,
-     "DonLegendz",
-     1462
-    ],
-    [
-     43,
-     "The Chaotic",
-     1462
-    ],
-    [
-     45,
-     "ᴍɪꜱꜰɪᴛꜱ",
-     1461
-    ],
-    [
-     45,
-     "L'équipage II",
-     1461
-    ],
-    [
-     47,
-     "Kronos7",
-     1460
-    ],
-    [
-     47,
+     59,
      "ObsidiΛn",
-     1460
+     1463
     ],
     [
-     49,
-     "Chill Hub",
-     1459
-    ],
-    [
-     49,
-     "Re Awakening",
-     1459
-    ],
-    [
-     51,
-     "Showtime²",
-     1458
-    ],
-    [
-     52,
-     "TIT4NS",
-     1457
-    ],
-    [
-     53,
-     "AgeOfRespawn",
-     1456
-    ],
-    [
-     53,
-     "Hunters Wars",
-     1456
-    ],
-    [
-     53,
-     "Oni Giri",
-     1456
-    ],
-    [
-     53,
-     "White Walkers",
-     1456
-    ],
-    [
-     57,
-     "Arthia",
-     1455
-    ],
-    [
-     57,
-     "Black Blossom",
-     1455
-    ],
-    [
-     57,
-     "ExplodingCats",
-     1455
-    ],
-    [
-     57,
-     "Moon✗Dawn",
-     1455
-    ],
-    [
-     57,
-     "Tenshi Fighter",
-     1455
+     59,
+     "RiseOfBurn",
+     1463
     ],
     [
      62,
-     "1°Orden",
-     1454
+     "-BabYggdrasil-",
+     1462
     ],
     [
-     63,
-     "-Void-",
-     1453
+     62,
+     "Tensurα",
+     1462
     ],
     [
-     63,
-     "=PEACE=",
-     1453
+     64,
+     "Λstralys II",
+     1461
     ],
     [
-     63,
-     "Crow's Unit",
-     1453
+     64,
+     "Glüxbärchis",
+     1461
     ],
     [
-     63,
-     "TUGA",
-     1453
-    ],
-    [
-     67,
-     "LaStrat'",
-     1452
+     64,
+     "Showtime²",
+     1461
     ],
     [
      67,
-     "Soepkippen",
-     1452
+     "DonLegendz",
+     1460
     ],
     [
-     69,
-     "-YggdraChill-",
-     1451
+     67,
+     "LegionMon",
+     1460
+    ],
+    [
+     67,
+     "Reførged",
+     1460
+    ],
+    [
+     67,
+     "Rising Stars",
+     1460
+    ],
+    [
+     67,
+     "Sinless",
+     1460
     ],
     [
      69,
@@ -888,9 +898,19 @@
      1451
     ],
     [
-     73,
-     "BrasilianStorm",
-     1450
+     72,
+     "Hunters Wars",
+     1459
+    ],
+    [
+     72,
+     "Le navire",
+     1459
+    ],
+    [
+     72,
+     "MadLine",
+     1459
     ],
     [
      73,
@@ -903,14 +923,14 @@
      1450
     ],
     [
-     76,
-     "Λstralys",
-     1449
+     75,
+     "Black Blossom",
+     1458
     ],
     [
-     76,
-     "=PEACE 2=",
-     1449
+     75,
+     "ChronoStorm",
+     1458
     ],
     [
      76,
@@ -926,6 +946,36 @@
      76,
      "Red Sun",
      1449
+    ],
+    [
+     77,
+     "ҽɳιɠɱα2",
+     1457
+    ],
+    [
+     77,
+     "Ørder Trident",
+     1457
+    ],
+    [
+     77,
+     "1°Orden",
+     1457
+    ],
+    [
+     77,
+     "Re Awakening",
+     1457
+    ],
+    [
+     77,
+     "Silentia",
+     1457
+    ],
+    [
+     77,
+     "SpaceSquids",
+     1457
     ],
     [
      81,
@@ -953,14 +1003,39 @@
      1448
     ],
     [
-     81,
-     "Ordre 66",
-     1448
+     83,
+     "-Void-",
+     1456
     ],
     [
-     81,
-     "ProccDiff",
-     1448
+     83,
+     "TUGA",
+     1456
+    ],
+    [
+     85,
+     "Final Emblem",
+     1455
+    ],
+    [
+     85,
+     "LaStrat'",
+     1455
+    ],
+    [
+     85,
+     "Soepkippen",
+     1455
+    ],
+    [
+     85,
+     "TIT4NS",
+     1455
+    ],
+    [
+     85,
+     "Vlkings",
+     1455
     ],
     [
      88,
@@ -974,18 +1049,28 @@
     ],
     [
      90,
-     "AkatsukiDemons",
-     1446
-    ],
-    [
-     90,
      "Darkanima",
      1446
     ],
     [
      90,
-     "Tyrants",
-     1446
+     "AgeOfRespawn",
+     1454
+    ],
+    [
+     90,
+     "CZ/SK guilda",
+     1454
+    ],
+    [
+     90,
+     "Kuntaminated",
+     1454
+    ],
+    [
+     90,
+     "Oni Giri",
+     1454
     ],
     [
      93,
@@ -994,13 +1079,43 @@
     ],
     [
      93,
-     "RiseOfBurn",
+     "STARFISH",
      1445
     ],
     [
-     93,
-     "STARFISH",
-     1445
+     94,
+     "Af: Fromis",
+     1453
+    ],
+    [
+     94,
+     "Arthia",
+     1453
+    ],
+    [
+     94,
+     "Dunder Mifflin",
+     1453
+    ],
+    [
+     94,
+     "Eyes of Angel",
+     1453
+    ],
+    [
+     94,
+     "Moon✗Dawn",
+     1453
+    ],
+    [
+     94,
+     "Nexørix",
+     1453
+    ],
+    [
+     94,
+     "YourBunnyWrote",
+     1453
     ],
     [
      96,
@@ -1019,16 +1134,11 @@
     ],
     [
      96,
-     "Tensurα",
-     1444
-    ],
-    [
-     96,
      "utopya",
      1444
     ]
    ],
-   "remaining": 2,
+   "remaining": 1,
    "history": [
     {
      "left": 3,
@@ -1037,12 +1147,16 @@
     {
      "left": 2,
      "cut32": 1470
+    },
+    {
+     "left": 1,
+     "cut32": 1475
     }
    ]
   },
   "Asia+China": {
    "key": "asiaChina",
-   "lastUpdated": "2026-10-27T17:47:00.000Z",
+   "lastUpdated": "2026-10-27T21:54:00.000Z",
    "rows": [
     [
      1,
