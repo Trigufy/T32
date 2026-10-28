@@ -7,21 +7,30 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
           ref: probe
-      - name: Fetch guild history
+      - name: Fetch guild siege histories
         run: |
-          mkdir -p probe4
+          mkdir -p probe5
           UA="sw-t32.com leaderboard updater (+https://sw-t32.com)"
-          get(){ curl -sS -A "$UA" -H "Referer: https://swgt.io/leaderboards/siege/guild/?guildID=427842&server=global" -H "X-Requested-With: XMLHttpRequest" -o "probe4/$1" -w "%{http_code} %{size_download} $1\n" "$2" >> probe4/status.txt || true; sleep 2; }
-          get guild_427842.html "https://swgt.io/controllers/leaderboards/ajaxLoadSiegeGuild?guildID=427842&server=global&nocache=$(date +%s%3N)"
-          cat probe4/status.txt
+          n=0
+          while read -r id; do
+            [ -z "$id" ] && continue
+            n=$((n+1))
+            curl -sS -A "$UA" -H "Referer: https://swgt.io/leaderboards/siege/guild/?guildID=$id&server=global" -H "X-Requested-With: XMLHttpRequest" \
+              -o "probe5/g_$id.html" -w "%{http_code} %{size_download} $id\n" \
+              "https://swgt.io/controllers/leaderboards/ajaxLoadSiegeGuild?guildID=$id&server=global&nocache=$(date +%s%3N)" >> probe5/status.txt || echo "ERR $id" >> probe5/status.txt
+            sleep 1.5
+          done < ids.txt
+          awk '{print $1}' probe5/status.txt | sort | uniq -c
+          tar -czf probe5.tgz probe5 && rm -rf probe5 && ls -la probe5.tgz
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add probe4 .github
-          git commit -m "probe3 output" || echo nothing
+          git add probe5.tgz
+          git commit -m "probe5 output" || echo nothing
           git push origin HEAD:probe
