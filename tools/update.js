@@ -4,7 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 const {parseSiege} = require('./swgt-parse.js');
-const {siegesLeft} = require('./sieges.js');
+const {siegesLeft, awaitingResults} = require('./sieges.js');
 
 const ROOT = path.join(__dirname, '..');
 const SETTINGS = path.join(ROOT, 'data', 'settings.json');
@@ -63,6 +63,9 @@ async function main(){
     const override = settings.siegesLeftOverride && settings.siegesLeftOverride[s.label];
     board.remaining = Number.isInteger(override) ? override
       : siegesLeft(board.lastUpdated, settings.cutoffDate, s.timeZone, settings.siegeEndsAt || '23:00');
+    // A siege that has ended but whose results swgt.io hasn't posted yet, so the page can say so.
+    board.awaiting = Number.isInteger(override) ? []
+      : awaitingResults(board.lastUpdated, settings.cutoffDate, s.timeZone, settings.siegeEndsAt || '23:00', Date.now());
     // One 32nd-place score per "sieges left" value, so the page can show the real rise per siege.
     const hist = new Map(((sameSeason && old && old.history) || []).map(h => [h.left, h]));
     const c = cut32(board.rows);

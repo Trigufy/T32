@@ -2,10 +2,11 @@ name: Update leaderboard from swgt.io
 
 on:
   schedule:
-    # swgt.io refreshes after each siege, on Wednesdays and Saturdays. Check every 2 hours those days (UTC),
-    # plus a few catch-up checks on Tuesday, Thursday, Friday and Sunday for servers that update early or late.
-    - cron: "17 */2 * * 3,6"
-    - cron: "47 */6 * * 0,2,4,5"
+    # swgt.io refreshes after each siege, on Wednesdays and Saturdays. Check every hour those days (UTC),
+    # and every 3 hours on Tuesday, Thursday, Friday and Sunday, when other servers' results land.
+    # GitHub sometimes skips scheduled runs, so the frequent checks also cover for a missed one.
+    - cron: "17 * * * 3,6"
+    - cron: "47 */3 * * 0,2,4,5"
   workflow_dispatch: {}
   push:
     branches: [main]

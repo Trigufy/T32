@@ -19,21 +19,30 @@ function localDate(ms, tz){
   return f.format(new Date(ms)); // YYYY-MM-DD
 }
 
-function siegesLeft(lastUpdatedISO, cutoffDate, tz, endsAt){
+// Rounds still to come for this data: each {start, end (YYYY-MM-DD, server dates), endsAt (ms)}.
+function roundsLeft(lastUpdatedISO, cutoffDate, tz, endsAt){
   const updated = Date.parse(lastUpdatedISO);
   const m = String(cutoffDate || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  if (!Number.isFinite(updated) || !m) return 0;
+  if (!Number.isFinite(updated) || !m) return [];
   const [eh, em] = String(endsAt || '23:00').split(':').map(Number);
   const cutoffUTC = Date.UTC(+m[1], +m[2] - 1, +m[3]);
   const startDay = localDate(updated - 4 * 86400000, tz).split('-').map(Number);
-  let count = 0;
+  const ymd = ms => new Date(ms).toISOString().slice(0, 10);
+  const out = [];
   for (let day = Date.UTC(startDay[0], startDay[1] - 1, startDay[2]); day <= cutoffUTC; day += 86400000){
     const dow = new Date(day).getUTCDay();
     if (dow !== 1 && dow !== 4) continue; // rounds start Monday and Thursday
     const end = new Date(day + 86400000); // and end the next day
     const endMs = localToUtc(end.getUTCFullYear(), end.getUTCMonth() + 1, end.getUTCDate(), eh, em, tz);
-    if (endMs > updated) count++;
+    if (endMs > updated) out.push({start: ymd(day), end: ymd(day + 86400000), endsAt: endMs});
   }
-  return count;
+  return out;
 }
-module.exports = {siegesLeft};
+function siegesLeft(lastUpdatedISO, cutoffDate, tz, endsAt){
+  return roundsLeft(lastUpdatedISO, cutoffDate, tz, endsAt).length;
+}
+// Rounds that have finished (by nowMs) but whose results are not in this data yet.
+function awaitingResults(lastUpdatedISO, cutoffDate, tz, endsAt, nowMs){
+  return roundsLeft(lastUpdatedISO, cutoffDate, tz, endsAt).filter(r => r.endsAt <= nowMs).map(r => ({start: r.start, end: r.end}));
+}
+module.exports = {siegesLeft, roundsLeft, awaitingResults};
