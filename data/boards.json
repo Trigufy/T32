@@ -8,7 +8,7 @@
  "servers": {
   "Global": {
    "key": "global",
-   "lastUpdated": "2026-10-28T17:57:00.000Z",
+   "lastUpdated": "2026-10-28T23:14:00.000Z",
    "rows": [
     [
      1,
@@ -426,11 +426,6 @@
      1458
     ],
     [
-     76,
-     "TheOldGuard",
-     1458
-    ],
-    [
      79,
      "Clã D6stino",
      1457
@@ -635,7 +630,7 @@
   },
   "Europe": {
    "key": "europe",
-   "lastUpdated": "2026-10-28T18:17:00.000Z",
+   "lastUpdated": "2026-10-28T23:12:00.000Z",
    "rows": [
     [
      1,
@@ -1157,7 +1152,7 @@
   },
   "Asia+China": {
    "key": "asiaChina",
-   "lastUpdated": "2026-10-28T15:50:00.000Z",
+   "lastUpdated": "2026-10-28T22:43:00.000Z",
    "rows": [
     [
      1,
