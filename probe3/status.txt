@@ -1,0 +1,3 @@
+200 540928 global_now.html
+200 49825 guild_poison.html
+200 97555 map_m11.html
