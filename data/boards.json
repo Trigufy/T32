@@ -8,7 +8,7 @@
  "servers": {
   "Global": {
    "key": "global",
-   "lastUpdated": "2026-10-28T23:14:00.000Z",
+   "lastUpdated": "2026-10-29T02:29:00.000Z",
    "rows": [
     [
      1,
@@ -326,11 +326,6 @@
      1470
     ],
     [
-     63,
-     "V0X Integritas",
-     1462
-    ],
-    [
      64,
      "ImperialKing'z",
      1469
@@ -349,16 +344,6 @@
      65,
      "Syndicate! II",
      1468
-    ],
-    [
-     67,
-     "Grφve",
-     1461
-    ],
-    [
-     68,
-     "Night•Mare",
-     1460
     ],
     [
      68,
@@ -391,11 +376,6 @@
      1467
     ],
     [
-     72,
-     "Caos",
-     1459
-    ],
-    [
      74,
      "4x4 BR",
      1466
@@ -421,21 +401,6 @@
      1466
     ],
     [
-     76,
-     "Clã D5stino",
-     1458
-    ],
-    [
-     79,
-     "Clã D6stino",
-     1457
-    ],
-    [
-     79,
-     "VN.ANHEM",
-     1457
-    ],
-    [
      79,
      "Clã D3stino",
      1465
@@ -449,16 +414,6 @@
      79,
      "Satellite Lite",
      1465
-    ],
-    [
-     82,
-     "Broken souls_",
-     1456
-    ],
-    [
-     82,
-     "Oz Br Proc",
-     1456
     ],
     [
      82,
@@ -501,21 +456,6 @@
      1463
     ],
     [
-     86,
-     "光之聖界",
-     1455
-    ],
-    [
-     86,
-     "Discordians",
-     1455
-    ],
-    [
-     86,
-     "Valiant Reborn",
-     1455
-    ],
-    [
      90,
      "*RisingHeroes*",
      1462
@@ -541,21 +481,6 @@
      1462
     ],
     [
-     91,
-     "Full Farm Br",
-     1454
-    ],
-    [
-     91,
-     "Paramount",
-     1454
-    ],
-    [
-     91,
-     "RoyalOblivion",
-     1454
-    ],
-    [
      95,
      "IllegallyLucky",
      1461
@@ -564,16 +489,6 @@
      95,
      "Ultimate Alert",
      1461
-    ],
-    [
-     96,
-     "FargoUnited",
-     1453
-    ],
-    [
-     96,
-     "Sandy",
-     1453
     ],
     [
      97,
@@ -594,21 +509,6 @@
      97,
      "We Surrender",
      1460
-    ],
-    [
-     98,
-     "EternityVN",
-     1452
-    ],
-    [
-     98,
-     "HouseOfWolves!",
-     1452
-    ],
-    [
-     98,
-     "Smoke n play",
-     1452
     ]
    ],
    "remaining": 1,
@@ -630,7 +530,7 @@
   },
   "Europe": {
    "key": "europe",
-   "lastUpdated": "2026-10-28T23:12:00.000Z",
+   "lastUpdated": "2026-10-29T01:06:00.000Z",
    "rows": [
     [
      1,
