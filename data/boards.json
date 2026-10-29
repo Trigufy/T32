@@ -8,7 +8,7 @@
  "servers": {
   "Global": {
    "key": "global",
-   "lastUpdated": "2026-10-29T13:01:00.000Z",
+   "lastUpdated": "2026-10-29T20:35:00.000Z",
    "rows": [
     [
      1,
@@ -507,6 +507,11 @@
     ],
     [
      97,
+     "V0X Integritas",
+     1460
+    ],
+    [
+     97,
      "We Surrender",
      1460
     ]
@@ -530,7 +535,7 @@
   },
   "Europe": {
    "key": "europe",
-   "lastUpdated": "2026-10-29T13:31:00.000Z",
+   "lastUpdated": "2026-10-29T20:35:00.000Z",
    "rows": [
     [
      1,
@@ -1052,7 +1057,7 @@
   },
   "Asia+China": {
    "key": "asiaChina",
-   "lastUpdated": "2026-10-29T13:14:00.000Z",
+   "lastUpdated": "2026-10-29T17:26:00.000Z",
    "rows": [
     [
      1,
@@ -1569,7 +1574,7 @@
   },
   "Japan+Korea": {
    "key": "japanKorea",
-   "lastUpdated": "2026-10-29T08:01:00.000Z",
+   "lastUpdated": "2026-10-29T15:01:00.000Z",
    "rows": [
     [
      1,
@@ -1809,7 +1814,7 @@
     [
      48,
      "쿨엔조이",
-     1437
+     1440
     ],
     [
      49,
