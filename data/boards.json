@@ -8,7 +8,7 @@
  "servers": {
   "Global": {
    "key": "global",
-   "lastUpdated": "2026-10-30T10:22:00.000Z",
+   "lastUpdated": "2026-10-30T18:03:00.000Z",
    "rows": [
     [
      1,
@@ -535,7 +535,7 @@
   },
   "Europe": {
    "key": "europe",
-   "lastUpdated": "2026-10-30T10:23:00.000Z",
+   "lastUpdated": "2026-10-30T18:05:00.000Z",
    "rows": [
     [
      1,
@@ -915,7 +915,7 @@
     [
      75,
      "ChronoStorm",
-     1461
+     1458
     ],
     [
      77,
@@ -1057,7 +1057,7 @@
   },
   "Asia+China": {
    "key": "asiaChina",
-   "lastUpdated": "2026-10-30T09:40:00.000Z",
+   "lastUpdated": "2026-10-30T14:59:00.000Z",
    "rows": [
     [
      1,
@@ -1556,7 +1556,12 @@
     ]
    ],
    "remaining": 1,
-   "awaiting": [],
+   "awaiting": [
+    {
+     "start": "2026-10-29",
+     "end": "2026-10-30"
+    }
+   ],
    "history": [
     {
      "left": 3,
@@ -1574,7 +1579,7 @@
   },
   "Japan+Korea": {
    "key": "japanKorea",
-   "lastUpdated": "2026-10-29T15:01:00.000Z",
+   "lastUpdated": "2026-10-30T13:12:00.000Z",
    "rows": [
     [
      1,
@@ -1644,7 +1649,7 @@
     [
      14,
      "겨울왕국&",
-     1477
+     1495
     ],
     [
      15,
@@ -1814,7 +1819,7 @@
     [
      48,
      "쿨엔조이",
-     1440
+     1437
     ],
     [
      49,
@@ -2078,7 +2083,12 @@
     ]
    ],
    "remaining": 1,
-   "awaiting": [],
+   "awaiting": [
+    {
+     "start": "2026-10-29",
+     "end": "2026-10-30"
+    }
+   ],
    "history": [
     {
      "left": 3,
