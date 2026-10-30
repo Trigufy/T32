@@ -8,7 +8,7 @@
  "servers": {
   "Global": {
    "key": "global",
-   "lastUpdated": "2026-10-30T01:17:00.000Z",
+   "lastUpdated": "2026-10-30T10:22:00.000Z",
    "rows": [
     [
      1,
@@ -535,7 +535,7 @@
   },
   "Europe": {
    "key": "europe",
-   "lastUpdated": "2026-10-30T00:24:00.000Z",
+   "lastUpdated": "2026-10-30T10:23:00.000Z",
    "rows": [
     [
      1,
@@ -915,7 +915,7 @@
     [
      75,
      "ChronoStorm",
-     1458
+     1461
     ],
     [
      77,
@@ -1057,7 +1057,7 @@
   },
   "Asia+China": {
    "key": "asiaChina",
-   "lastUpdated": "2026-10-30T00:47:00.000Z",
+   "lastUpdated": "2026-10-30T09:40:00.000Z",
    "rows": [
     [
      1,
@@ -1371,6 +1371,11 @@
     ],
     [
      64,
+     "Singularity",
+     1458
+    ],
+    [
+     64,
      "-༺℀aTraᶻ༻-",
      1460
     ],
@@ -1387,11 +1392,6 @@
     [
      64,
      "MAGIC ACADEMY",
-     1460
-    ],
-    [
-     64,
-     "Singularity",
      1460
     ],
     [
