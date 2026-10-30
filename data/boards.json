@@ -8,7 +8,7 @@
  "servers": {
   "Global": {
    "key": "global",
-   "lastUpdated": "2026-10-30T18:03:00.000Z",
+   "lastUpdated": "2026-10-30T22:18:00.000Z",
    "rows": [
     [
      1,
@@ -332,11 +332,6 @@
     ],
     [
      65,
-     "Ghostx",
-     1468
-    ],
-    [
-     65,
      "It Wasnt Me",
      1468
     ],
@@ -344,6 +339,11 @@
      65,
      "Syndicate! II",
      1468
+    ],
+    [
+     65,
+     "Ghostx",
+     1486
     ],
     [
      68,
@@ -507,13 +507,13 @@
     ],
     [
      97,
-     "V0X Integritas",
+     "We Surrender",
      1460
     ],
     [
      97,
-     "We Surrender",
-     1460
+     "V0X Integritas",
+     1478
     ]
    ],
    "remaining": 1,
@@ -535,7 +535,7 @@
   },
   "Europe": {
    "key": "europe",
-   "lastUpdated": "2026-10-30T18:05:00.000Z",
+   "lastUpdated": "2026-10-30T21:59:00.000Z",
    "rows": [
     [
      1,
@@ -759,12 +759,12 @@
     ],
     [
      45,
-     "All Stars~",
-     1468
+     "BrasilianStorm",
+     1466
     ],
     [
      45,
-     "BrasilianStorm",
+     "All Stars~",
      1468
     ],
     [
@@ -1039,7 +1039,12 @@
     ]
    ],
    "remaining": 1,
-   "awaiting": [],
+   "awaiting": [
+    {
+     "start": "2026-10-29",
+     "end": "2026-10-30"
+    }
+   ],
    "history": [
     {
      "left": 3,
