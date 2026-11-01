@@ -8,7 +8,7 @@
  "servers": {
   "Global": {
    "key": "global",
-   "lastUpdated": "2026-10-31T21:32:00.000Z",
+   "lastUpdated": "2026-11-01T00:52:00.000Z",
    "rows": [
     [
      1,
@@ -331,11 +331,6 @@
      1479
     ],
     [
-     64,
-     "ImperialKing'z",
-     1469
-    ],
-    [
      65,
      "V0X Integritas",
      1478
@@ -349,11 +344,6 @@
      66,
      "Grφve",
      1477
-    ],
-    [
-     68,
-     "Smokin Aces",
-     1467
     ],
     [
      68,
@@ -384,21 +374,6 @@
      73,
      "NESTLE",
      1475
-    ],
-    [
-     74,
-     "SuperSaiyajins",
-     1466
-    ],
-    [
-     74,
-     "TheArrombeds",
-     1466
-    ],
-    [
-     74,
-     "Volturi",
-     1466
     ],
     [
      74,
@@ -446,26 +421,6 @@
      1473
     ],
     [
-     79,
-     "Made in Sw",
-     1465
-    ],
-    [
-     82,
-     "Ground Zero",
-     1464
-    ],
-    [
-     82,
-     "Mother’s Wish",
-     1464
-    ],
-    [
-     82,
-     "RisenAngels",
-     1464
-    ],
-    [
      84,
      "CornRush",
      1472
@@ -479,21 +434,6 @@
      84,
      "HeartBreakKids",
      1472
-    ],
-    [
-     85,
-     "_-RENEGADOS-_",
-     1463
-    ],
-    [
-     85,
-     "FuoBR Family 2",
-     1463
-    ],
-    [
-     85,
-     "Rage Gang",
-     1463
     ],
     [
      87,
@@ -531,21 +471,6 @@
      1470
     ],
     [
-     90,
-     "*RisingHeroes*",
-     1462
-    ],
-    [
-     90,
-     "HondaVN",
-     1462
-    ],
-    [
-     90,
-     "Kindred Shadow",
-     1462
-    ],
-    [
      94,
      "4x4 BR",
      1469
@@ -554,11 +479,6 @@
      94,
      "Sandy",
      1469
-    ],
-    [
-     95,
-     "Ultimate Alert",
-     1461
     ],
     [
      96,
@@ -584,26 +504,6 @@
      96,
      "Sacred Stars",
      1468
-    ],
-    [
-     97,
-     "[ONE]Krew",
-     1460
-    ],
-    [
-     97,
-     "♤TrumpeD♤",
-     1460
-    ],
-    [
-     97,
-     "Rainbøw",
-     1460
-    ],
-    [
-     97,
-     "We Surrender",
-     1460
     ]
    ],
    "remaining": 0,
@@ -629,7 +529,7 @@
   },
   "Europe": {
    "key": "europe",
-   "lastUpdated": "2026-10-31T21:37:00.000Z",
+   "lastUpdated": "2026-11-01T00:52:00.000Z",
    "rows": [
     [
      1,
@@ -1155,7 +1055,7 @@
   },
   "Asia+China": {
    "key": "asiaChina",
-   "lastUpdated": "2026-10-31T20:25:00.000Z",
+   "lastUpdated": "2026-10-31T23:53:00.000Z",
    "rows": [
     [
      1,
