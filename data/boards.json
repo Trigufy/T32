@@ -8,7 +8,7 @@
  "servers": {
   "Global": {
    "key": "global",
-   "lastUpdated": "2026-11-07T17:59:00.000Z",
+   "lastUpdated": "2026-11-07T21:19:00.000Z",
    "rows": [
     [
      1,
@@ -529,7 +529,7 @@
   },
   "Europe": {
    "key": "europe",
-   "lastUpdated": "2026-11-07T17:54:00.000Z",
+   "lastUpdated": "2026-11-07T21:52:00.000Z",
    "rows": [
     [
      1,
@@ -1055,7 +1055,7 @@
   },
   "Asia+China": {
    "key": "asiaChina",
-   "lastUpdated": "2026-11-07T11:17:00.000Z",
+   "lastUpdated": "2026-11-07T20:12:00.000Z",
    "rows": [
     [
      1,
