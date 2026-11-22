@@ -1,5 +1,5 @@
 {
- "season": "Season 22",
+ "season": "Season 23",
  "cutoffDate": "2026-10-30",
  "rate": 8.254,
  "win": 18,
@@ -8,7 +8,7 @@
  "servers": {
   "Global": {
    "key": "global",
-   "lastUpdated": "2026-11-21T21:19:00.000Z",
+   "lastUpdated": "2026-11-22T02:12:00.000Z",
    "rows": [
     [
      1,
@@ -510,18 +510,6 @@
    "awaiting": [],
    "history": [
     {
-     "left": 3,
-     "cut32": 1468
-    },
-    {
-     "left": 2,
-     "cut32": 1476
-    },
-    {
-     "left": 1,
-     "cut32": 1484
-    },
-    {
      "left": 0,
      "cut32": 1493
     }
@@ -529,7 +517,7 @@
   },
   "Europe": {
    "key": "europe",
-   "lastUpdated": "2026-11-21T21:39:00.000Z",
+   "lastUpdated": "2026-11-21T22:52:00.000Z",
    "rows": [
     [
      1,
@@ -1035,18 +1023,6 @@
    "remaining": 0,
    "awaiting": [],
    "history": [
-    {
-     "left": 3,
-     "cut32": 1460
-    },
-    {
-     "left": 2,
-     "cut32": 1470
-    },
-    {
-     "left": 1,
-     "cut32": 1475
-    },
     {
      "left": 0,
      "cut32": 1482
@@ -1556,18 +1532,6 @@
    "remaining": 0,
    "awaiting": [],
    "history": [
-    {
-     "left": 3,
-     "cut32": 1458
-    },
-    {
-     "left": 2,
-     "cut32": 1464
-    },
-    {
-     "left": 1,
-     "cut32": 1474
-    },
     {
      "left": 0,
      "cut32": 1478
@@ -2082,18 +2046,6 @@
    "remaining": 0,
    "awaiting": [],
    "history": [
-    {
-     "left": 3,
-     "cut32": 1434
-    },
-    {
-     "left": 2,
-     "cut32": 1445
-    },
-    {
-     "left": 1,
-     "cut32": 1449
-    },
     {
      "left": 0,
      "cut32": 1455
